@@ -1,0 +1,7 @@
+name: OSC Timer Control
+shortname: OSC Timer
+description: Control OSC-based timer application with up to 4 timers
+version: 1.0.0
+license: MIT
+repository: https://github.com/bitfocus/companion-module-osc-timer
+author: Module Developer <developer@example.com>

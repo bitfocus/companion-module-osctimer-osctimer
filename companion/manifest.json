@@ -1,0 +1,26 @@
+{
+	"id": "osc-timer",
+	"name": "OSC Timer Control",
+	"shortname": "OSC Timer",
+	"description": "Control OSC-based timer application with up to 4 timers",
+	"version": "1.0.0",
+	"license": "MIT",
+	"repository": "https://github.com/bitfocus/companion-module-osc-timer",
+	"bugs": "https://github.com/bitfocus/companion-module-osc-timer/issues",
+	"maintainers": [
+		{
+			"name": "Module Developer",
+			"email": "developer@example.com"
+		}
+	],
+	"runtime": {
+		"type": "node18",
+		"api": "nodejs-ipc",
+		"apiVersion": "0.0.0",
+		"entrypoint": "../index.js"
+	},
+	"legacyIds": [],
+	"manufacturer": "Generic",
+	"products": ["OSC Timer"],
+	"keywords": ["Timer", "Countdown", "OSC"]
+}
