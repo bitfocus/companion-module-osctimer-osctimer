@@ -4,7 +4,7 @@ const { getActionDefinitions } = require('./actions')
 const { getFeedbackDefinitions } = require('./feedbacks')
 const { getPresetDefinitions } = require('./presets')
 const { getVariables } = require('./variables')
-const { initOSC, sendOSCMessage } = require('./osc')
+const { initOSC, sendOSCMessage, closeOSC } = require('./osc')
 const { getConfigFields } = require('./config')
 
 // Define module manifest
@@ -113,8 +113,10 @@ class OSCTimerInstance extends InstanceBase {
                 // Clean up OSC connections when module is destroyed
                 for (let timerNum = 1; timerNum <= 4; timerNum++) {
                         if (this.timers[timerNum].connected) {
-                                // Cleanup is handled in osc.js, just log it here
+                                // Properly close OSC connections
                                 this.log('info', `Disconnecting from Timer ${timerNum}`)
+                                closeOSC(this, timerNum)
+                                this.timers[timerNum].connected = false
                         }
                 }
         }
