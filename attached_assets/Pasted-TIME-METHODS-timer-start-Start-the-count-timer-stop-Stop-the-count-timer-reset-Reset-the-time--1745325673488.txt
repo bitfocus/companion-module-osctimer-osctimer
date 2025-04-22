@@ -1,0 +1,1210 @@
+TIME METHODS
+
+/timer/start
+Start the count
+
+/timer/stop
+Stop the count
+
+/timer/reset
+Reset the time
+
+/timer/resetAndStop
+Reset and stop the count
+
+/timer/count/seconds [Integer]
+Set the countdown time to the specified amount of seconds
+
+/timer/count/minutes [Integer]
+Set the countdown time to the specified amount of minutes
+
+/timer/count/hours [Integer]
+Set the countdown time to the specified amount of hours
+
+/timer/count/time [Integer, Integer, Integer]
+Set the countdown time to the specified amount of hours, minutes, seconds
+
+/timer/count/seconds/add [Integer]
+Add specified amount of seconds to timer
+
+/timer/count/minutes/add [Integer]
+Add specified amount of minutes to timer
+
+/timer/count/hours/add [Integer]
+Add specified amount of hours to timer
+
+/timer/count/time/add [Integer, Integer, Integer]
+Add specified amount of hours, minutes, seconds to timer
+
+/timer/count/seconds/subtract [Integer]
+Subtract specified amount of seconds to timer
+
+/timer/count/minutes/subtract [Integer]
+Subtract specified amount of minutes to timer
+
+/timer/count/hours/subtract [Integer]
+Subtract specified amount of hours to timer
+
+/timer/count/time/subtract [Integer, Integer, Integer]
+Subtract specified amount of hours, minutes, seconds to timer
+
+/timer/count/liveSeconds [Integer]
+Set the counted time to the specified number of seconds.
+
+/timer/count/liveMinutes [Integer]
+Set the counted time to the specified number of minutes.
+
+/timer/count/liveHours [Integer]
+Set the counted time to the specified number of hours.
+
+/timer/count/liveTime [Integer, Integer, Integer]
+Set the counted time to the specified number of hours, minutes, and seconds.
+
+/timer/count/seconds/liveAdd [Integer]
+Temporarily add the specified number of seconds to the duration of the timer. (This amount will be reset when the timer is reset).
+
+/timer/count/minutes/liveAdd [Integer]
+Temporarily add the specified number of minutes to the duration of the timer. (This amount will be reset when the timer is reset).
+
+/timer/count/hours/liveAdd [Integer]
+Temporarily add the specified number of hours to the duration of the timer. (This amount will be reset when the timer is reset).
+
+/timer/count/time/liveAdd [Integer, Integer, Integer]
+Temporarily add the specified number of hours, minutes, and seconds to the duration of the timer. (This amount will be reset when the timer is reset).
+
+/timer/count/seconds/liveSubtract [Integer]
+Subtract the specified number of seconds from the duration of the timer. (This amount will be reset when the timer is reset).
+
+/timer/count/minutes/liveSubtract [Integer]
+Subtract the specified number of minutes from the duration of the timer. (This amount will be reset when the timer is reset).
+
+/timer/count/hours/liveSubtract [Integer]
+Subtract the specified number of hours from the duration of the timer. (This amount will be reset when the timer is reset).
+
+/timer/count/time/liveSubtract [Integer, Integer, Integer]
+Subtract the specified number of hours, minutes, and seconds from the duration of the timer. (This amount will be reset when the timer is reset).
+
+/timer/alert/seconds [Integer]
+Specify the point at where the timer alert color is triggered in seconds
+
+/timer/alert/minutes [Integer]
+Specify the point at where the timer alert color is triggered in minutes
+
+/timer/alert/hours [Integer]
+Specify the point at where the timer alert color is triggered in hours
+
+/timer/alert/time [Integer, Integer, Integer]
+Specify the point at where the timer alert color is triggered in hours, minutes, seconds
+
+/timer/alert/seconds/add [Integer]
+Add specified amount of seconds to the alert time
+
+/timer/alert/minutes/add [Integer]
+Add specified amount of minutes to the alert time
+
+/timer/alert/hours/add [Integer]
+Add specified amount of hours to the alert time
+
+/timer/alert/time/add [Integer, Integer, Integer]
+Add specified amount of hours, minutes, seconds to the alert time
+
+/timer/alert/seconds/subtract [Integer]
+Subtract specified amount of seconds to the alert time
+
+/timer/alert/minutes/subtract [Integer]
+Subtract specified amount of minutes to the alert time
+
+/timer/alert/hours/subtract [Integer]
+Subtract specified amount of hours to the alert time
+
+/timer/alert/time/subtract [Integer, Integer, Integer]
+Subtract specified amount of hours, minutes, seconds to the alert time
+
+/timer/count/steps [Integer]
+Set the speed of the counter in second(s) per second (defaults to 1 second)
+
+/timer/count/up
+Set the counter to count up. (WarningLimit is currently unsupported in this feature.)
+
+/timer/count/down
+Set the counter to count down.
+
+/timer/count/direction [0,1]
+Depending on the first argument this method will determine the direction of the counter. Anything above 0 will result in a count up.
+
+/timer/atEnd/stop
+Set the counter to stop the count down after it reaches zero.
+
+/timer/atEnd/continue
+Set the counter to continue the count down after it reaches zero.
+
+/timer/atEnd [0,1]
+Depending on the first argument this method will determine will continue to run after it reaches zero. Anything above 0 will result in stop at end behavior.
+
+/timer/scale/manual
+Set the timer’s font size to a user-specified value.
+
+/timer/scale/auto
+Set the timer’s font size to a set automatically
+
+/timer/scale [0,1]
+Depending on the first argument, the font size will be set either manually or automatically. A value of 0 sets it manually, while a value of 1 sets it automatically.
+
+/timer/font/size [Int]
+The font size for the displayed timer, if set manually.
+
+NOTE METHODS
+
+/notes/text [String, Integer]
+Display the notes to the viewer. Setting the first argument to “” will remove the notes. Add a second integer argument to auto remove the note.
+
+/notes/animate
+Notes will appear with a small animation
+
+/notes/instant
+Notes will appear instant
+
+/notes/shouldAnimate [0,1]
+Depending on the first argument this method enables or disables the notes ability to animate itself. Anything above 0 will enable animation.
+
+/notes/alignment/center/center
+Sets the justification of the notes to center - center
+
+/notes/alignment/center/trailing
+Sets the justification of the notes to center - trailing
+
+/notes/alignment/center/leading
+Sets the justification of the notes to center - leading
+
+/notes/alignment/top/center
+Sets the justification of the notes to top - center
+
+/notes/alignment/top/trailing
+Sets the justification of the notes to top - trailing
+
+/notes/alignment/top/leading
+Sets the justification of the notes to top - leading
+
+/notes/alignment/bottom/center
+Sets the justification of the notes to bottom - center
+
+/notes/alignment/bottom/trailing
+Sets the justification of the notes to bottom - trailing
+
+/notes/alignment/bottom/leading
+Sets the justification of the notes to bottom - leading
+
+/notes/alignment [0, 1, 2, 3, 4, 5, 6, 7, 8]
+The argument passed to this method will determine the justification of the notes.
+Arguments:
+0: Center - Trailing
+1: Center - Center
+2: Center - Leading
+3: Top - Trailing
+4: Top - Center
+5: Top - Leading
+6: Bottom - Trailing
+7: Bottom - Center
+8: Bottom - Leading
+
+
+/notes/scale/manual
+Set the notes’s font size to a user-specified value.
+
+/notes/scale/auto
+Set the notes’s font size to a set automatically
+
+/notes/scale [0,1]
+Depending on the first argument, the font size will be set either manually or automatically. A value of 0 sets it manually, while a value of 1 sets it automatically.
+
+/notes/font/size [Int]
+The font size for the displayed notes, if set manually.
+
+DISPLAY METHODS
+
+/timer/friendlyName [String]
+Display a friendly name for the timer
+Arguments:
+1: The friendly name of the timer
+Example: /timer/friendlyName "Speaker Timer"
+
+/timer/show/hours
+Display HH:MM:SS
+
+/timer/show/minutes
+Display MM:SS
+
+/timer/show/seconds
+Display SS
+
+/timer/show/decimals [0, 1]
+Display Decimals to the counter Display a friendly name for the timer
+Arguments:
+1: A boolean value that determines whether decimals are displayed: 0 for false (no decimals), 1 for true (decimals displayed)
+
+
+/timer/show [0, 1, 2, 3]
+The argument passed to this method will determine the formatting of the counter.
+Arguments:
+0: seconds, decimal
+1 = seconds
+2 = minutes, seconds
+3=< = hours, minutes, seconds)
+
+
+/display/slot/layout/single
+Only slot 1 is displayed, occupying the entire real estate of O:S:C Timer’s screen.
+
+/display/slot/layout/dual
+Slots 1 and 2 are displayed, one on top of the other.
+
+/display/slot/layout/quad
+Slots 1-4 are displayed in a 2x2 grid.
+
+/display/slot/[slot#]/[widget]
+Sets which widget occupies each slot. The slot# can be 1, 2, 3, or 4, and the widget can be timer1, timer2, timer3, timer4, broadcast, clock, or monitor.
+Example:
+- /display/slot/1/timer1 will display timer 1 in in slot 1
+- /display/slot/2/clock will display a clock in slot 2 that mimics the system time of the device.
+
+BROADCAST METHODS
+
+/broadcast/text/subscribe [String, Integer, String]
+Calling this method will make a subscription to broadcast the time as a String to the specified arguments.
+Arguments:
+1: IP
+2: port
+3: OSC path
+Example: /broadcast/text/subscribe 192.168.0.10 53000 /cue/OSCtimerTime/name
+
+/broadcast/text/unsubscribe [String, Integer, String]
+Calling this method will unsubscribe a previously subscription. The 3 arguments [IP, port, OSC path] must be specified once again.
+Arguments:
+1: IP
+2: port
+3: OSC path
+Example: /broadcast/text/unsubscribe 192.168.0.10 53000 /cue/OSCtimerTime/name
+
+/broadcast/color/subscribe [String, Integer, String, String, String, String]
+Calling this method will make a subscription to broadcast color change specific to QLab cues. Three OSC messages will be sent to QLab, one for each time counter status changes. The colors are defined be a the word of the color, ie, “red”, “yellow” and so on. None removes the color. A list of all colors available in QLab can be found in the download section.
+Arguments:
+1: IP address of the recipient
+2: Port of the recipients process
+3: OSC path of the recipients OSC API
+4: Normal color
+5: Warning color
+6: End color
+Example: /broadcast/color/subscribe 192.168.0.10 53000 /cue/OSCtimerTime/colorName None Yellow Red
+
+/broadcast/color/unsubscribe [String, Integer, String]
+Unsubscribe color changes. There is no need to specify colors.
+Arguments:
+1: IP address of the recipient
+2: Port of the recipients process
+3: OSC path of the recipients OSC API
+Example: /broadcast/color/unsubscribe 192.168.0.10 53000 /cue/OSCtimerTime/colorName
+
+/broadcast/warning/subscribe [String, Integer, String]
+Calling this will add a user specified OSC message which will be sent once the counter enters the time periode between the warning time and the end time.
+Arguments:
+1: IP address of the recipient
+2: Port of the recipients process
+3: OSC path of the recipients OSC API
+Example: /broadcast/warning/subscribe 127.0.0.1 53000 /cue/warningTrigger/start
+
+/broadcast/warning/unsubscribe [String, Integer, String]
+Unsubscribe any OSC message subscription previously added. Every argument needs to be an exact match of those send with the subscription cue.
+Arguments:
+1: IP address of the recipient
+2: Port of the recipients process
+3: OSC path of the recipients OSC API
+Example: /broadcast/warning/unsubscribe 127.0.0.1 53000 /cue/warningTrigger/start
+
+/broadcast/end/subscribe [String, Integer, String]
+Calling this will add a user specified OSC message which will be sent once the counter reaches the end time.
+Arguments:
+1: IP address of the recipient
+2: Port of the recipients process
+3: OSC path of the recipients OSC API
+Example: /broadcast/end/subscribe 127.0.0.1 53000 /cue/endTrigger/start
+
+/broadcast/end/unsubscribe [String, Integer, String]
+Unsubscribe a OSC message subscription previously added. Every argument needs to be an exact match of those send with the subscription cue.
+Arguments:
+1: IP address of the recipient
+2: Port of the recipients process
+3: OSC path of the recipients OSC API
+Example: /broadcast/end/unsubscribe 127.0.0.1 53000 /cue/warningTrigger/start
+
+/broadcast/atTime/subscribe/seconds [Integer, String, Integer, String]
+Calling this method will add a user specified OSC message which will be sent once the counter reaches the time given in seconds.
+Arguments:
+1: The trigger time in seconds
+2: IP address of the recipient
+3: Port of the recipients process
+4: OSC path of the recipients OSC API
+Example: /broadcast/atTime/subscribe/seconds 10 127.0.0.1 53000 /cue/specificTimeTrigger/start
+
+/broadcast/atTime/subscribe/minutes [Integer, String, Integer, String]
+Calling this method will add a user specified OSC message which will be sent once the counter reaches the time given in minutes.
+Arguments:
+1: The trigger time in minutes
+2: IP address of the recipient
+3: Port of the recipients process
+4: OSC path of the recipients OSC API
+Example: /broadcast/atTime/subscribe/minutes 10 127.0.0.1 53000 /cue/specificTimeTrigger/start
+
+/broadcast/atTime/subscribe/hours [Integer, String, Integer, String]
+Calling this method will add a user specified OSC message which will be sent once the counter reaches the time given in hours.
+Arguments:
+1: The trigger time in hours
+2: IP address of the recipient
+3: Port of the recipients process
+4: OSC path of the recipients OSC API
+Example: /broadcast/atTime/subscribe/hours 10 127.0.0.1 53000 /cue/specificTimeTrigger/start, where the arguments are [time, IP address, port, OSC path]
+
+/broadcast/atTime/subscribe/time [Integer, Integer, Integer, String, Integer, String]
+Calling this method will add a user specified OSC message which will be sent once the counter reaches the time given.
+Arguments:
+1: The trigger time in hours
+2: The trigger time in minutes
+3: The trigger time in seconds
+4: IP address of the recipient
+5: Port of the recipients process
+6: OSC path of the recipients OSC API
+Example: /broadcast/atTime/subscribe/time 1, 1, 1 127.0.0.1 53000 /cue/specificTimeTrigger/start
+
+/broadcast/atTime/unsubscribe/seconds [Integer, String, Integer, String]
+Unsubscribe a OSC message subscription previously added. The 3 last argument needs to be an exact match of those send with the subscription cue. The first argument (time) needs to be the same, but a subscription made with 1 minute can be unsubscribe with 60 seconds.
+Arguments:
+1: The trigger time in seconds
+2: IP address of the recipient
+3: Port of the recipients process
+4: OSC path of the recipients OSC API
+Example: /broadcast/atTime/unsubscribe/seconds 10 127.0.0.1 53000 /cue/specificTimeTrigger/start
+
+/broadcast/atTime/unsubscribe/minutes [Integer, String, Integer, String]
+Unsubscribe a OSC message subscription previously added. The 3 last argument needs to be an exact match of those send with the subscription cue. The first argument (time) needs to be the same, but a subscription made with 60 seconds can be unsubscribe with 1 minute.
+Arguments:
+1: The trigger time in minute
+2: IP address of the recipient
+3: Port of the recipients process
+4: OSC path of the recipients OSC API
+Example: /broadcast/atTime/unsubscribe/minutes 10 127.0.0.1 53000 /cue/specificTimeTrigger/start
+
+/broadcast/atTime/unsubscribe/hours [Integer, String, Integer, String]
+Unsubscribe a OSC message subscription previously added. The 3 last argument needs to be an exact match of those send with the subscription cue. The first argument (time) needs to be the same, but a subscription made with 60 minutes can be unsubscribe with 1 hours.
+Arguments:
+1: The trigger time in minute
+2: IP address of the recipient
+3: Port of the recipients process
+4: OSC path of the recipients OSC API
+Example: /broadcast/atTime/unsubscribe/minutes 10 127.0.0.1 53000 /cue/specificTimeTrigger/start
+
+/broadcast/atTime/unsubscribe/time [Integer, Integer, Integer, String, Integer, String]
+Unsubscribe a OSC message subscription previously added. The 3 last argument needs to be an exact match of those send with the subscription cue. The first argument (time) needs to be the same, but a subscription made with 60 minutes can be unsubscribe with 1 hours.
+Arguments:
+1: The trigger time in hours
+2: The trigger time in minutes
+3: The trigger time in seconds
+4: IP address of the recipient
+5: Port of the recipients process
+6: OSC path of the recipients OSC API
+Example: /broadcast/atTime/unsubscribe/time 10 10 10 127.0.0.1 53000 /cue/specificTimeTrigger/start
+
+BORDER METHODS
+
+/border/width [Float]
+Sets the width of the fixed border.
+Arguments:
+1: The width of the fixed border.
+
+
+/border/progress/show [Int]
+This command will display a progress bar along the inner edge of the border. It will start in the top-left corner and complete at the same point when the timer reaches its end.
+Arguments:
+1: A boolean value that determines whether the progress bar is displayed, where 0 is false and 1 is true.
+
+
+/border/progress/width [Float]
+Sets the width of the fixed border.
+Arguments:
+1: The width of the fixed border.
+
+
+COLOR METHODS
+
+/timer/font/color [Float, Float, Float, Float]
+Sets the font color of the timer text for all zones.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/timer/font/color/red [Float]
+Sets the amount of red of the font color of the timer text for all zones.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/font/color/green [Float]
+Sets the amount of green of the font color of the timer text for all zones.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/font/color/blue [Float]
+Sets the amount of blue of the font color of the timer text for all zones.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/font/color/alpha [Float]
+Sets the amount of alpha of the font color of the timer text for all zones.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/normal/font/color [Float, Float, Float, Float]
+Sets the color of the timer font when the in normal zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/timer/normal/font/color/red [Float]
+Sets the amount of red of the timer font when the in normal zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/normal/font/color/green [Float]
+Sets the amount of green of the timer font when the in normal zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/normal/font/color/blue [Float]
+Sets the amount of blue of the timer font when the in normal zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/normal/font/color/alpha [Float]
+Sets the amount of alpha of the timer font when the in normal zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/alert/font/color [Float, Float, Float, Float]
+Sets the color of the timer font when the in alert zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/timer/alert/font/color/red [Float]
+Sets the amount of red of the timer font when the in alert zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/alert/font/color/green [Float]
+Sets the amount of green of the timer font when the in alert zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/alert/font/color/blue [Float]
+Sets the amount of blue of the timer font when the in alert zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/alert/font/color/alpha [Float]
+Sets the amount of alpha of the timer font when the in alert zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/end/font/color [Float, Float, Float, Float]
+Sets the color of the timer font when the in end zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/timer/end/font/color/red [Float]
+Sets the amount of red of the timer font when the in end zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/end/font/color/green [Float]
+Sets the amount of green of the timer font when the in end zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/end/font/color/blue [Float]
+Sets the amount of blue of the timer font when the in end zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/end/font/color/alpha [Float]
+Sets the amount of alpha of the timer font when the in end zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/font/color [Float, Float, Float, Float]
+Sets the font color of the notes text for all zones.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/notes/font/color/red [Float]
+Sets the amount of red of the font color of the notes text for all zones.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/font/color/green [Float]
+Sets the amount of green of the font color of the notes text for all zones.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/font/color/blue [Float]
+Sets the amount of blue of the font color of the notes text for all zones.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/font/color/alpha [Float]
+Sets the amount of alpha of the font color of the notes text for all zones.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/normal/font/color [Float, Float, Float, Float]
+Sets the color of the notes font when the in normal zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/notes/normal/font/color/red [Float]
+Sets the amount of red of the notes font when the in normal zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/normal/font/color/green [Float]
+Sets the amount of green of the notes font when the in normal zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/normal/font/color/blue [Float]
+Sets the amount of blue of the notes font when the in normal zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/normal/font/color/alpha [Float]
+Sets the amount of alpha of the notes font when the in normal zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/alert/font/color [Float, Float, Float, Float]
+Sets the color of the notes font when the in alert zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/notes/alert/font/color/red [Float]
+Sets the amount of red of the notes font when the in alert zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/alert/font/color/green [Float]
+Sets the amount of green of the notes font when the in alert zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/alert/font/color/blue [Float]
+Sets the amount of blue of the notes font when the in alert zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/alert/font/color/alpha [Float]
+Sets the amount of alpha of the notes font when the in alert zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/end/font/color [Float, Float, Float, Float]
+Sets the color of the notes font when the in end zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/notes/end/font/color/red [Float]
+Sets the amount of red of the notes font when the in end zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/end/font/color/green [Float]
+Sets the amount of green of the notes font when the in end zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/end/font/color/blue [Float]
+Sets the amount of blue of the notes font when the in end zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/notes/end/font/color/alpha [Float]
+Sets the amount of alpha of the notes font when the in end zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/background/app/color [Float, Float, Float, Float]
+Sets the background color of the app.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/background/app/color/red [Float]
+Sets the amount of red of the background color of the app.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/background/app/color/green [Float]
+Sets the amount of green of the background color of the app.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/background/app/color/blue [Float]
+Sets the amount of blue of the background color of the app.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/background/app/color/alpha [Float]
+Sets the amount of alpha of the background color of the app.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color [Float, Float, Float, Float]
+Sets the background color of the timer in all zones.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/red [Float]
+Sets the amount of red of the background color of the timer in all zones.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/green [Float]
+Sets the amount of green of the background color of the timer in all zones.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/blue [Float]
+Sets the amount of blue of the background color of the timer in all zones.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/alpha [Float]
+Sets the amount of alpha of the background color of the timer in all zones.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/normal [Float, Float, Float, Float]
+Sets the background color of the timer in normal zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/normal/red [Float]
+Sets the amount of red of the background color of the timer in normal zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/normal/green [Float]
+Sets the amount of green of the background color of the timer in normal zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/normal/blue [Float]
+Sets the amount of blue of the background color of the timer in normal zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/normal/alpha [Float]
+Sets the amount of alpha of the background color of the timer in normal zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/alert [Float, Float, Float, Float]
+Sets the background color of the timer in alert zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/alert/red [Float]
+Sets the amount of red of the background color of the timer in alert zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/alert/green [Float]
+Sets the amount of green of the background color of the timer in alert zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/alert/blue [Float]
+Sets the amount of blue of the background color of the timer in alert zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/alert/alpha [Float]
+Sets the amount of alpha of the background color of the timer in alert zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/end [Float, Float, Float, Float]
+Sets the background color of the timer in end zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/end/red [Float]
+Sets the amount of red of the background color of the timer in end zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/end/green [Float]
+Sets the amount of green of the background color of the timer in end zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/end/blue [Float]
+Sets the amount of blue of the background color of the timer in end zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/background/timer/color/end/alpha [Float]
+Sets the amount of alpha of the background color of the timer in end zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color [Float, Float, Float, Float]
+Sets the background color of the notes in all zones.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/red [Float]
+Sets the amount of red of the background color of the notes in all zones.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/green [Float]
+Sets the amount of green of the background color of the notes in all zones.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/blue [Float]
+Sets the amount of blue of the background color of the notes in all zones.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/alpha [Float]
+Sets the amount of alpha of the background color of the notes in all zones.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/normal [Float, Float, Float, Float]
+Sets the background color of the notes in normal zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/normal/red [Float]
+Sets the amount of red of the background color of the notes in normal zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/normal/green [Float]
+Sets the amount of green of the background color of the notes in normal zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/normal/blue [Float]
+Sets the amount of blue of the background color of the notes in normal zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/normal/alpha [Float]
+Sets the amount of alpha of the background color of the notes in normal zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/alert [Float, Float, Float, Float]
+Sets the background color of the notes in alert zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/alert/red [Float]
+Sets the amount of red of the background color of the notes in alert zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/alert/green [Float]
+Sets the amount of green of the background color of the notes in alert zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/alert/blue [Float]
+Sets the amount of blue of the background color of the notes in alert zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/alert/alpha [Float]
+Sets the amount of alpha of the background color of the notes in alert zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/end [Float, Float, Float, Float]
+Sets the background color of the notes in end zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/end/red [Float]
+Sets the amount of red of the background color of the notes in end zone.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/end/green [Float]
+Sets the amount of green of the background color of the notes in end zone.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/end/blue [Float]
+Sets the amount of blue of the background color of the notes in end zone.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/background/notes/color/end/alpha [Float]
+Sets the amount of alpha of the background color of the notes in end zone.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/border/color/followTimer [Int]
+If set to true the border will follow the color the timer.
+Arguments:
+1: A boolean that will determine if the color should follow the timer, where 1 is true and 0 is false.
+
+
+/border/color/static [Float, Float, Float, Float]
+Sets the color of the fixed border.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/border/color/static/red [Float]
+Sets the amount of red of the fixed border.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/border/color/static/green [Float]
+Sets the amount of green of the fixed border.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/border/color/static/blue [Float]
+Sets the amount of blue of the fixed border.
+Arguments:
+1: blue color channel - Value are in the range of 0.0-1.0.
+
+
+/border/color/static/alpha [Float]
+Sets the amount of alpha of the fixed border.
+Arguments:
+1: alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/border/color/progress/followTimer [Int]
+If set to true the progress border will follow the color the timer.
+Arguments:
+1: A boolean that will determine if the color should follow the timer, where 1 is true and 0 is false.
+
+
+/border/color/progress/static [Float, Float, Float, Float]
+Sets the color of the progress border.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/border/color/progress/static/red [Float]
+Sets the amount of red of the progress border.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/border/color/progress/static/green [Float]
+Sets the amount of green of the progress border.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/border/color/progress/static/blue [Float]
+Sets the amount of blue of the progress border.
+Arguments:
+1: blue color channel - Value are in the range of 0.0-1.0.
+
+
+/border/color/progress/static/alpha [Float]
+Sets the amount of alpha of the progress border.
+Arguments:
+1: alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/timer/font [Int, Int]
+This method changes the font of the timer.
+Arguments:
+1: Sets the font family, available values is with the range [0…7]
+2: Sets the weight of the font, where 0 is regular, 1 is bold, 2 is italic, and 3 is bold italic. Note that not all weights are available for all fonts. If a weight is unavailable, it will revert to the regular weight of the font family.
+
+
+/notes/font [Int, Int]
+This method changes the font of the notes.
+Arguments:
+1: Sets the font family, available values is with the range [0…7]
+2: Sets the weight of the font, where 0 is regular, 1 is bold, 2 is italic, and 3 is bold italic. Note that not all weights are available for all fonts. If a weight is unavailable, it will revert to the regular weight of the font family.
+
+
+/timer/friendlyName/font [Int, Int]
+This method changes the font of the timers friendly name.
+Arguments:
+1: Sets the font family, available values is with the range [0…7]
+2: Sets the weight of the font, where 0 is regular, 1 is bold, 2 is italic, and 3 is bold italic. Note that not all weights are available for all fonts. If a weight is unavailable, it will revert to the regular weight of the font family.
+
+
+CLOCK METHODS
+
+/clock/background/color [Float, Float, Float, Float]
+Sets the background color of the clock.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/clock/background/color/red [Float]
+Sets the amount of red of the background color of the clock.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/background/color/green [Float]
+Sets the amount of green of the background color of the clock.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/background/color/blue [Float]
+Sets the amount of blue of the background color of the clock.
+Arguments:
+1: Blue color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/background/color/alpha [Float]
+Sets the amount of alpha of the background color of the clock.
+Arguments:
+1: Alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/border/color [Float, Float, Float, Float]
+Sets the color of the fixed clock border.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/clock/border/color/red [Float]
+Sets the amount of red of the fixed clock border.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/border/color/green [Float]
+Sets the amount of green of the fixed clock border.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/border/color/blue [Float]
+Sets the amount of blue of the fixed clock border.
+Arguments:
+1: blue color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/border/color/alpha [Float]
+Sets the amount of alpha of the fixed clock border.
+Arguments:
+1: alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/font/color [Float, Float, Float, Float]
+Sets the color of the fixed clock font.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+2: Green color channel - Value are in the range of 0.0-1.0.
+3: Blue color channel - Value are in the range of 0.0-1.0.
+4: Alpha color channel- Value are in the range of 0.0-1.0.
+
+
+/clock/font/color/red [Float]
+Sets the amount of red of the fixed clock font.
+Arguments:
+1: Red color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/font/color/green [Float]
+Sets the amount of green of the fixed clock font.
+Arguments:
+1: Green color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/font/color/blue [Float]
+Sets the amount of blue of the fixed clock font.
+Arguments:
+1: blue color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/font/color/alpha [Float]
+Sets the amount of alpha of the fixed clock font.
+Arguments:
+1: alpha color channel - Value are in the range of 0.0-1.0.
+
+
+/clock/font [Int, Int]
+This method changes the font of the clock.
+Arguments:
+1: Sets the font family, available values is with the range [0…7]
+2: Sets the weight of the font, where 0 is regular, 1 is bold, 2 is italic, and 3 is bold italic. Note that not all weights are available for all fonts. If a weight is unavailable, it will revert to the regular weight of the font family.
+
+
+MISCELLANEOUS METHODS
+
+/device/brightness [Int]
+Controls the brightness of the screen. Works on iOS.
+Arguments:
+1: The brightness level, where 0 is the dimmest setting and 100 is full brightness.
