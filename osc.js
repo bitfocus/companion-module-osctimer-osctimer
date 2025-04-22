@@ -12,9 +12,12 @@ function initOSC(instance, timerNum, host, port) {
 
         try {
                 // Create new OSC client - the newer osc library needs to use UDPPort
+                // Configure with localPort: 0 to use a dynamic port and avoid EADDRINUSE errors
                 clients[timerNum] = new osc.UDPPort({
                     remoteAddress: host,
                     remotePort: port,
+                    localAddress: "0.0.0.0",  // Listen on all interfaces
+                    localPort: 0,             // Use a random available port
                     metadata: true
                 })
                 
