@@ -19,7 +19,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/start");
+				self.sendCommand(event.options.timerNum, "/timer/start");
 			},
 		},
 		timer_stop: {
@@ -39,7 +39,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/stop");
+				self.sendCommand(event.options.timerNum, "/timer/stop");
 			},
 		},
 		timer_reset: {
@@ -59,7 +59,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/reset");
+				self.sendCommand(event.options.timerNum, "/timer/reset");
 			},
 		},
 		timer_reset_and_stop: {
@@ -79,7 +79,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/resetAndStop");
+				self.sendCommand(event.options.timerNum, "/timer/resetAndStop");
 			},
 		},
 
@@ -110,7 +110,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/count/seconds", [
+				self.sendCommand(event.options.timerNum, "/timer/count/seconds", [
 					event.options.seconds,
 				]);
 			},
@@ -141,7 +141,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/count/minutes", [
+				self.sendCommand(event.options.timerNum, "/timer/count/minutes", [
 					event.options.minutes,
 				]);
 			},
@@ -172,7 +172,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/count/hours", [
+				self.sendCommand(event.options.timerNum, "/timer/count/hours", [
 					event.options.hours,
 				]);
 			},
@@ -221,7 +221,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/count/time", [
+				self.sendCommand(event.options.timerNum, "/timer/count/time", [
 					event.options.hours,
 					event.options.minutes,
 					event.options.seconds,
@@ -255,12 +255,9 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand(
-					"timer",
-					event.options.timerNum,
-					"/count/seconds/add",
-					[event.options.seconds],
-				);
+				self.sendCommand(event.options.timerNum, "/timer/count/seconds/add", [
+					event.options.seconds,
+				]);
 			},
 		},
 		timer_subtract_seconds: {
@@ -289,9 +286,8 @@ function getActionDefinitions(self) {
 			],
 			callback: (event) => {
 				self.sendCommand(
-					"timer",
 					event.options.timerNum,
-					"/count/seconds/subtract",
+					"/timer/count/seconds/subtract",
 					[event.options.seconds],
 				);
 			},
@@ -325,7 +321,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/count/direction", [
+				self.sendCommand(event.options.timerNum, "/timer/count/direction", [
 					event.options.direction,
 				]);
 			},
@@ -361,7 +357,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/show", [
+				self.sendCommand(event.options.timerNum, "/timer/show", [
 					event.options.format,
 				]);
 			},
@@ -393,7 +389,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("timer", event.options.timerNum, "/alert/seconds", [
+				self.sendCommand(event.options.timerNum, "/timer/alert/seconds", [
 					event.options.seconds,
 				]);
 			},
@@ -436,7 +432,7 @@ function getActionDefinitions(self) {
 				if (event.options.autoRemove > 0) {
 					args.push(event.options.autoRemove);
 				}
-				self.sendCommand("notes", event.options.timerNum, "/text", args);
+				self.sendCommand(event.options.timerNum, "/notes/text", args);
 			},
 		},
 		set_notes_alignment: {
@@ -473,7 +469,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand("notes", event.options.timerNum, "/alignment", [
+				self.sendCommand(event.options.timerNum, "/notes/alignment", [
 					event.options.alignment,
 				]);
 			},
@@ -497,8 +493,8 @@ function getActionDefinitions(self) {
 			],
 			callback: (event) => {
 				// This command is sent without a timer number prefix
-				const fullPath = `/slot/layout/${event.options.layout}`;
-				self.sendCommand("display", 1, fullPath, []); // Using timer 1 as default for global commands
+				const fullPath = `/display/slot/layout/${event.options.layout}`;
+				self.sendCommand(1, fullPath, []); // Using timer 1 as default for global commands
 			},
 		},
 		set_slot_widget: {
@@ -534,8 +530,8 @@ function getActionDefinitions(self) {
 			],
 			callback: (event) => {
 				// This command is sent without a timer number prefix
-				const fullPath = `/slot/${event.options.slot}/${event.options.widget}`;
-				self.sendCommand("display", 1, fullPath, []); // Using timer 1 as default for global commands
+				const fullPath = `/display/slot/${event.options.slot}/${event.options.widget}`;
+				self.sendCommand(1, fullPath, []); // Using timer 1 as default for global commands
 			},
 		},
 
@@ -567,7 +563,7 @@ function getActionDefinitions(self) {
 				},
 			],
 			callback: (event) => {
-				self.sendCommand(event.options.timerNum, "/atEnd", [
+				self.sendCommand(event.options.timerNum, "/timer/atEnd", [
 					event.options.behavior,
 				]);
 			},

@@ -38,7 +38,7 @@ class OSCTimerInstance extends InstanceBase {
                         1: { connected: false },
                         2: { connected: false },
                         3: { connected: false },
-                        4: { connected: false }
+                        4: { connected: false },
                 };
 
                 this.initOSCClients();
@@ -68,44 +68,48 @@ class OSCTimerInstance extends InstanceBase {
                                 closeOSC(this, timerNum);
                                 this.timers[timerNum].connected = false;
                         }
-                        
+
                         // Get port from configuration
                         const portConfig = this.config[`timer${timerNum}Port`];
-                        
+
                         // If port is set, attempt to connect
-                        if (portConfig && portConfig.trim() !== '') {
+                        if (portConfig && portConfig.trim() !== "") {
                                 try {
                                         const port = parseInt(portConfig);
-                                        if (isNaN(port) || port < 1 || port > 65535) {
+                                        if (
+                                                isNaN(port) ||
+                                                port < 1 ||
+                                                port > 65535
+                                        ) {
                                                 this.log(
                                                         "error",
-                                                        `Invalid port for Timer ${timerNum}: ${portConfig}`
+                                                        `Invalid port for Timer ${timerNum}: ${portConfig}`,
                                                 );
                                                 continue;
                                         }
-                                        
+
                                         initOSC(
                                                 this,
                                                 timerNum,
                                                 this.config.host,
-                                                port
+                                                port,
                                         );
                                         this.timers[timerNum].connected = true;
                                         this.log(
                                                 "info",
-                                                `Connected to Timer ${timerNum} on ${this.config.host}:${port}`
+                                                `Connected to Timer ${timerNum} on ${this.config.host}:${port}`,
                                         );
                                 } catch (error) {
                                         this.timers[timerNum].connected = false;
                                         this.log(
                                                 "error",
-                                                `Failed to connect to Timer ${timerNum}: ${error.message}`
+                                                `Failed to connect to Timer ${timerNum}: ${error.message}`,
                                         );
                                 }
                         } else {
                                 this.log(
                                         "debug",
-                                        `Timer ${timerNum} disabled (no port configured)`
+                                        `Timer ${timerNum} disabled (no port configured)`,
                                 );
                                 this.timers[timerNum].connected = false;
                         }
@@ -113,14 +117,14 @@ class OSCTimerInstance extends InstanceBase {
 
                 // Set overall status based on whether any timer is connected
                 const anyConnected = Object.values(this.timers).some(
-                        (timer) => timer.connected
+                        (timer) => timer.connected,
                 );
                 if (anyConnected) {
                         this.updateStatus(InstanceStatus.Ok);
                 } else {
                         this.updateStatus(
                                 InstanceStatus.Disconnected,
-                                "No timers enabled or connected"
+                                "No timers enabled or connected",
                         );
                 }
         }
