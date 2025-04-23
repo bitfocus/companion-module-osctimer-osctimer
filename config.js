@@ -1,57 +1,68 @@
 // Config fields for the OSC Timer module
 function getConfigFields() {
-	return [
-		{
-			type: 'static-text',
-			id: 'info',
-			width: 12,
-			label: 'Information',
-			value: 'This module controls an OSC-based timer application. Each timer uses a dedicated port.'
-		},
-		{
-			type: 'textinput',
-			id: 'host',
-			label: 'Timer Host IP',
-			width: 6,
-			default: '127.0.0.1',
-			regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
-		},
-		{
-			type: 'checkbox',
-			id: 'enableTimer1',
-			label: 'Enable Timer 1 (Port 53001)',
-			width: 6,
-			default: true
-		},
-		{
-			type: 'checkbox',
-			id: 'enableTimer2',
-			label: 'Enable Timer 2 (Port 53002)',
-			width: 6,
-			default: false
-		},
-		{
-			type: 'checkbox',
-			id: 'enableTimer3',
-			label: 'Enable Timer 3 (Port 53003)',
-			width: 6,
-			default: false
-		},
-		{
-			type: 'checkbox',
-			id: 'enableTimer4',
-			label: 'Enable Timer 4 (Port 53004)',
-			width: 6,
-			default: false
-		},
-		{
-			type: 'static-text',
-			id: 'portInfo',
-			width: 12,
-			label: 'Port Information',
-			value: 'Ports are fixed to the following values:\nTimer 1: 53001\nTimer 2: 53002\nTimer 3: 53003\nTimer 4: 53004'
-		}
-	]
+        return [
+                {
+                        type: 'static-text',
+                        id: 'info',
+                        width: 12,
+                        label: 'Information',
+                        value: 'This module controls an OSC-based timer application. Each timer can use a different port.'
+                },
+                {
+                        type: 'textinput',
+                        id: 'host',
+                        label: 'Timer Host IP',
+                        width: 6,
+                        default: '127.0.0.1',
+                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                },
+                {
+                        type: 'static-text',
+                        id: 'timersHeader',
+                        width: 12,
+                        label: 'Timer Ports',
+                        value: 'Set the OSC ports for each timer. Leave empty to disable a timer.'
+                },
+                {
+                        type: 'textinput',
+                        id: 'timer1Port',
+                        label: 'Timer 1 Port',
+                        width: 6,
+                        default: '53001',
+                        regex: '^\\d{1,5}$'
+                },
+                {
+                        type: 'textinput',
+                        id: 'timer2Port',
+                        label: 'Timer 2 Port',
+                        width: 6,
+                        default: '53002',
+                        regex: '^\\d{1,5}$'
+                },
+                {
+                        type: 'textinput',
+                        id: 'timer3Port',
+                        label: 'Timer 3 Port',
+                        width: 6,
+                        default: '53003',
+                        regex: '^\\d{1,5}$'
+                },
+                {
+                        type: 'textinput',
+                        id: 'timer4Port',
+                        label: 'Timer 4 Port',
+                        width: 6,
+                        default: '53004',
+                        regex: '^\\d{1,5}$'
+                },
+                {
+                        type: 'static-text',
+                        id: 'portInfo',
+                        width: 12,
+                        label: 'Port Information',
+                        value: 'Valid port range is 1-65535. Be sure to use ports that are available on your system.'
+                }
+        ]
 }
 
 module.exports = { getConfigFields }
