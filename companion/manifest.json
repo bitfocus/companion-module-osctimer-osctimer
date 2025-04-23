@@ -20,7 +20,7 @@
 		"entrypoint": "../index.js"
 	},
 	"legacyIds": [],
-	"manufacturer": "Generic",
+	"manufacturer": "OSC Timer - OSC API",
 	"products": ["OSC Timer"],
 	"keywords": ["Timer", "Countdown", "OSC"]
 }
