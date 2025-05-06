@@ -1,4 +1,4 @@
-// Presets for the OSC Timer module
+	// Presets for the OSC Timer module
 function getPresetDefinitions(self) {
 	const presets = {}
 	const colors = {
