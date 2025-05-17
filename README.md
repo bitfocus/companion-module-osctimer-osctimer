@@ -1,4 +1,5 @@
-# OSC Timer Module for Bitfocus Companion
+# [
+ OSC Timer Module for Bitfocus Companion
 
 This module allows you to control an OSC-based timer application with support for up to 4 timers on dedicated ports.
 

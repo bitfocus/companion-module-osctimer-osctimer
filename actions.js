@@ -1183,6 +1183,115 @@ function getActionDefinitions(self) {
                                         );
                                 }
                         }
+                },
+                
+                // TIMER DISPLAY CUSTOMIZATION
+                timer_set_normal_color: {
+                        name: "Set Timer Normal Color",
+                        description: "Set the color for normal timer display",
+                        options: [
+                                TIMER_DROPDOWN,
+                                {
+                                        type: "colorpicker",
+                                        label: "Normal Color",
+                                        id: "color",
+                                        default: "#FFFFFF" // White
+                                }
+                        ],
+                        callback: (event) => {
+                                // Convert hex color to RGB components
+                                const color = event.options.color.replace('#', '');
+                                const r = parseInt(color.substring(0, 2), 16);
+                                const g = parseInt(color.substring(2, 4), 16);
+                                const b = parseInt(color.substring(4, 6), 16);
+                                
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/display/normalColor",
+                                        [r, g, b]
+                                );
+                        }
+                },
+                
+                timer_set_warning_color: {
+                        name: "Set Timer Warning Color",
+                        description: "Set the color for timer warning state",
+                        options: [
+                                TIMER_DROPDOWN,
+                                {
+                                        type: "colorpicker",
+                                        label: "Warning Color",
+                                        id: "color",
+                                        default: "#FFFF00" // Yellow
+                                }
+                        ],
+                        callback: (event) => {
+                                // Convert hex color to RGB components
+                                const color = event.options.color.replace('#', '');
+                                const r = parseInt(color.substring(0, 2), 16);
+                                const g = parseInt(color.substring(2, 4), 16);
+                                const b = parseInt(color.substring(4, 6), 16);
+                                
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/display/warningColor",
+                                        [r, g, b]
+                                );
+                        }
+                },
+                
+                timer_set_end_color: {
+                        name: "Set Timer End Color",
+                        description: "Set the color for timer end state",
+                        options: [
+                                TIMER_DROPDOWN,
+                                {
+                                        type: "colorpicker",
+                                        label: "End Color",
+                                        id: "color",
+                                        default: "#FF0000" // Red
+                                }
+                        ],
+                        callback: (event) => {
+                                // Convert hex color to RGB components
+                                const color = event.options.color.replace('#', '');
+                                const r = parseInt(color.substring(0, 2), 16);
+                                const g = parseInt(color.substring(2, 4), 16);
+                                const b = parseInt(color.substring(4, 6), 16);
+                                
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/display/endColor",
+                                        [r, g, b]
+                                );
+                        }
+                },
+                
+                timer_set_background_color: {
+                        name: "Set Timer Background Color",
+                        description: "Set the background color for timer display",
+                        options: [
+                                TIMER_DROPDOWN,
+                                {
+                                        type: "colorpicker",
+                                        label: "Background Color",
+                                        id: "color",
+                                        default: "#000000" // Black
+                                }
+                        ],
+                        callback: (event) => {
+                                // Convert hex color to RGB components
+                                const color = event.options.color.replace('#', '');
+                                const r = parseInt(color.substring(0, 2), 16);
+                                const g = parseInt(color.substring(2, 4), 16);
+                                const b = parseInt(color.substring(4, 6), 16);
+                                
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/display/backgroundColor",
+                                        [r, g, b]
+                                );
+                        }
                 }
         };
 }
