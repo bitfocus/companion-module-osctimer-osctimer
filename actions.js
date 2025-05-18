@@ -1196,19 +1196,29 @@ function getActionDefinitions(self) {
                                         label: "Normal Color",
                                         id: "color",
                                         default: "#FFFFFF" // White
+                                },
+                                {
+                                        type: "number",
+                                        label: "Opacity (0-100%)",
+                                        id: "alpha",
+                                        default: 100,
+                                        min: 0,
+                                        max: 100,
+                                        required: true
                                 }
                         ],
                         callback: (event) => {
-                                // Convert hex color to RGB components
+                                // Convert hex color to RGB components (0.0-1.0 range)
                                 const color = event.options.color.replace('#', '');
-                                const r = parseInt(color.substring(0, 2), 16);
-                                const g = parseInt(color.substring(2, 4), 16);
-                                const b = parseInt(color.substring(4, 6), 16);
+                                const r = parseInt(color.substring(0, 2), 16) / 255;
+                                const g = parseInt(color.substring(2, 4), 16) / 255;
+                                const b = parseInt(color.substring(4, 6), 16) / 255;
+                                const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
                                 
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/display/normalColor",
-                                        [r, g, b]
+                                        [r, g, b, a]
                                 );
                         }
                 },
@@ -1223,19 +1233,29 @@ function getActionDefinitions(self) {
                                         label: "Warning Color",
                                         id: "color",
                                         default: "#FFFF00" // Yellow
+                                },
+                                {
+                                        type: "number",
+                                        label: "Opacity (0-100%)",
+                                        id: "alpha",
+                                        default: 100,
+                                        min: 0,
+                                        max: 100,
+                                        required: true
                                 }
                         ],
                         callback: (event) => {
-                                // Convert hex color to RGB components
+                                // Convert hex color to RGB components (0.0-1.0 range)
                                 const color = event.options.color.replace('#', '');
-                                const r = parseInt(color.substring(0, 2), 16);
-                                const g = parseInt(color.substring(2, 4), 16);
-                                const b = parseInt(color.substring(4, 6), 16);
+                                const r = parseInt(color.substring(0, 2), 16) / 255;
+                                const g = parseInt(color.substring(2, 4), 16) / 255;
+                                const b = parseInt(color.substring(4, 6), 16) / 255;
+                                const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
                                 
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/display/warningColor",
-                                        [r, g, b]
+                                        [r, g, b, a]
                                 );
                         }
                 },
@@ -1250,19 +1270,29 @@ function getActionDefinitions(self) {
                                         label: "End Color",
                                         id: "color",
                                         default: "#FF0000" // Red
+                                },
+                                {
+                                        type: "number",
+                                        label: "Opacity (0-100%)",
+                                        id: "alpha",
+                                        default: 100,
+                                        min: 0,
+                                        max: 100,
+                                        required: true
                                 }
                         ],
                         callback: (event) => {
-                                // Convert hex color to RGB components
+                                // Convert hex color to RGB components (0.0-1.0 range)
                                 const color = event.options.color.replace('#', '');
-                                const r = parseInt(color.substring(0, 2), 16);
-                                const g = parseInt(color.substring(2, 4), 16);
-                                const b = parseInt(color.substring(4, 6), 16);
+                                const r = parseInt(color.substring(0, 2), 16) / 255;
+                                const g = parseInt(color.substring(2, 4), 16) / 255;
+                                const b = parseInt(color.substring(4, 6), 16) / 255;
+                                const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
                                 
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/display/endColor",
-                                        [r, g, b]
+                                        [r, g, b, a]
                                 );
                         }
                 },
@@ -1277,19 +1307,29 @@ function getActionDefinitions(self) {
                                         label: "Background Color",
                                         id: "color",
                                         default: "#000000" // Black
+                                },
+                                {
+                                        type: "number",
+                                        label: "Opacity (0-100%)",
+                                        id: "alpha",
+                                        default: 100,
+                                        min: 0,
+                                        max: 100,
+                                        required: true
                                 }
                         ],
                         callback: (event) => {
-                                // Convert hex color to RGB components
+                                // Convert hex color to RGB components (0.0-1.0 range)
                                 const color = event.options.color.replace('#', '');
-                                const r = parseInt(color.substring(0, 2), 16);
-                                const g = parseInt(color.substring(2, 4), 16);
-                                const b = parseInt(color.substring(4, 6), 16);
+                                const r = parseInt(color.substring(0, 2), 16) / 255;
+                                const g = parseInt(color.substring(2, 4), 16) / 255;
+                                const b = parseInt(color.substring(4, 6), 16) / 255;
+                                const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
                                 
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/display/backgroundColor",
-                                        [r, g, b]
+                                        [r, g, b, a]
                                 );
                         }
                 }
