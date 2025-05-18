@@ -1376,11 +1376,30 @@ function getActionDefinitions(self) {
                                 }
                         ],
                         callback: (event) => {
-                                // Convert hex color to RGB components (0.0-1.0 range)
-                                const color = event.options.color.replace('#', '');
-                                const r = parseInt(color.substring(0, 2), 16) / 255;
-                                const g = parseInt(color.substring(2, 4), 16) / 255;
-                                const b = parseInt(color.substring(4, 6), 16) / 255;
+                                // Handle color value which might be a number (RGB int) instead of a string
+                                let r, g, b;
+                                const colorValue = event.options.color;
+                                
+                                // Check if color is a number (RGB integer)
+                                if (typeof colorValue === 'number') {
+                                    r = ((colorValue >> 16) & 0xFF) / 255;
+                                    g = ((colorValue >> 8) & 0xFF) / 255;
+                                    b = (colorValue & 0xFF) / 255;
+                                } 
+                                // Or if it's a string (hex color)
+                                else if (typeof colorValue === 'string') {
+                                    const color = colorValue.replace('#', '');
+                                    r = parseInt(color.substring(0, 2), 16) / 255;
+                                    g = parseInt(color.substring(2, 4), 16) / 255;
+                                    b = parseInt(color.substring(4, 6), 16) / 255;
+                                }
+                                // Default to black if format is unexpected
+                                else {
+                                    r = 0.0;
+                                    g = 0.0;
+                                    b = 0.0;
+                                }
+                                
                                 const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
                                 
                                 self.sendCommand(
