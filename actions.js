@@ -20,7 +20,10 @@ function getActionDefinitions(self) {
                         name: "Start Timer",
                         options: [TIMER_DROPDOWN],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/start");
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/start",
+                                );
                         },
                 },
                 timer_stop: {
@@ -40,7 +43,10 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/stop");
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/stop",
+                                );
                         },
                 },
                 timer_reset: {
@@ -60,7 +66,10 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/reset");
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/reset",
+                                );
                         },
                 },
                 timer_reset_and_stop: {
@@ -80,7 +89,10 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/resetAndStop");
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/resetAndStop",
+                                );
                         },
                 },
 
@@ -111,9 +123,11 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/count/seconds", [
-                                        event.options.seconds,
-                                ]);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/seconds",
+                                        [event.options.seconds],
+                                );
                         },
                 },
                 timer_set_minutes: {
@@ -142,9 +156,11 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/count/minutes", [
-                                        event.options.minutes,
-                                ]);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/minutes",
+                                        [event.options.minutes],
+                                );
                         },
                 },
                 timer_set_hours: {
@@ -173,9 +189,11 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/count/hours", [
-                                        event.options.hours,
-                                ]);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/hours",
+                                        [event.options.hours],
+                                );
                         },
                 },
                 timer_set_time: {
@@ -222,11 +240,15 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/count/time", [
-                                        event.options.hours,
-                                        event.options.minutes,
-                                        event.options.seconds,
-                                ]);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/time",
+                                        [
+                                                event.options.hours,
+                                                event.options.minutes,
+                                                event.options.seconds,
+                                        ],
+                                );
                         },
                 },
 
@@ -256,9 +278,11 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/count/seconds/add", [
-                                        event.options.seconds,
-                                ]);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/seconds/add",
+                                        [event.options.seconds],
+                                );
                         },
                 },
                 timer_subtract_seconds: {
@@ -322,9 +346,11 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/count/direction", [
-                                        event.options.direction,
-                                ]);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/direction",
+                                        [event.options.direction],
+                                );
                         },
                 },
 
@@ -350,17 +376,31 @@ function getActionDefinitions(self) {
                                         id: "format",
                                         default: 2,
                                         choices: [
-                                                { id: 0, label: "Seconds with Decimals (SS.D)" },
-                                                { id: 1, label: "Seconds Only (SS)" },
-                                                { id: 2, label: "Minutes and Seconds (MM:SS)" },
-                                                { id: 3, label: "Hours, Minutes, and Seconds (HH:MM:SS)" },
+                                                {
+                                                        id: 0,
+                                                        label: "Seconds with Decimals (SS.D)",
+                                                },
+                                                {
+                                                        id: 1,
+                                                        label: "Seconds Only (SS)",
+                                                },
+                                                {
+                                                        id: 2,
+                                                        label: "Minutes and Seconds (MM:SS)",
+                                                },
+                                                {
+                                                        id: 3,
+                                                        label: "Hours, Minutes, and Seconds (HH:MM:SS)",
+                                                },
                                         ],
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/show", [
-                                        event.options.format,
-                                ]);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/show",
+                                        [event.options.format],
+                                );
                         },
                 },
 
@@ -390,9 +430,11 @@ function getActionDefinitions(self) {
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/timer/alert/seconds", [
-                                        event.options.seconds,
-                                ]);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/alert/seconds",
+                                        [event.options.seconds],
+                                );
                         },
                 },
 
@@ -433,7 +475,11 @@ function getActionDefinitions(self) {
                                 if (event.options.autoRemove > 0) {
                                         args.push(event.options.autoRemove);
                                 }
-                                self.sendCommand(event.options.timerNum, "/notes/text", args);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/notes/text",
+                                        args,
+                                );
                         },
                 },
                 set_notes_alignment: {
@@ -457,22 +503,51 @@ function getActionDefinitions(self) {
                                         id: "alignment",
                                         default: 1,
                                         choices: [
-                                                { id: 0, label: "Center - Trailing" },
-                                                { id: 1, label: "Center - Center" },
-                                                { id: 2, label: "Center - Leading" },
-                                                { id: 3, label: "Top - Trailing" },
-                                                { id: 4, label: "Top - Center" },
-                                                { id: 5, label: "Top - Leading" },
-                                                { id: 6, label: "Bottom - Trailing" },
-                                                { id: 7, label: "Bottom - Center" },
-                                                { id: 8, label: "Bottom - Leading" },
+                                                {
+                                                        id: 0,
+                                                        label: "Center - Trailing",
+                                                },
+                                                {
+                                                        id: 1,
+                                                        label: "Center - Center",
+                                                },
+                                                {
+                                                        id: 2,
+                                                        label: "Center - Leading",
+                                                },
+                                                {
+                                                        id: 3,
+                                                        label: "Top - Trailing",
+                                                },
+                                                {
+                                                        id: 4,
+                                                        label: "Top - Center",
+                                                },
+                                                {
+                                                        id: 5,
+                                                        label: "Top - Leading",
+                                                },
+                                                {
+                                                        id: 6,
+                                                        label: "Bottom - Trailing",
+                                                },
+                                                {
+                                                        id: 7,
+                                                        label: "Bottom - Center",
+                                                },
+                                                {
+                                                        id: 8,
+                                                        label: "Bottom - Leading",
+                                                },
                                         ],
                                 },
                         ],
                         callback: (event) => {
-                                self.sendCommand(event.options.timerNum, "/notes/alignment", [
-                                        event.options.alignment,
-                                ]);
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/notes/alignment",
+                                        [event.options.alignment],
+                                );
                         },
                 },
 
@@ -486,9 +561,18 @@ function getActionDefinitions(self) {
                                         id: "layout",
                                         default: "single",
                                         choices: [
-                                                { id: "single", label: "Single Timer" },
-                                                { id: "dual", label: "Dual Timers" },
-                                                { id: "quad", label: "Quad Timers" },
+                                                {
+                                                        id: "single",
+                                                        label: "Single Timer",
+                                                },
+                                                {
+                                                        id: "dual",
+                                                        label: "Dual Timers",
+                                                },
+                                                {
+                                                        id: "quad",
+                                                        label: "Quad Timers",
+                                                },
                                         ],
                                 },
                         ],
@@ -519,13 +603,31 @@ function getActionDefinitions(self) {
                                         id: "widget",
                                         default: "timer1",
                                         choices: [
-                                                { id: "timer1", label: "Timer 1" },
-                                                { id: "timer2", label: "Timer 2" },
-                                                { id: "timer3", label: "Timer 3" },
-                                                { id: "timer4", label: "Timer 4" },
-                                                { id: "broadcast", label: "Broadcast" },
+                                                {
+                                                        id: "timer1",
+                                                        label: "Timer 1",
+                                                },
+                                                {
+                                                        id: "timer2",
+                                                        label: "Timer 2",
+                                                },
+                                                {
+                                                        id: "timer3",
+                                                        label: "Timer 3",
+                                                },
+                                                {
+                                                        id: "timer4",
+                                                        label: "Timer 4",
+                                                },
+                                                {
+                                                        id: "broadcast",
+                                                        label: "Broadcast",
+                                                },
                                                 { id: "clock", label: "Clock" },
-                                                { id: "monitor", label: "Monitor" },
+                                                {
+                                                        id: "monitor",
+                                                        label: "Monitor",
+                                                },
                                         ],
                                 },
                         ],
@@ -558,22 +660,31 @@ function getActionDefinitions(self) {
                                         id: "behavior",
                                         default: 0,
                                         choices: [
-                                                { id: 0, label: "Continue Past Zero" },
-                                                { id: 1, label: "Stop at Zero" },
+                                                {
+                                                        id: 0,
+                                                        label: "Continue Past Zero",
+                                                },
+                                                {
+                                                        id: 1,
+                                                        label: "Stop at Zero",
+                                                },
                                         ],
                                 },
                         ],
-                        callback: (event) => {  
-                                self.sendCommand(event.options.timerNum, "/timer/atEnd", [
-                                        event.options.behavior,
-                                ]);
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/atEnd",
+                                        [event.options.behavior],
+                                );
                         },
                 },
 
                 // BROADCAST ACTIONS
                 broadcast_text_subscribe: {
                         name: "Subscribe Text Broadcast",
-                        description: "Subscribe to broadcast the timer's time as text to a specified destination",
+                        description:
+                                "Subscribe to broadcast the timer's time as text to a specified destination",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -581,7 +692,7 @@ function getActionDefinitions(self) {
                                         label: "IP Address",
                                         id: "ip",
                                         default: "127.0.0.1",
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -590,15 +701,15 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/timer/time",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
@@ -607,15 +718,16 @@ function getActionDefinitions(self) {
                                         [
                                                 event.options.ip,
                                                 event.options.port,
-                                                event.options.oscPath
-                                        ]
+                                                event.options.oscPath,
+                                        ],
                                 );
-                        }
+                        },
                 },
-                
+
                 broadcast_text_unsubscribe: {
                         name: "Unsubscribe Text Broadcast",
-                        description: "Unsubscribe from broadcasting the timer's time as text",
+                        description:
+                                "Unsubscribe from broadcasting the timer's time as text",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -623,7 +735,7 @@ function getActionDefinitions(self) {
                                         label: "IP Address",
                                         id: "ip",
                                         default: "127.0.0.1",
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -632,15 +744,15 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/timer/time",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
@@ -649,15 +761,16 @@ function getActionDefinitions(self) {
                                         [
                                                 event.options.ip,
                                                 event.options.port,
-                                                event.options.oscPath
-                                        ]
+                                                event.options.oscPath,
+                                        ],
                                 );
-                        }
+                        },
                 },
-                
+
                 broadcast_warning_subscribe: {
                         name: "Subscribe Warning Broadcast",
-                        description: "Subscribe to receive an OSC message when timer enters warning state",
+                        description:
+                                "Subscribe to receive an OSC message when timer enters warning state",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -665,7 +778,7 @@ function getActionDefinitions(self) {
                                         label: "IP Address",
                                         id: "ip",
                                         default: "127.0.0.1",
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -674,15 +787,15 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/timer/warning",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
@@ -691,12 +804,12 @@ function getActionDefinitions(self) {
                                         [
                                                 event.options.ip,
                                                 event.options.port,
-                                                event.options.oscPath
-                                        ]
+                                                event.options.oscPath,
+                                        ],
                                 );
-                        }
+                        },
                 },
-                
+
                 broadcast_warning_unsubscribe: {
                         name: "Unsubscribe Warning Broadcast",
                         description: "Unsubscribe from warning broadcast",
@@ -706,8 +819,8 @@ function getActionDefinitions(self) {
                                         type: "textinput",
                                         label: "IP Address",
                                         id: "ip",
-                                        default: "127.0.0.1", 
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        default: "127.0.0.1",
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -716,15 +829,15 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/timer/warning",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
@@ -733,15 +846,16 @@ function getActionDefinitions(self) {
                                         [
                                                 event.options.ip,
                                                 event.options.port,
-                                                event.options.oscPath
-                                        ]
+                                                event.options.oscPath,
+                                        ],
                                 );
-                        }
+                        },
                 },
-                
+
                 broadcast_end_subscribe: {
                         name: "Subscribe End Broadcast",
-                        description: "Subscribe to receive an OSC message when timer reaches end",
+                        description:
+                                "Subscribe to receive an OSC message when timer reaches end",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -749,7 +863,7 @@ function getActionDefinitions(self) {
                                         label: "IP Address",
                                         id: "ip",
                                         default: "127.0.0.1",
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -758,15 +872,15 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/timer/end",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
@@ -775,12 +889,12 @@ function getActionDefinitions(self) {
                                         [
                                                 event.options.ip,
                                                 event.options.port,
-                                                event.options.oscPath
-                                        ]
+                                                event.options.oscPath,
+                                        ],
                                 );
-                        }
+                        },
                 },
-                
+
                 broadcast_end_unsubscribe: {
                         name: "Unsubscribe End Broadcast",
                         description: "Unsubscribe from end broadcast",
@@ -791,7 +905,7 @@ function getActionDefinitions(self) {
                                         label: "IP Address",
                                         id: "ip",
                                         default: "127.0.0.1",
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -800,15 +914,15 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/timer/end",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
@@ -817,15 +931,16 @@ function getActionDefinitions(self) {
                                         [
                                                 event.options.ip,
                                                 event.options.port,
-                                                event.options.oscPath
-                                        ]
+                                                event.options.oscPath,
+                                        ],
                                 );
-                        }
+                        },
                 },
-                
+
                 broadcast_color_subscribe: {
                         name: "Subscribe Color Broadcast",
-                        description: "Subscribe to broadcast color changes (QLab specific)",
+                        description:
+                                "Subscribe to broadcast color changes (QLab specific)",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -833,7 +948,7 @@ function getActionDefinitions(self) {
                                         label: "IP Address",
                                         id: "ip",
                                         default: "127.0.0.1",
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -842,36 +957,36 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/cue/timer/colorName",
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "Normal Color",
                                         id: "normalColor",
                                         default: "None",
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "Warning Color",
                                         id: "warningColor",
                                         default: "Yellow",
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "End Color",
                                         id: "endColor",
                                         default: "Red",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
@@ -883,12 +998,12 @@ function getActionDefinitions(self) {
                                                 event.options.oscPath,
                                                 event.options.normalColor,
                                                 event.options.warningColor,
-                                                event.options.endColor
-                                        ]
+                                                event.options.endColor,
+                                        ],
                                 );
-                        }
+                        },
                 },
-                
+
                 broadcast_color_unsubscribe: {
                         name: "Unsubscribe Color Broadcast",
                         description: "Unsubscribe from color broadcast",
@@ -899,7 +1014,7 @@ function getActionDefinitions(self) {
                                         label: "IP Address",
                                         id: "ip",
                                         default: "127.0.0.1",
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -908,15 +1023,15 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/cue/timer/colorName",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
@@ -925,15 +1040,16 @@ function getActionDefinitions(self) {
                                         [
                                                 event.options.ip,
                                                 event.options.port,
-                                                event.options.oscPath
-                                        ]
+                                                event.options.oscPath,
+                                        ],
                                 );
-                        }
+                        },
                 },
-                
+
                 broadcast_at_time_subscribe: {
                         name: "Subscribe Time Trigger",
-                        description: "Subscribe to receive a trigger at a specific time",
+                        description:
+                                "Subscribe to receive a trigger at a specific time",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -942,11 +1058,20 @@ function getActionDefinitions(self) {
                                         id: "timeFormat",
                                         default: "seconds",
                                         choices: [
-                                                { id: "seconds", label: "Seconds" },
-                                                { id: "minutes", label: "Minutes" },
+                                                {
+                                                        id: "seconds",
+                                                        label: "Seconds",
+                                                },
+                                                {
+                                                        id: "minutes",
+                                                        label: "Minutes",
+                                                },
                                                 { id: "hours", label: "Hours" },
-                                                { id: "time", label: "Hours:Minutes:Seconds" }
-                                        ]
+                                                {
+                                                        id: "time",
+                                                        label: "Hours:Minutes:Seconds",
+                                                },
+                                        ],
                                 },
                                 {
                                         type: "number",
@@ -955,7 +1080,8 @@ function getActionDefinitions(self) {
                                         default: 0,
                                         min: 0,
                                         max: 24,
-                                        isVisible: (options) => options.timeFormat === "time"
+                                        isVisible: (options) =>
+                                                options.timeFormat === "time",
                                 },
                                 {
                                         type: "number",
@@ -964,7 +1090,10 @@ function getActionDefinitions(self) {
                                         default: 1,
                                         min: 0,
                                         max: 59,
-                                        isVisible: (options) => options.timeFormat === "time" || options.timeFormat === "minutes"
+                                        isVisible: (options) =>
+                                                options.timeFormat === "time" ||
+                                                options.timeFormat ===
+                                                        "minutes",
                                 },
                                 {
                                         type: "number",
@@ -973,14 +1102,17 @@ function getActionDefinitions(self) {
                                         default: 30,
                                         min: 0,
                                         max: 59,
-                                        isVisible: (options) => options.timeFormat === "time" || options.timeFormat === "seconds"
+                                        isVisible: (options) =>
+                                                options.timeFormat === "time" ||
+                                                options.timeFormat ===
+                                                        "seconds",
                                 },
                                 {
                                         type: "textinput",
                                         label: "IP Address",
                                         id: "ip",
                                         default: "127.0.0.1",
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -989,56 +1121,56 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/timer/trigger",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 const options = event.options;
                                 const format = options.timeFormat;
                                 let args = [];
-                                
+
                                 if (format === "seconds") {
                                         args = [
                                                 options.seconds,
                                                 options.ip,
                                                 options.port,
-                                                options.oscPath
+                                                options.oscPath,
                                         ];
                                         self.sendCommand(
                                                 options.timerNum,
                                                 "/broadcast/atTime/subscribe/seconds",
-                                                args
+                                                args,
                                         );
                                 } else if (format === "minutes") {
                                         args = [
                                                 options.minutes,
                                                 options.ip,
                                                 options.port,
-                                                options.oscPath
+                                                options.oscPath,
                                         ];
                                         self.sendCommand(
                                                 options.timerNum,
                                                 "/broadcast/atTime/subscribe/minutes",
-                                                args
+                                                args,
                                         );
                                 } else if (format === "hours") {
                                         args = [
                                                 options.hours,
                                                 options.ip,
                                                 options.port,
-                                                options.oscPath
+                                                options.oscPath,
                                         ];
                                         self.sendCommand(
                                                 options.timerNum,
                                                 "/broadcast/atTime/subscribe/hours",
-                                                args
+                                                args,
                                         );
                                 } else if (format === "time") {
                                         args = [
@@ -1047,17 +1179,17 @@ function getActionDefinitions(self) {
                                                 options.seconds,
                                                 options.ip,
                                                 options.port,
-                                                options.oscPath
+                                                options.oscPath,
                                         ];
                                         self.sendCommand(
                                                 options.timerNum,
                                                 "/broadcast/atTime/subscribe/time",
-                                                args
+                                                args,
                                         );
                                 }
-                        }
+                        },
                 },
-                
+
                 broadcast_at_time_unsubscribe: {
                         name: "Unsubscribe Time Trigger",
                         description: "Unsubscribe from a specific time trigger",
@@ -1069,11 +1201,20 @@ function getActionDefinitions(self) {
                                         id: "timeFormat",
                                         default: "seconds",
                                         choices: [
-                                                { id: "seconds", label: "Seconds" },
-                                                { id: "minutes", label: "Minutes" },
+                                                {
+                                                        id: "seconds",
+                                                        label: "Seconds",
+                                                },
+                                                {
+                                                        id: "minutes",
+                                                        label: "Minutes",
+                                                },
                                                 { id: "hours", label: "Hours" },
-                                                { id: "time", label: "Hours:Minutes:Seconds" }
-                                        ]
+                                                {
+                                                        id: "time",
+                                                        label: "Hours:Minutes:Seconds",
+                                                },
+                                        ],
                                 },
                                 {
                                         type: "number",
@@ -1082,7 +1223,8 @@ function getActionDefinitions(self) {
                                         default: 0,
                                         min: 0,
                                         max: 24,
-                                        isVisible: (options) => options.timeFormat === "time"
+                                        isVisible: (options) =>
+                                                options.timeFormat === "time",
                                 },
                                 {
                                         type: "number",
@@ -1091,7 +1233,10 @@ function getActionDefinitions(self) {
                                         default: 1,
                                         min: 0,
                                         max: 59,
-                                        isVisible: (options) => options.timeFormat === "time" || options.timeFormat === "minutes"
+                                        isVisible: (options) =>
+                                                options.timeFormat === "time" ||
+                                                options.timeFormat ===
+                                                        "minutes",
                                 },
                                 {
                                         type: "number",
@@ -1100,14 +1245,17 @@ function getActionDefinitions(self) {
                                         default: 30,
                                         min: 0,
                                         max: 59,
-                                        isVisible: (options) => options.timeFormat === "time" || options.timeFormat === "seconds"
+                                        isVisible: (options) =>
+                                                options.timeFormat === "time" ||
+                                                options.timeFormat ===
+                                                        "seconds",
                                 },
                                 {
                                         type: "textinput",
                                         label: "IP Address",
                                         id: "ip",
                                         default: "127.0.0.1",
-                                        regex: '^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$'
+                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
                                 },
                                 {
                                         type: "number",
@@ -1116,56 +1264,56 @@ function getActionDefinitions(self) {
                                         default: 53000,
                                         min: 1,
                                         max: 65535,
-                                        required: true
+                                        required: true,
                                 },
                                 {
                                         type: "textinput",
                                         label: "OSC Path",
                                         id: "oscPath",
                                         default: "/timer/trigger",
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 const options = event.options;
                                 const format = options.timeFormat;
                                 let args = [];
-                                
+
                                 if (format === "seconds") {
                                         args = [
                                                 options.seconds,
                                                 options.ip,
                                                 options.port,
-                                                options.oscPath
+                                                options.oscPath,
                                         ];
                                         self.sendCommand(
                                                 options.timerNum,
                                                 "/broadcast/atTime/unsubscribe/seconds",
-                                                args
+                                                args,
                                         );
                                 } else if (format === "minutes") {
                                         args = [
                                                 options.minutes,
                                                 options.ip,
                                                 options.port,
-                                                options.oscPath
+                                                options.oscPath,
                                         ];
                                         self.sendCommand(
                                                 options.timerNum,
                                                 "/broadcast/atTime/unsubscribe/minutes",
-                                                args
+                                                args,
                                         );
                                 } else if (format === "hours") {
                                         args = [
                                                 options.hours,
                                                 options.ip,
                                                 options.port,
-                                                options.oscPath
+                                                options.oscPath,
                                         ];
                                         self.sendCommand(
                                                 options.timerNum,
                                                 "/broadcast/atTime/unsubscribe/hours",
-                                                args
+                                                args,
                                         );
                                 } else if (format === "time") {
                                         args = [
@@ -1174,17 +1322,17 @@ function getActionDefinitions(self) {
                                                 options.seconds,
                                                 options.ip,
                                                 options.port,
-                                                options.oscPath
+                                                options.oscPath,
                                         ];
                                         self.sendCommand(
                                                 options.timerNum,
                                                 "/broadcast/atTime/unsubscribe/time",
-                                                args
+                                                args,
                                         );
                                 }
-                        }
+                        },
                 },
-                
+
                 // TIMER DISPLAY CUSTOMIZATION
                 timer_set_normal_color: {
                         name: "Set Timer Normal Color",
@@ -1195,7 +1343,7 @@ function getActionDefinitions(self) {
                                         type: "colorpicker",
                                         label: "Normal Color",
                                         id: "color",
-                                        default: "#FFFFFF" // White
+                                        default: "#FFFFFF", // White
                                 },
                                 {
                                         type: "number",
@@ -1204,44 +1352,59 @@ function getActionDefinitions(self) {
                                         default: 100,
                                         min: 0,
                                         max: 100,
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 // Handle color value which might be a number (RGB int) instead of a string
                                 let r, g, b;
                                 const colorValue = event.options.color;
-                                
+
                                 // Check if color is a number (RGB integer)
-                                if (typeof colorValue === 'number') {
-                                    r = ((colorValue >> 16) & 0xFF) / 255;
-                                    g = ((colorValue >> 8) & 0xFF) / 255;
-                                    b = (colorValue & 0xFF) / 255;
-                                } 
+                                if (typeof colorValue === "number") {
+                                        r = ((colorValue >> 16) & 0xff) / 255;
+                                        g = ((colorValue >> 8) & 0xff) / 255;
+                                        b = (colorValue & 0xff) / 255;
+                                }
                                 // Or if it's a string (hex color)
-                                else if (typeof colorValue === 'string') {
-                                    const color = colorValue.replace('#', '');
-                                    r = parseInt(color.substring(0, 2), 16) / 255;
-                                    g = parseInt(color.substring(2, 4), 16) / 255;
-                                    b = parseInt(color.substring(4, 6), 16) / 255;
+                                else if (typeof colorValue === "string") {
+                                        const color = colorValue.replace(
+                                                "#",
+                                                "",
+                                        );
+                                        r =
+                                                parseInt(
+                                                        color.substring(0, 2),
+                                                        16,
+                                                ) / 255;
+                                        g =
+                                                parseInt(
+                                                        color.substring(2, 4),
+                                                        16,
+                                                ) / 255;
+                                        b =
+                                                parseInt(
+                                                        color.substring(4, 6),
+                                                        16,
+                                                ) / 255;
                                 }
                                 // Default to white if format is unexpected
                                 else {
-                                    r = 1.0;
-                                    g = 1.0;
-                                    b = 1.0;
+                                        r = 1.0;
+                                        g = 1.0;
+                                        b = 1.0;
                                 }
-                                
+
                                 const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
-                                
+
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/timer/display/normalColor",
-                                        [r, g, b, a]
+                                        "/timer/normal/font/color",
+                                        [r, g, b, a],
                                 );
-                        }
+                        },
                 },
-                
+
                 timer_set_warning_color: {
                         name: "Set Timer Warning Color",
                         description: "Set the color for timer warning state",
@@ -1251,7 +1414,7 @@ function getActionDefinitions(self) {
                                         type: "colorpicker",
                                         label: "Warning Color",
                                         id: "color",
-                                        default: "#FFFF00" // Yellow
+                                        default: "#FFFF00", // Yellow
                                 },
                                 {
                                         type: "number",
@@ -1260,44 +1423,59 @@ function getActionDefinitions(self) {
                                         default: 100,
                                         min: 0,
                                         max: 100,
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 // Handle color value which might be a number (RGB int) instead of a string
                                 let r, g, b;
                                 const colorValue = event.options.color;
-                                
+
                                 // Check if color is a number (RGB integer)
-                                if (typeof colorValue === 'number') {
-                                    r = ((colorValue >> 16) & 0xFF) / 255;
-                                    g = ((colorValue >> 8) & 0xFF) / 255;
-                                    b = (colorValue & 0xFF) / 255;
-                                } 
+                                if (typeof colorValue === "number") {
+                                        r = ((colorValue >> 16) & 0xff) / 255;
+                                        g = ((colorValue >> 8) & 0xff) / 255;
+                                        b = (colorValue & 0xff) / 255;
+                                }
                                 // Or if it's a string (hex color)
-                                else if (typeof colorValue === 'string') {
-                                    const color = colorValue.replace('#', '');
-                                    r = parseInt(color.substring(0, 2), 16) / 255;
-                                    g = parseInt(color.substring(2, 4), 16) / 255;
-                                    b = parseInt(color.substring(4, 6), 16) / 255;
+                                else if (typeof colorValue === "string") {
+                                        const color = colorValue.replace(
+                                                "#",
+                                                "",
+                                        );
+                                        r =
+                                                parseInt(
+                                                        color.substring(0, 2),
+                                                        16,
+                                                ) / 255;
+                                        g =
+                                                parseInt(
+                                                        color.substring(2, 4),
+                                                        16,
+                                                ) / 255;
+                                        b =
+                                                parseInt(
+                                                        color.substring(4, 6),
+                                                        16,
+                                                ) / 255;
                                 }
                                 // Default to yellow if format is unexpected
                                 else {
-                                    r = 1.0;
-                                    g = 1.0;
-                                    b = 0.0;
+                                        r = 1.0;
+                                        g = 1.0;
+                                        b = 0.0;
                                 }
-                                
+
                                 const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
-                                
+
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/timer/display/warningColor",
-                                        [r, g, b, a]
+                                        "/timer/alert/font/color",
+                                        [r, g, b, a],
                                 );
-                        }
+                        },
                 },
-                
+
                 timer_set_end_color: {
                         name: "Set Timer End Color",
                         description: "Set the color for timer end state",
@@ -1307,7 +1485,7 @@ function getActionDefinitions(self) {
                                         type: "colorpicker",
                                         label: "End Color",
                                         id: "color",
-                                        default: "#FF0000" // Red
+                                        default: "#FF0000", // Red
                                 },
                                 {
                                         type: "number",
@@ -1316,54 +1494,70 @@ function getActionDefinitions(self) {
                                         default: 100,
                                         min: 0,
                                         max: 100,
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 // Handle color value which might be a number (RGB int) instead of a string
                                 let r, g, b;
                                 const colorValue = event.options.color;
-                                
+
                                 // Check if color is a number (RGB integer)
-                                if (typeof colorValue === 'number') {
-                                    r = ((colorValue >> 16) & 0xFF) / 255;
-                                    g = ((colorValue >> 8) & 0xFF) / 255;
-                                    b = (colorValue & 0xFF) / 255;
-                                } 
+                                if (typeof colorValue === "number") {
+                                        r = ((colorValue >> 16) & 0xff) / 255;
+                                        g = ((colorValue >> 8) & 0xff) / 255;
+                                        b = (colorValue & 0xff) / 255;
+                                }
                                 // Or if it's a string (hex color)
-                                else if (typeof colorValue === 'string') {
-                                    const color = colorValue.replace('#', '');
-                                    r = parseInt(color.substring(0, 2), 16) / 255;
-                                    g = parseInt(color.substring(2, 4), 16) / 255;
-                                    b = parseInt(color.substring(4, 6), 16) / 255;
+                                else if (typeof colorValue === "string") {
+                                        const color = colorValue.replace(
+                                                "#",
+                                                "",
+                                        );
+                                        r =
+                                                parseInt(
+                                                        color.substring(0, 2),
+                                                        16,
+                                                ) / 255;
+                                        g =
+                                                parseInt(
+                                                        color.substring(2, 4),
+                                                        16,
+                                                ) / 255;
+                                        b =
+                                                parseInt(
+                                                        color.substring(4, 6),
+                                                        16,
+                                                ) / 255;
                                 }
                                 // Default to red if format is unexpected
                                 else {
-                                    r = 1.0;
-                                    g = 0.0;
-                                    b = 0.0;
+                                        r = 1.0;
+                                        g = 0.0;
+                                        b = 0.0;
                                 }
-                                
+
                                 const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
-                                
+
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/timer/display/endColor",
-                                        [r, g, b, a]
+                                        "/timer/end/font/color",
+                                        [r, g, b, a],
                                 );
-                        }
+                        },
                 },
-                
+
                 timer_set_background_color: {
                         name: "Set Timer Background Color",
-                        description: "Set the background color for timer display",
+                        description:
+                                "Set the background color for timer display",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
                                         type: "colorpicker",
                                         label: "Background Color",
                                         id: "color",
-                                        default: "#000000" // Black
+                                        default: "#000000", // Black
                                 },
                                 {
                                         type: "number",
@@ -1372,43 +1566,58 @@ function getActionDefinitions(self) {
                                         default: 100,
                                         min: 0,
                                         max: 100,
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 // Handle color value which might be a number (RGB int) instead of a string
                                 let r, g, b;
                                 const colorValue = event.options.color;
-                                
+
                                 // Check if color is a number (RGB integer)
-                                if (typeof colorValue === 'number') {
-                                    r = ((colorValue >> 16) & 0xFF) / 255;
-                                    g = ((colorValue >> 8) & 0xFF) / 255;
-                                    b = (colorValue & 0xFF) / 255;
-                                } 
+                                if (typeof colorValue === "number") {
+                                        r = ((colorValue >> 16) & 0xff) / 255;
+                                        g = ((colorValue >> 8) & 0xff) / 255;
+                                        b = (colorValue & 0xff) / 255;
+                                }
                                 // Or if it's a string (hex color)
-                                else if (typeof colorValue === 'string') {
-                                    const color = colorValue.replace('#', '');
-                                    r = parseInt(color.substring(0, 2), 16) / 255;
-                                    g = parseInt(color.substring(2, 4), 16) / 255;
-                                    b = parseInt(color.substring(4, 6), 16) / 255;
+                                else if (typeof colorValue === "string") {
+                                        const color = colorValue.replace(
+                                                "#",
+                                                "",
+                                        );
+                                        r =
+                                                parseInt(
+                                                        color.substring(0, 2),
+                                                        16,
+                                                ) / 255;
+                                        g =
+                                                parseInt(
+                                                        color.substring(2, 4),
+                                                        16,
+                                                ) / 255;
+                                        b =
+                                                parseInt(
+                                                        color.substring(4, 6),
+                                                        16,
+                                                ) / 255;
                                 }
                                 // Default to black if format is unexpected
                                 else {
-                                    r = 0.0;
-                                    g = 0.0;
-                                    b = 0.0;
+                                        r = 0.0;
+                                        g = 0.0;
+                                        b = 0.0;
                                 }
-                                
+
                                 const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
-                                
+
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/timer/display/backgroundColor",
-                                        [r, g, b, a]
+                                        "/background/timer/color",
+                                        [r, g, b, a],
                                 );
-                        }
-                }
+                        },
+                },
         };
 }
 
