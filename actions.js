@@ -1400,7 +1400,12 @@ function getActionDefinitions(self) {
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/normal/font/color",
-                                        [r, g, b, a],
+                                        [
+                                                parseFloat(r),
+                                                parseFloat(g),
+                                                parseFloat(b),
+                                                parseFloat(a),
+                                        ],
                                 );
                         },
                 },
@@ -1471,7 +1476,12 @@ function getActionDefinitions(self) {
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/alert/font/color",
-                                        [r, g, b, a],
+                                        [
+                                                parseFloat(r),
+                                                parseFloat(g),
+                                                parseFloat(b),
+                                                parseFloat(a),
+                                        ],
                                 );
                         },
                 },
@@ -1542,7 +1552,12 @@ function getActionDefinitions(self) {
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/end/font/color",
-                                        [r, g, b, a],
+                                        [
+                                                parseFloat(r),
+                                                parseFloat(g),
+                                                parseFloat(b),
+                                                parseFloat(a),
+                                        ],
                                 );
                         },
                 },
@@ -1614,7 +1629,12 @@ function getActionDefinitions(self) {
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/background/timer/color",
-                                        [r, g, b, a],
+                                        [
+                                                parseFloat(r),
+                                                parseFloat(g),
+                                                parseFloat(b),
+                                                parseFloat(a),
+                                        ],
                                 );
                         },
                 },
