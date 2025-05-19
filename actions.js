@@ -1397,14 +1397,16 @@ function getActionDefinitions(self) {
 
                                 const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
 
+                                const toForcedFloat = (val) => val + 1e-6;
+
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/normal/font/color",
                                         [
-                                                parseFloat(r.toFixed(6)),
-                                                parseFloat(g.toFixed(6)),
-                                                parseFloat(b.toFixed(6)),
-                                                parseFloat(a.toFixed(6)),
+                                                toForcedFloat(r),
+                                                toForcedFloat(g),
+                                                toForcedFloat(b),
+                                                toForcedFloat(a),
                                         ],
                                 );
                         },
@@ -1473,14 +1475,16 @@ function getActionDefinitions(self) {
 
                                 const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
 
+                                const toForcedFloat = (val) => val + 1e-6;
+
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/alert/font/color",
                                         [
-                                                parseFloat(r.toFixed(6)),
-                                                parseFloat(g.toFixed(6)),
-                                                parseFloat(b.toFixed(6)),
-                                                parseFloat(a.toFixed(6)),
+                                                toForcedFloat(r),
+                                                toForcedFloat(g),
+                                                toForcedFloat(b),
+                                                toForcedFloat(a),
                                         ],
                                 );
                         },
@@ -1549,14 +1553,16 @@ function getActionDefinitions(self) {
 
                                 const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
 
+                                const toForcedFloat = (val) => val + 1e-6;
+
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/end/font/color",
                                         [
-                                                parseFloat(r.toFixed(6)),
-                                                parseFloat(g.toFixed(6)),
-                                                parseFloat(b.toFixed(6)),
-                                                parseFloat(a.toFixed(6)),
+                                                toForcedFloat(r),
+                                                toForcedFloat(g),
+                                                toForcedFloat(b),
+                                                toForcedFloat(a),
                                         ],
                                 );
                         },
@@ -1626,14 +1632,16 @@ function getActionDefinitions(self) {
 
                                 const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
 
+                                const toForcedFloat = (val) => val + 1e-6;
+
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/background/timer/color",
                                         [
-                                                parseFloat(r.toFixed(6)),
-                                                parseFloat(g.toFixed(6)),
-                                                parseFloat(b.toFixed(6)),
-                                                parseFloat(a.toFixed(6)),
+                                                toForcedFloat(r),
+                                                toForcedFloat(g),
+                                                toForcedFloat(b),
+                                                toForcedFloat(a),
                                         ],
                                 );
                         },
