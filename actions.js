@@ -1401,10 +1401,10 @@ function getActionDefinitions(self) {
                                         event.options.timerNum,
                                         "/timer/normal/font/color",
                                         [
-                                                parseFloat(r),
-                                                parseFloat(g),
-                                                parseFloat(b),
-                                                parseFloat(a),
+                                                parseFloat(r.toFixed(6)),
+                                                parseFloat(g.toFixed(6)),
+                                                parseFloat(b.toFixed(6)),
+                                                parseFloat(a.toFixed(6)),
                                         ],
                                 );
                         },
@@ -1477,10 +1477,10 @@ function getActionDefinitions(self) {
                                         event.options.timerNum,
                                         "/timer/alert/font/color",
                                         [
-                                                parseFloat(r),
-                                                parseFloat(g),
-                                                parseFloat(b),
-                                                parseFloat(a),
+                                                parseFloat(r.toFixed(6)),
+                                                parseFloat(g.toFixed(6)),
+                                                parseFloat(b.toFixed(6)),
+                                                parseFloat(a.toFixed(6)),
                                         ],
                                 );
                         },
@@ -1553,10 +1553,10 @@ function getActionDefinitions(self) {
                                         event.options.timerNum,
                                         "/timer/end/font/color",
                                         [
-                                                parseFloat(r),
-                                                parseFloat(g),
-                                                parseFloat(b),
-                                                parseFloat(a),
+                                                parseFloat(r.toFixed(6)),
+                                                parseFloat(g.toFixed(6)),
+                                                parseFloat(b.toFixed(6)),
+                                                parseFloat(a.toFixed(6)),
                                         ],
                                 );
                         },
@@ -1630,10 +1630,10 @@ function getActionDefinitions(self) {
                                         event.options.timerNum,
                                         "/background/timer/color",
                                         [
-                                                parseFloat(r),
-                                                parseFloat(g),
-                                                parseFloat(b),
-                                                parseFloat(a),
+                                                parseFloat(r.toFixed(6)),
+                                                parseFloat(g.toFixed(6)),
+                                                parseFloat(b.toFixed(6)),
+                                                parseFloat(a.toFixed(6)),
                                         ],
                                 );
                         },
