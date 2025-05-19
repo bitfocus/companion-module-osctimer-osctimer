@@ -1334,6 +1334,109 @@ function getActionDefinitions(self) {
                 },
 
                 // TIMER DISPLAY CUSTOMIZATION
+                set_display_color: {
+                        name: "Set Display Color",
+                        description: "Universal color control for all timer elements",
+                        options: [
+                                TIMER_DROPDOWN,
+                                {
+                                        type: "dropdown",
+                                        label: "Display Element",
+                                        id: "element",
+                                        default: "timer_normal",
+                                        choices: [
+                                                { id: "timer_normal", label: "Timer (Normal State)" },
+                                                { id: "timer_warning", label: "Timer (Warning State)" },
+                                                { id: "timer_end", label: "Timer (End State)" },
+                                                { id: "timer_background", label: "Timer Background" },
+                                                { id: "app_background", label: "App Background" },
+                                                { id: "clock_normal", label: "Clock (Normal)" },
+                                                { id: "broadcast_normal", label: "Broadcast Display (Normal)" },
+                                                { id: "notes_normal", label: "Notes (Normal)" },
+                                                { id: "notes_background", label: "Notes Background" }
+                                        ]
+                                },
+                                {
+                                        type: "colorpicker",
+                                        label: "Color",
+                                        id: "color",
+                                        default: "#FFFFFF" // White as default
+                                },
+                                {
+                                        type: "number",
+                                        label: "Opacity (0-100%)",
+                                        id: "alpha",
+                                        default: 100,
+                                        min: 0,
+                                        max: 100,
+                                        required: true
+                                }
+                        ],
+                        callback: (event) => {
+                                // Get the element path based on the selected element
+                                const elementPaths = {
+                                        timer_normal: "/timer/display/normalColor",
+                                        timer_warning: "/timer/display/warningColor",
+                                        timer_end: "/timer/display/endColor", 
+                                        timer_background: "/timer/display/backgroundColor",
+                                        app_background: "/app/display/backgroundColor",
+                                        clock_normal: "/clock/display/normalColor",
+                                        broadcast_normal: "/broadcast/display/normalColor",
+                                        notes_normal: "/notes/display/normalColor",
+                                        notes_background: "/notes/display/backgroundColor"
+                                };
+                                
+                                // Set default colors based on element type for fallback
+                                const defaultColors = {
+                                        timer_normal: [1.0, 1.0, 1.0],       // White
+                                        timer_warning: [1.0, 1.0, 0.0],      // Yellow
+                                        timer_end: [1.0, 0.0, 0.0],          // Red
+                                        timer_background: [0.0, 0.0, 0.0],   // Black
+                                        app_background: [0.0, 0.0, 0.0],     // Black
+                                        clock_normal: [1.0, 1.0, 1.0],       // White
+                                        broadcast_normal: [1.0, 1.0, 1.0],   // White
+                                        notes_normal: [1.0, 1.0, 1.0],       // White
+                                        notes_background: [0.0, 0.0, 0.0]    // Black
+                                };
+                                
+                                // Select the appropriate OSC path
+                                const path = elementPaths[event.options.element];
+                                const defaultRGB = defaultColors[event.options.element];
+                                
+                                // Handle color value which might be a number (RGB int) instead of a string
+                                let r, g, b;
+                                const colorValue = event.options.color;
+                                
+                                // Check if color is a number (RGB integer)
+                                if (typeof colorValue === 'number') {
+                                    r = ((colorValue >> 16) & 0xFF) / 255 + 0.00001; // Adding tiny value to ensure float
+                                    g = ((colorValue >> 8) & 0xFF) / 255 + 0.00001;
+                                    b = (colorValue & 0xFF) / 255 + 0.00001;
+                                } 
+                                // Or if it's a string (hex color)
+                                else if (typeof colorValue === 'string') {
+                                    const color = colorValue.replace('#', '');
+                                    r = parseInt(color.substring(0, 2), 16) / 255 + 0.00001;
+                                    g = parseInt(color.substring(2, 4), 16) / 255 + 0.00001;
+                                    b = parseInt(color.substring(4, 6), 16) / 255 + 0.00001;
+                                }
+                                // Default colors based on element type if format is unexpected
+                                else {
+                                    r = defaultRGB[0];
+                                    g = defaultRGB[1];
+                                    b = defaultRGB[2];
+                                }
+                                
+                                const a = event.options.alpha / 100 + 0.00001; // Add tiny amount to ensure float
+                                
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        path,
+                                        [r, g, b, a]
+                                );
+                        }
+                },
+                
                 timer_set_normal_color: {
                         name: "Set Timer Normal Color",
                         description: "Set the color for normal timer display",
