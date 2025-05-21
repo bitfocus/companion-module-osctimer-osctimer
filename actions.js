@@ -14,203 +14,40 @@ function getActionDefinitions(self) {
                 ],
         };
 
+        const ACTION_DROPDOWN = {
+                type: "dropdown",
+                label: "Action",
+                id: "action",
+                default: "start",
+                choices: [
+                        { id: "start", label: "Start" },
+                        { id: "stop", label: "Stop" },
+                        { id: "reset", label: "Reset" },
+                        { id: "resetAndStop", label: "Reset og Stop" },
+                ],
+        };
+
         return {
                 // Timer Control Actions
-                timer_start: {
-                        name: "Start Timer",
-                        options: [TIMER_DROPDOWN],
+                timer_action: {
+                        name: "Timer - Control",
+                        description:
+                                "Start, stop, reset, or reset and stop the selected timer.",
+                        options: [TIMER_DROPDOWN, ACTION_DROPDOWN],
                         callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/start",
-                                );
-                        },
-                },
-                timer_stop: {
-                        name: "Stop Timer",
-                        options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/stop",
-                                );
-                        },
-                },
-                timer_reset: {
-                        name: "Reset Timer",
-                        options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/reset",
-                                );
-                        },
-                },
-                timer_reset_and_stop: {
-                        name: "Reset and Stop Timer",
-                        options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/resetAndStop",
-                                );
+                                const action = event.options.action;
+                                const timerNum = event.options.timerNum;
+
+                                self.sendCommand(timerNum, `/timer/${action}`);
                         },
                 },
 
-                // Timer Duration Setting Actions
-                timer_set_seconds: {
-                        name: "Set Timer (Seconds)",
-                        options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
-                                {
-                                        type: "number",
-                                        label: "Seconds",
-                                        id: "seconds",
-                                        default: 30,
-                                        min: 0,
-                                        max: 86400, // 24 hours in seconds
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/seconds",
-                                        [event.options.seconds],
-                                );
-                        },
-                },
-                timer_set_minutes: {
-                        name: "Set Timer (Minutes)",
-                        options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
-                                {
-                                        type: "number",
-                                        label: "Minutes",
-                                        id: "minutes",
-                                        default: 5,
-                                        min: 0,
-                                        max: 1440, // 24 hours in minutes
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/minutes",
-                                        [event.options.minutes],
-                                );
-                        },
-                },
-                timer_set_hours: {
-                        name: "Set Timer (Hours)",
-                        options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
-                                {
-                                        type: "number",
-                                        label: "Hours",
-                                        id: "hours",
-                                        default: 1,
-                                        min: 0,
-                                        max: 24,
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/hours",
-                                        [event.options.hours],
-                                );
-                        },
-                },
                 timer_set_time: {
-                        name: "Set Timer (HH:MM:SS)",
+                        name: "Timer - Set Time",
+                        description:
+                                "Set the time for the selected timer to count to or from.",
                         options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
+                                TIMER_DROPDOWN,
                                 {
                                         type: "number",
                                         label: "Hours",
@@ -254,86 +91,38 @@ function getActionDefinitions(self) {
 
                 // Timer Adjustment Actions
                 timer_add_seconds: {
-                        name: "Add Seconds to Timer",
-                        options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
-                                {
-                                        type: "number",
-                                        label: "Seconds to Add",
-                                        id: "seconds",
-                                        default: 30,
-                                        min: 1,
-                                        required: true,
-                                },
-                        ],
+                        name: "Timer - Add 1 Second",
+                        description: "Add 1 second to the selected timer.",
+                        options: [TIMER_DROPDOWN],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/count/seconds/add",
-                                        [event.options.seconds],
+                                        [1],
                                 );
                         },
                 },
                 timer_subtract_seconds: {
-                        name: "Subtract Seconds from Timer",
-                        options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
-                                {
-                                        type: "number",
-                                        label: "Seconds to Subtract",
-                                        id: "seconds",
-                                        default: 30,
-                                        min: 1,
-                                        required: true,
-                                },
-                        ],
+                        name: "Timer - Subtract 1 Second",
+                        description:
+                                "Subtract 1 second from the selected timer.",
+                        options: [TIMER_DROPDOWN],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
                                         "/timer/count/seconds/subtract",
-                                        [event.options.seconds],
+                                        [1],
                                 );
                         },
                 },
 
                 // Timer Direction Control
                 timer_count_direction: {
-                        name: "Set Timer Direction",
+                        name: "Timer - Set Direction",
+                        description:
+                                "Set whether the selected timer counts up or down.",
                         options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
+                                TIMER_DROPDOWN,
                                 {
                                         type: "dropdown",
                                         label: "Direction",
@@ -356,20 +145,11 @@ function getActionDefinitions(self) {
 
                 // Timer Display Format
                 timer_show_format: {
-                        name: "Set Timer Display Format",
+                        name: "Timer - Set Display Format",
+                        description:
+                                "Set the time display format of the selected timer.",
                         options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
+                                TIMER_DROPDOWN,
                                 {
                                         type: "dropdown",
                                         label: "Format",
@@ -406,54 +186,59 @@ function getActionDefinitions(self) {
 
                 // Timer Alert Settings
                 timer_set_alert_seconds: {
-                        name: "Set Alert Time (Seconds)",
+                        name: "Timer - Set Alert Time",
+                        description:
+                                "Define the time when the selected timer enters alert state.",
                         options: [
+                                TIMER_DROPDOWN,
                                 {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
+                                        type: "number",
+                                        label: "Hours",
+                                        id: "hours",
+                                        default: 0,
+                                        min: 0,
+                                        max: 24,
+                                        required: true,
                                 },
                                 {
                                         type: "number",
-                                        label: "Alert Seconds",
-                                        id: "seconds",
-                                        default: 10,
+                                        label: "Minutes",
+                                        id: "minutes",
+                                        default: 5,
                                         min: 0,
+                                        max: 59,
+                                        required: true,
+                                },
+                                {
+                                        type: "number",
+                                        label: "Seconds",
+                                        id: "seconds",
+                                        default: 0,
+                                        min: 0,
+                                        max: 59,
                                         required: true,
                                 },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/timer/alert/seconds",
-                                        [event.options.seconds],
+                                        "/timer/alert/time",
+                                        [
+                                                event.options.hours,
+                                                event.options.minutes,
+                                                event.options.seconds,
+                                        ],
                                 );
                         },
                 },
 
                 // Notes Management
                 set_notes: {
-                        name: "Set Notes Text",
+                        name: "Notes - Set Text",
+                        description:
+                                "Set the text displayed in the notes area. Optionally auto-remove after a time.",
                         options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
+                                TIMER_DROPDOWN,
                                 {
                                         type: "textinput",
                                         label: "Notes Text",
@@ -483,20 +268,11 @@ function getActionDefinitions(self) {
                         },
                 },
                 set_notes_alignment: {
-                        name: "Set Notes Alignment",
+                        name: "Notes - Set Alignment",
+                        description:
+                                "Set the alignment of the notes text on screen.",
                         options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
+                                TIMER_DROPDOWN,
                                 {
                                         type: "dropdown",
                                         label: "Alignment",
@@ -553,7 +329,9 @@ function getActionDefinitions(self) {
 
                 // Display Slot Layout
                 set_display_layout: {
-                        name: "Set Display Layout",
+                        name: "Layout - Set Slot Count",
+                        description:
+                                "Set the number of visible display slots (single, dual, or quad).",
                         options: [
                                 {
                                         type: "dropdown",
@@ -583,20 +361,11 @@ function getActionDefinitions(self) {
                         },
                 },
                 set_slot_widget: {
-                        name: "Assign Widget to Display Slot",
+                        name: "Layout - Assign Widget to Slot",
+                        description:
+                                "Assign a timer or other widget to a display slot.",
                         options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Slot",
-                                        id: "slot",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Slot 1" },
-                                                { id: 2, label: "Slot 2" },
-                                                { id: 3, label: "Slot 3" },
-                                                { id: 4, label: "Slot 4" },
-                                        ],
-                                },
+                                TIMER_DROPDOWN,
                                 {
                                         type: "dropdown",
                                         label: "Widget",
@@ -640,20 +409,11 @@ function getActionDefinitions(self) {
 
                 // Timer end behavior
                 set_timer_end_behavior: {
-                        name: "Set Timer End Behavior",
+                        name: "Timer - Set End Behavior",
+                        description:
+                                "Set what happens when the selected timer reaches zero.",
                         options: [
-                                {
-                                        type: "dropdown",
-                                        label: "Timer",
-                                        id: "timerNum",
-                                        default: 1,
-                                        choices: [
-                                                { id: 1, label: "Timer 1" },
-                                                { id: 2, label: "Timer 2" },
-                                                { id: 3, label: "Timer 3" },
-                                                { id: 4, label: "Timer 4" },
-                                        ],
-                                },
+                                TIMER_DROPDOWN,
                                 {
                                         type: "dropdown",
                                         label: "End Behavior",
@@ -682,9 +442,9 @@ function getActionDefinitions(self) {
 
                 // BROADCAST ACTIONS
                 broadcast_text_subscribe: {
-                        name: "Subscribe Text Broadcast",
+                        name: "Broadcast - Subscribe to Text",
                         description:
-                                "Subscribe to broadcast the timer's time as text to a specified destination",
+                                "Subscribe or unsubscribe to broadcasting timer text over OSC.",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -710,54 +470,27 @@ function getActionDefinitions(self) {
                                         default: "/timer/time",
                                         required: true,
                                 },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/broadcast/text/subscribe",
-                                        [
-                                                event.options.ip,
-                                                event.options.port,
-                                                event.options.oscPath,
+                                {
+                                        type: "dropdown",
+                                        label: "Action",
+                                        id: "action",
+                                        default: "subscribe",
+                                        choices: [
+                                                {
+                                                        id: "subscribe",
+                                                        label: "Subscribe",
+                                                },
+                                                {
+                                                        id: "unsubscribe",
+                                                        label: "Unsubscribe",
+                                                },
                                         ],
-                                );
-                        },
-                },
-
-                broadcast_text_unsubscribe: {
-                        name: "Unsubscribe Text Broadcast",
-                        description:
-                                "Unsubscribe from broadcasting the timer's time as text",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "textinput",
-                                        label: "IP Address",
-                                        id: "ip",
-                                        default: "127.0.0.1",
-                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
-                                },
-                                {
-                                        type: "number",
-                                        label: "Port",
-                                        id: "port",
-                                        default: 53000,
-                                        min: 1,
-                                        max: 65535,
-                                        required: true,
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "OSC Path",
-                                        id: "oscPath",
-                                        default: "/timer/time",
-                                        required: true,
                                 },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/broadcast/text/unsubscribe",
+                                        `/broadcast/text/${event.options.action}`,
                                         [
                                                 event.options.ip,
                                                 event.options.port,
@@ -768,9 +501,9 @@ function getActionDefinitions(self) {
                 },
 
                 broadcast_warning_subscribe: {
-                        name: "Subscribe Warning Broadcast",
+                        name: "Broadcast - Subscribe to Warning",
                         description:
-                                "Subscribe to receive an OSC message when timer enters warning state",
+                                "Subscribe or unsubscribe to OSC messages when timer enters warning state.",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -796,53 +529,27 @@ function getActionDefinitions(self) {
                                         default: "/timer/warning",
                                         required: true,
                                 },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/broadcast/warning/subscribe",
-                                        [
-                                                event.options.ip,
-                                                event.options.port,
-                                                event.options.oscPath,
+                                {
+                                        type: "dropdown",
+                                        label: "Action",
+                                        id: "action",
+                                        default: "subscribe",
+                                        choices: [
+                                                {
+                                                        id: "subscribe",
+                                                        label: "Subscribe",
+                                                },
+                                                {
+                                                        id: "unsubscribe",
+                                                        label: "Unsubscribe",
+                                                },
                                         ],
-                                );
-                        },
-                },
-
-                broadcast_warning_unsubscribe: {
-                        name: "Unsubscribe Warning Broadcast",
-                        description: "Unsubscribe from warning broadcast",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "textinput",
-                                        label: "IP Address",
-                                        id: "ip",
-                                        default: "127.0.0.1",
-                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
-                                },
-                                {
-                                        type: "number",
-                                        label: "Port",
-                                        id: "port",
-                                        default: 53000,
-                                        min: 1,
-                                        max: 65535,
-                                        required: true,
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "OSC Path",
-                                        id: "oscPath",
-                                        default: "/timer/warning",
-                                        required: true,
                                 },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/broadcast/warning/unsubscribe",
+                                        `/broadcast/warning/${event.options.action}`,
                                         [
                                                 event.options.ip,
                                                 event.options.port,
@@ -853,9 +560,9 @@ function getActionDefinitions(self) {
                 },
 
                 broadcast_end_subscribe: {
-                        name: "Subscribe End Broadcast",
+                        name: "Broadcast - Subscribe to End",
                         description:
-                                "Subscribe to receive an OSC message when timer reaches end",
+                                "Subscribe or unsubscribe to OSC messages when timer ends.",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -881,162 +588,27 @@ function getActionDefinitions(self) {
                                         default: "/timer/end",
                                         required: true,
                                 },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/broadcast/end/subscribe",
-                                        [
-                                                event.options.ip,
-                                                event.options.port,
-                                                event.options.oscPath,
+                                {
+                                        type: "dropdown",
+                                        label: "Action",
+                                        id: "action",
+                                        default: "subscribe",
+                                        choices: [
+                                                {
+                                                        id: "subscribe",
+                                                        label: "Subscribe",
+                                                },
+                                                {
+                                                        id: "unsubscribe",
+                                                        label: "Unsubscribe",
+                                                },
                                         ],
-                                );
-                        },
-                },
-
-                broadcast_end_unsubscribe: {
-                        name: "Unsubscribe End Broadcast",
-                        description: "Unsubscribe from end broadcast",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "textinput",
-                                        label: "IP Address",
-                                        id: "ip",
-                                        default: "127.0.0.1",
-                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
-                                },
-                                {
-                                        type: "number",
-                                        label: "Port",
-                                        id: "port",
-                                        default: 53000,
-                                        min: 1,
-                                        max: 65535,
-                                        required: true,
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "OSC Path",
-                                        id: "oscPath",
-                                        default: "/timer/end",
-                                        required: true,
                                 },
                         ],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/broadcast/end/unsubscribe",
-                                        [
-                                                event.options.ip,
-                                                event.options.port,
-                                                event.options.oscPath,
-                                        ],
-                                );
-                        },
-                },
-
-                broadcast_color_subscribe: {
-                        name: "Subscribe Color Broadcast",
-                        description:
-                                "Subscribe to broadcast color changes (QLab specific)",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "textinput",
-                                        label: "IP Address",
-                                        id: "ip",
-                                        default: "127.0.0.1",
-                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
-                                },
-                                {
-                                        type: "number",
-                                        label: "Port",
-                                        id: "port",
-                                        default: 53000,
-                                        min: 1,
-                                        max: 65535,
-                                        required: true,
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "OSC Path",
-                                        id: "oscPath",
-                                        default: "/cue/timer/colorName",
-                                        required: true,
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "Normal Color",
-                                        id: "normalColor",
-                                        default: "None",
-                                        required: true,
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "Warning Color",
-                                        id: "warningColor",
-                                        default: "Yellow",
-                                        required: true,
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "End Color",
-                                        id: "endColor",
-                                        default: "Red",
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/broadcast/color/subscribe",
-                                        [
-                                                event.options.ip,
-                                                event.options.port,
-                                                event.options.oscPath,
-                                                event.options.normalColor,
-                                                event.options.warningColor,
-                                                event.options.endColor,
-                                        ],
-                                );
-                        },
-                },
-
-                broadcast_color_unsubscribe: {
-                        name: "Unsubscribe Color Broadcast",
-                        description: "Unsubscribe from color broadcast",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "textinput",
-                                        label: "IP Address",
-                                        id: "ip",
-                                        default: "127.0.0.1",
-                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
-                                },
-                                {
-                                        type: "number",
-                                        label: "Port",
-                                        id: "port",
-                                        default: 53000,
-                                        min: 1,
-                                        max: 65535,
-                                        required: true,
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "OSC Path",
-                                        id: "oscPath",
-                                        default: "/cue/timer/colorName",
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/broadcast/color/unsubscribe",
+                                        `/broadcast/end/${event.options.action}`,
                                         [
                                                 event.options.ip,
                                                 event.options.port,
@@ -1047,29 +619,24 @@ function getActionDefinitions(self) {
                 },
 
                 broadcast_at_time_subscribe: {
-                        name: "Subscribe Time Trigger",
+                        name: "Broadcast - Subscribe to Time Trigger",
                         description:
-                                "Subscribe to receive a trigger at a specific time",
+                                "Subscribe or unsubscribe to receive a message at a specific timer value.",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
                                         type: "dropdown",
-                                        label: "Time Format",
-                                        id: "timeFormat",
-                                        default: "seconds",
+                                        label: "Action",
+                                        id: "action",
+                                        default: "subscribe",
                                         choices: [
                                                 {
-                                                        id: "seconds",
-                                                        label: "Seconds",
+                                                        id: "subscribe",
+                                                        label: "Subscribe",
                                                 },
                                                 {
-                                                        id: "minutes",
-                                                        label: "Minutes",
-                                                },
-                                                { id: "hours", label: "Hours" },
-                                                {
-                                                        id: "time",
-                                                        label: "Hours:Minutes:Seconds",
+                                                        id: "unsubscribe",
+                                                        label: "Unsubscribe",
                                                 },
                                         ],
                                 },
@@ -1080,8 +647,6 @@ function getActionDefinitions(self) {
                                         default: 0,
                                         min: 0,
                                         max: 24,
-                                        isVisible: (options) =>
-                                                options.timeFormat === "time",
                                 },
                                 {
                                         type: "number",
@@ -1090,10 +655,6 @@ function getActionDefinitions(self) {
                                         default: 1,
                                         min: 0,
                                         max: 59,
-                                        isVisible: (options) =>
-                                                options.timeFormat === "time" ||
-                                                options.timeFormat ===
-                                                        "minutes",
                                 },
                                 {
                                         type: "number",
@@ -1102,10 +663,6 @@ function getActionDefinitions(self) {
                                         default: 30,
                                         min: 0,
                                         max: 59,
-                                        isVisible: (options) =>
-                                                options.timeFormat === "time" ||
-                                                options.timeFormat ===
-                                                        "seconds",
                                 },
                                 {
                                         type: "textinput",
@@ -1133,210 +690,27 @@ function getActionDefinitions(self) {
                         ],
                         callback: (event) => {
                                 const options = event.options;
-                                const format = options.timeFormat;
-                                let args = [];
-
-                                if (format === "seconds") {
-                                        args = [
-                                                options.seconds,
-                                                options.ip,
-                                                options.port,
-                                                options.oscPath,
-                                        ];
-                                        self.sendCommand(
-                                                options.timerNum,
-                                                "/broadcast/atTime/subscribe/seconds",
-                                                args,
-                                        );
-                                } else if (format === "minutes") {
-                                        args = [
-                                                options.minutes,
-                                                options.ip,
-                                                options.port,
-                                                options.oscPath,
-                                        ];
-                                        self.sendCommand(
-                                                options.timerNum,
-                                                "/broadcast/atTime/subscribe/minutes",
-                                                args,
-                                        );
-                                } else if (format === "hours") {
-                                        args = [
-                                                options.hours,
-                                                options.ip,
-                                                options.port,
-                                                options.oscPath,
-                                        ];
-                                        self.sendCommand(
-                                                options.timerNum,
-                                                "/broadcast/atTime/subscribe/hours",
-                                                args,
-                                        );
-                                } else if (format === "time") {
-                                        args = [
-                                                options.hours,
-                                                options.minutes,
-                                                options.seconds,
-                                                options.ip,
-                                                options.port,
-                                                options.oscPath,
-                                        ];
-                                        self.sendCommand(
-                                                options.timerNum,
-                                                "/broadcast/atTime/subscribe/time",
-                                                args,
-                                        );
-                                }
-                        },
-                },
-
-                broadcast_at_time_unsubscribe: {
-                        name: "Unsubscribe Time Trigger",
-                        description: "Unsubscribe from a specific time trigger",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "dropdown",
-                                        label: "Time Format",
-                                        id: "timeFormat",
-                                        default: "seconds",
-                                        choices: [
-                                                {
-                                                        id: "seconds",
-                                                        label: "Seconds",
-                                                },
-                                                {
-                                                        id: "minutes",
-                                                        label: "Minutes",
-                                                },
-                                                { id: "hours", label: "Hours" },
-                                                {
-                                                        id: "time",
-                                                        label: "Hours:Minutes:Seconds",
-                                                },
-                                        ],
-                                },
-                                {
-                                        type: "number",
-                                        label: "Hours",
-                                        id: "hours",
-                                        default: 0,
-                                        min: 0,
-                                        max: 24,
-                                        isVisible: (options) =>
-                                                options.timeFormat === "time",
-                                },
-                                {
-                                        type: "number",
-                                        label: "Minutes",
-                                        id: "minutes",
-                                        default: 1,
-                                        min: 0,
-                                        max: 59,
-                                        isVisible: (options) =>
-                                                options.timeFormat === "time" ||
-                                                options.timeFormat ===
-                                                        "minutes",
-                                },
-                                {
-                                        type: "number",
-                                        label: "Seconds",
-                                        id: "seconds",
-                                        default: 30,
-                                        min: 0,
-                                        max: 59,
-                                        isVisible: (options) =>
-                                                options.timeFormat === "time" ||
-                                                options.timeFormat ===
-                                                        "seconds",
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "IP Address",
-                                        id: "ip",
-                                        default: "127.0.0.1",
-                                        regex: "^(?:\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})|(?:(?:[a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*(?:[A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\\-]*[A-Za-z0-9])$",
-                                },
-                                {
-                                        type: "number",
-                                        label: "Port",
-                                        id: "port",
-                                        default: 53000,
-                                        min: 1,
-                                        max: 65535,
-                                        required: true,
-                                },
-                                {
-                                        type: "textinput",
-                                        label: "OSC Path",
-                                        id: "oscPath",
-                                        default: "/timer/trigger",
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                const options = event.options;
-                                const format = options.timeFormat;
-                                let args = [];
-
-                                if (format === "seconds") {
-                                        args = [
-                                                options.seconds,
-                                                options.ip,
-                                                options.port,
-                                                options.oscPath,
-                                        ];
-                                        self.sendCommand(
-                                                options.timerNum,
-                                                "/broadcast/atTime/unsubscribe/seconds",
-                                                args,
-                                        );
-                                } else if (format === "minutes") {
-                                        args = [
-                                                options.minutes,
-                                                options.ip,
-                                                options.port,
-                                                options.oscPath,
-                                        ];
-                                        self.sendCommand(
-                                                options.timerNum,
-                                                "/broadcast/atTime/unsubscribe/minutes",
-                                                args,
-                                        );
-                                } else if (format === "hours") {
-                                        args = [
-                                                options.hours,
-                                                options.ip,
-                                                options.port,
-                                                options.oscPath,
-                                        ];
-                                        self.sendCommand(
-                                                options.timerNum,
-                                                "/broadcast/atTime/unsubscribe/hours",
-                                                args,
-                                        );
-                                } else if (format === "time") {
-                                        args = [
-                                                options.hours,
-                                                options.minutes,
-                                                options.seconds,
-                                                options.ip,
-                                                options.port,
-                                                options.oscPath,
-                                        ];
-                                        self.sendCommand(
-                                                options.timerNum,
-                                                "/broadcast/atTime/unsubscribe/time",
-                                                args,
-                                        );
-                                }
+                                let args = [
+                                        options.hours,
+                                        options.minutes,
+                                        options.seconds,
+                                        options.ip,
+                                        options.port,
+                                        options.oscPath,
+                                ];
+                                self.sendCommand(
+                                        options.timerNum,
+                                        `/broadcast/atTime/${options.action}/time`,
+                                        args,
+                                );
                         },
                 },
 
                 // TIMER DISPLAY CUSTOMIZATION
                 set_display_color: {
-                        name: "Set Display Color",
-                        description: "Universal color control for all timer elements",
+                        name: "Display - Set Color",
+                        description:
+                                "Set the color and opacity for display elements (timer, notes, etc.).",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
@@ -1345,22 +719,49 @@ function getActionDefinitions(self) {
                                         id: "element",
                                         default: "timer_normal",
                                         choices: [
-                                                { id: "timer_normal", label: "Timer (Normal State)" },
-                                                { id: "timer_warning", label: "Timer (Warning State)" },
-                                                { id: "timer_end", label: "Timer (End State)" },
-                                                { id: "timer_background", label: "Timer Background" },
-                                                { id: "app_background", label: "App Background" },
-                                                { id: "clock_normal", label: "Clock (Normal)" },
-                                                { id: "broadcast_normal", label: "Broadcast Display (Normal)" },
-                                                { id: "notes_normal", label: "Notes (Normal)" },
-                                                { id: "notes_background", label: "Notes Background" }
-                                        ]
+                                                {
+                                                        id: "timer_normal",
+                                                        label: "Timer (Normal State)",
+                                                },
+                                                {
+                                                        id: "timer_warning",
+                                                        label: "Timer (Warning State)",
+                                                },
+                                                {
+                                                        id: "timer_end",
+                                                        label: "Timer (End State)",
+                                                },
+                                                {
+                                                        id: "timer_background",
+                                                        label: "Timer Background",
+                                                },
+                                                {
+                                                        id: "app_background",
+                                                        label: "App Background",
+                                                },
+                                                {
+                                                        id: "clock_normal",
+                                                        label: "Clock (Normal)",
+                                                },
+                                                {
+                                                        id: "broadcast_normal",
+                                                        label: "Broadcast Display (Normal)",
+                                                },
+                                                {
+                                                        id: "notes_normal",
+                                                        label: "Notes (Normal)",
+                                                },
+                                                {
+                                                        id: "notes_background",
+                                                        label: "Notes Background",
+                                                },
+                                        ],
                                 },
                                 {
                                         type: "colorpicker",
                                         label: "Color",
                                         id: "color",
-                                        default: "#FFFFFF" // White as default
+                                        default: "#FFFFFF", // White as default
                                 },
                                 {
                                         type: "number",
@@ -1369,74 +770,112 @@ function getActionDefinitions(self) {
                                         default: 100,
                                         min: 0,
                                         max: 100,
-                                        required: true
-                                }
+                                        required: true,
+                                },
                         ],
                         callback: (event) => {
                                 // Get the element path based on the selected element
                                 const elementPaths = {
-                                        timer_normal: "/timer/display/normalColor",
-                                        timer_warning: "/timer/display/warningColor",
-                                        timer_end: "/timer/display/endColor", 
-                                        timer_background: "/timer/display/backgroundColor",
-                                        app_background: "/app/display/backgroundColor",
-                                        clock_normal: "/clock/display/normalColor",
-                                        broadcast_normal: "/broadcast/display/normalColor",
-                                        notes_normal: "/notes/display/normalColor",
-                                        notes_background: "/notes/display/backgroundColor"
+                                        timer_normal:
+                                                "/timer/display/normalColor",
+                                        timer_warning:
+                                                "/timer/display/warningColor",
+                                        timer_end: "/timer/display/endColor",
+                                        timer_background:
+                                                "/timer/display/backgroundColor",
+                                        app_background:
+                                                "/app/display/backgroundColor",
+                                        clock_normal:
+                                                "/clock/display/normalColor",
+                                        broadcast_normal:
+                                                "/broadcast/display/normalColor",
+                                        notes_normal:
+                                                "/notes/display/normalColor",
+                                        notes_background:
+                                                "/notes/display/backgroundColor",
                                 };
-                                
+
                                 // Set default colors based on element type for fallback
                                 const defaultColors = {
-                                        timer_normal: [1.0, 1.0, 1.0],       // White
-                                        timer_warning: [1.0, 1.0, 0.0],      // Yellow
-                                        timer_end: [1.0, 0.0, 0.0],          // Red
-                                        timer_background: [0.0, 0.0, 0.0],   // Black
-                                        app_background: [0.0, 0.0, 0.0],     // Black
-                                        clock_normal: [1.0, 1.0, 1.0],       // White
-                                        broadcast_normal: [1.0, 1.0, 1.0],   // White
-                                        notes_normal: [1.0, 1.0, 1.0],       // White
-                                        notes_background: [0.0, 0.0, 0.0]    // Black
+                                        timer_normal: [1.0, 1.0, 1.0], // White
+                                        timer_warning: [1.0, 1.0, 0.0], // Yellow
+                                        timer_end: [1.0, 0.0, 0.0], // Red
+                                        timer_background: [0.0, 0.0, 0.0], // Black
+                                        app_background: [0.0, 0.0, 0.0], // Black
+                                        clock_normal: [1.0, 1.0, 1.0], // White
+                                        broadcast_normal: [1.0, 1.0, 1.0], // White
+                                        notes_normal: [1.0, 1.0, 1.0], // White
+                                        notes_background: [0.0, 0.0, 0.0], // Black
                                 };
-                                
+
                                 // Select the appropriate OSC path
-                                const path = elementPaths[event.options.element];
-                                const defaultRGB = defaultColors[event.options.element];
-                                
+                                const path =
+                                        elementPaths[event.options.element];
+                                const defaultRGB =
+                                        defaultColors[event.options.element];
+
                                 // Handle color value which might be a number (RGB int) instead of a string
                                 let r, g, b;
                                 const colorValue = event.options.color;
-                                
+
                                 // Check if color is a number (RGB integer)
-                                if (typeof colorValue === 'number') {
-                                    r = ((colorValue >> 16) & 0xFF) / 255 + 0.00001; // Adding tiny value to ensure float
-                                    g = ((colorValue >> 8) & 0xFF) / 255 + 0.00001;
-                                    b = (colorValue & 0xFF) / 255 + 0.00001;
-                                } 
+                                if (typeof colorValue === "number") {
+                                        r =
+                                                ((colorValue >> 16) & 0xff) /
+                                                        255 +
+                                                0.00001; // Adding tiny value to ensure float
+                                        g =
+                                                ((colorValue >> 8) & 0xff) /
+                                                        255 +
+                                                0.00001;
+                                        b = (colorValue & 0xff) / 255 + 0.00001;
+                                }
                                 // Or if it's a string (hex color)
-                                else if (typeof colorValue === 'string') {
-                                    const color = colorValue.replace('#', '');
-                                    r = parseInt(color.substring(0, 2), 16) / 255 + 0.00001;
-                                    g = parseInt(color.substring(2, 4), 16) / 255 + 0.00001;
-                                    b = parseInt(color.substring(4, 6), 16) / 255 + 0.00001;
+                                else if (typeof colorValue === "string") {
+                                        const color = colorValue.replace(
+                                                "#",
+                                                "",
+                                        );
+                                        r =
+                                                parseInt(
+                                                        color.substring(0, 2),
+                                                        16,
+                                                ) /
+                                                        255 +
+                                                0.00001;
+                                        g =
+                                                parseInt(
+                                                        color.substring(2, 4),
+                                                        16,
+                                                ) /
+                                                        255 +
+                                                0.00001;
+                                        b =
+                                                parseInt(
+                                                        color.substring(4, 6),
+                                                        16,
+                                                ) /
+                                                        255 +
+                                                0.00001;
                                 }
                                 // Default colors based on element type if format is unexpected
                                 else {
-                                    r = defaultRGB[0];
-                                    g = defaultRGB[1];
-                                    b = defaultRGB[2];
+                                        r = defaultRGB[0];
+                                        g = defaultRGB[1];
+                                        b = defaultRGB[2];
                                 }
-                                
+
                                 const a = event.options.alpha / 100 + 0.00001; // Add tiny amount to ensure float
-                                
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        path,
-                                        [r, g, b, a]
-                                );
-                        }
+
+                                self.sendCommand(event.options.timerNum, path, [
+                                        r,
+                                        g,
+                                        b,
+                                        a,
+                                ]);
+                        },
                 },
-                
+
                 timer_set_normal_color: {
                         name: "Set Timer Normal Color",
                         description: "Set the color for normal timer display",
