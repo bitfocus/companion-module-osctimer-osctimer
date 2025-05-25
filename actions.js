@@ -89,6 +89,179 @@ function getActionDefinitions(self) {
                         },
                 },
 
+                timer_set_time_of_day: {
+                        name: "Timer - Set Time of Day",
+                        description:
+                                "Set the time of day the selected timer should count down to. Optionally select time zone by UTC offset.",
+                        options: [
+                                TIMER_DROPDOWN,
+                                {
+                                        type: "number",
+                                        label: "Hour (0–23)",
+                                        id: "hours",
+                                        default: 8,
+                                        min: 0,
+                                        max: 23,
+                                        required: true,
+                                },
+                                {
+                                        type: "number",
+                                        label: "Minutes",
+                                        id: "minutes",
+                                        default: 0,
+                                        min: 0,
+                                        max: 59,
+                                        required: true,
+                                },
+                                {
+                                        type: "number",
+                                        label: "Seconds",
+                                        id: "seconds",
+                                        default: 0,
+                                        min: 0,
+                                        max: 59,
+                                        required: true,
+                                },
+                                {
+                                        type: "dropdown",
+                                        label: "Time Zone (by UTC Offset)",
+                                        id: "utcOffset",
+                                        default: 0,
+                                        choices: [
+                                                {
+                                                        id: -12,
+                                                        label: "UTC−12 – Baker Island",
+                                                },
+                                                {
+                                                        id: -11,
+                                                        label: "UTC−11 – American Samoa",
+                                                },
+                                                {
+                                                        id: -10,
+                                                        label: "UTC−10 – Hawaii",
+                                                },
+                                                {
+                                                        id: -9,
+                                                        label: "UTC−9 – Alaska",
+                                                },
+                                                {
+                                                        id: -8,
+                                                        label: "UTC−8 – Pacific Time (PT)",
+                                                },
+                                                {
+                                                        id: -7,
+                                                        label: "UTC−7 – Mountain Time (MT)",
+                                                },
+                                                {
+                                                        id: -6,
+                                                        label: "UTC−6 – Central Time (CT)",
+                                                },
+                                                {
+                                                        id: -5,
+                                                        label: "UTC−5 – Eastern Time (ET)",
+                                                },
+                                                {
+                                                        id: -4,
+                                                        label: "UTC−4 – Atlantic Time (AT)",
+                                                },
+                                                {
+                                                        id: -3,
+                                                        label: "UTC−3 – Argentina / Brazil (East)",
+                                                },
+                                                {
+                                                        id: -2,
+                                                        label: "UTC−2 – South Georgia",
+                                                },
+                                                {
+                                                        id: -1,
+                                                        label: "UTC−1 – Azores",
+                                                },
+                                                {
+                                                        id: 0,
+                                                        label: "UTC±0 – London / Lisbon",
+                                                },
+                                                {
+                                                        id: 1,
+                                                        label: "UTC+1 – Central Europe (CET)",
+                                                },
+                                                {
+                                                        id: 2,
+                                                        label: "UTC+2 – Eastern Europe / South Africa",
+                                                },
+                                                {
+                                                        id: 3,
+                                                        label: "UTC+3 – Moscow / EAT",
+                                                },
+                                                {
+                                                        id: 4,
+                                                        label: "UTC+4 – Dubai / Samara",
+                                                },
+                                                {
+                                                        id: 5,
+                                                        label: "UTC+5 – Pakistan / Uzbekistan",
+                                                },
+                                                {
+                                                        id: 6,
+                                                        label: "UTC+6 – Bangladesh / Kazakhstan",
+                                                },
+                                                {
+                                                        id: 7,
+                                                        label: "UTC+7 – Thailand / Vietnam",
+                                                },
+                                                {
+                                                        id: 8,
+                                                        label: "UTC+8 – China / Singapore / Perth",
+                                                },
+                                                {
+                                                        id: 9,
+                                                        label: "UTC+9 – Japan / Korea",
+                                                },
+                                                {
+                                                        id: 10,
+                                                        label: "UTC+10 – Sydney / Vladivostok",
+                                                },
+                                                {
+                                                        id: 11,
+                                                        label: "UTC+11 – Solomon Islands",
+                                                },
+                                                {
+                                                        id: 12,
+                                                        label: "UTC+12 – New Zealand / Fiji",
+                                                },
+                                                {
+                                                        id: 13,
+                                                        label: "UTC+13 – Tonga / Phoenix Islands",
+                                                },
+                                                {
+                                                        id: 14,
+                                                        label: "UTC+14 – Line Islands (Kiribati)",
+                                                },
+                                        ],
+                                        required: false,
+                                },
+                        ],
+                        callback: (event) => {
+                                const args = [
+                                        event.options.hours,
+                                        event.options.minutes,
+                                        event.options.seconds,
+                                ];
+
+                                if (
+                                        typeof event.options.utcOffset ===
+                                        "number"
+                                ) {
+                                        args.push(event.options.utcOffset);
+                                }
+
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/toTimeOfDay",
+                                        args,
+                                );
+                        },
+                },
+
                 // Timer Adjustment Actions
                 timer_add_seconds: {
                         name: "Timer - Add 1 Second",
