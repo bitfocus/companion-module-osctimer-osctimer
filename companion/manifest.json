@@ -2,15 +2,15 @@
 	"id": "osc-timer",
 	"name": "OSC Timer Control",
 	"shortname": "OSC Timer",
-	"description": "Control OSC-based timer application with up to 4 timers",
+	"description": "Highly customizable timer application with up to 4 timers - controllable via OSC",
 	"version": "1.0.0",
 	"license": "MIT",
 	"repository": "https://github.com/bitfocus/companion-module-osc-timer",
 	"bugs": "https://github.com/bitfocus/companion-module-osc-timer/issues",
 	"maintainers": [
 		{
-			"name": "Module Developer",
-			"email": "developer@example.com"
+			"name": "Rasmus Kreiner",
+			"email": "osctimer@rasmuskreiner.dk"
 		}
 	],
 	"runtime": {

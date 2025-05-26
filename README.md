@@ -1,46 +1,40 @@
-# [
- OSC Timer Module for Bitfocus Companion
+# OSC Timer – Companion Module
 
-This module allows you to control an OSC-based timer application with support for up to 4 timers on dedicated ports.
+This Companion module allows remote control of a customizable multi-timer application via OSC (Open Sound Control).  
+It supports up to four independent timers over dedicated ports, ideal for live events, broadcast, or stage management workflows.
 
 ## Features
 
 - Control up to 4 independent timers
-- Fixed port assignments: 53001, 53002, 53003, 53004
-- Start, stop, and reset timer functions
-- Set timer duration in various formats (seconds, minutes, hours)
-- Adjust timer by adding or subtracting time
-- Control timer direction (count up or down)
-- Configure display layout (single, dual, quad)
-- Preset buttons for common timer operations
+- Default port assignments: 53001–53004
+- Start, stop, reset, set duration, adjust time
+- Count up/down direction
+- Display layout control (single, dual, quad)
+- Ready-made presets for common tasks
 
-## Installation
+## Requirements
 
-1. Add the module to your Companion installation
-2. Configure the host IP address of the device running the timer application
-3. Enable the timer(s) you want to control
-4. Use the provided presets or create custom buttons
+- Companion version: 3.x or later
+- Node.js: v18
+- OSC timer app running on the network
 
-## Configuration
+## Configuration Options
 
-- **Timer Host IP** - The IP address of the device running the timer application
-- **Enable Timer 1-4** - Enable or disable each timer
+- **Timer Host IP** – IP of the OSC timer app
+- **Enable Timer 1–4** – Toggle timers on/off
 
 ## Usage
 
-The module provides a set of preset buttons for common timer operations:
-
-- Start/Stop/Reset for each timer
-- Common time durations (30s, 1m, 5m, 10m)
-- Time adjustment controls (+/- 1m)
-- Direction controls (count up/down)
-- Display layout controls (single/dual/quad)
-
-You can also create custom buttons using the full range of actions provided by the module.
+Use presets for:
+- Start/Stop/Reset
+- Set durations (30s, 1m, 5m, 10m)
+- Time adjustment (+/- 1m)
+- Direction (up/down)
+- Layout (single, dual, quad)
 
 ## About the Timer Application
 
-This module is designed to work with OSC-based timer applications that implement the specific OSC commands used by this module. The timer application must be configured to listen on the following ports:
+The timer app must support the OSC commands defined by this module and listen by default on ports:
 
 - Timer 1: 53001
 - Timer 2: 53002
@@ -49,4 +43,7 @@ This module is designed to work with OSC-based timer applications that implement
 
 ## Support
 
-For support with this module, please contact the module developer.
+For questions or feedback:
+
+- Rasmus Kreiner – osctimer@rasmuskreiner.dk
+- GitHub: [rasmuskreiner](https://github.com/rasmuskreiner)
