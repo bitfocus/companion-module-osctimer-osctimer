@@ -357,7 +357,7 @@ function getActionDefinitions(self) {
                         name: "Timer - Live Subtract 1 Second",
                         description:
                                 "Temporarily subtract 1 second from the selected timer.",
-                        options: [timer_live_DROPDOWN],
+                        options: [TIMER_DROPDOWN],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
@@ -371,7 +371,7 @@ function getActionDefinitions(self) {
                         name: "Timer - Live Add 1 Minute",
                         description:
                                 "Temporarily add 1 minute to the selected timer.",
-                        options: [timer_live_DROPDOWN],
+                        options: [TIMER_DROPDOWN],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
@@ -384,7 +384,7 @@ function getActionDefinitions(self) {
                         name: "Timer - Live Subtract 1 Minute",
                         description:
                                 "Temporarily subtract 1 minute from the selected timer.",
-                        options: [timer_live_DROPDOWN],
+                        options: [TIMER_DROPDOWN],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
@@ -398,7 +398,7 @@ function getActionDefinitions(self) {
                         name: "Timer - Live Add 1 Hour",
                         description:
                                 "Temporarily add 1 hour to the selected timer.",
-                        options: [timer_live_DROPDOWN],
+                        options: [TIMER_DROPDOWN],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
@@ -411,7 +411,7 @@ function getActionDefinitions(self) {
                         name: "Timer - Live Subtract 1 Hour",
                         description:
                                 "Temporarily subtract 1 hour from the selected timer.",
-                        options: [timer_live_DROPDOWN],
+                        options: [TIMER_DROPDOWN],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
