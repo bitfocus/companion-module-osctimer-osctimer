@@ -9,7 +9,12 @@ const { getActionDefinitions } = require("./actions");
 const { getFeedbackDefinitions } = require("./feedbacks");
 const { getPresetDefinitions } = require("./presets");
 const { getVariables } = require("./variables");
-const { initOSC, sendOSCMessage, closeOSC } = require("./osc");
+const {
+        initOSC,
+        sendOSCMessage,
+        closeOSC,
+        enableOSCListening,
+} = require("./osc");
 const { getConfigFields } = require("./config");
 
 // Define module manifest
@@ -94,6 +99,7 @@ class OSCTimerInstance extends InstanceBase {
                                                 this.config.host,
                                                 port,
                                         );
+                                        enableOSCListening(this, timerNum);
                                         this.timers[timerNum].connected = true;
                                         this.log(
                                                 "info",
@@ -155,6 +161,40 @@ class OSCTimerInstance extends InstanceBase {
                 }
 
                 sendOSCMessage(this, timerNum, path, args);
+        }
+
+        receiveOscMessage(timerNum, address, args) {
+                const logPrefix = `Timer ${timerNum} OSC`
+
+                if (address.endsWith('/status') && args[0]?.value) {
+                        const status = args[0].value.toString()
+                        this[`timer${timerNum}_status`] = status
+
+                        this.setVariableValues({ [`timer${timerNum}_status`]: status })
+                        this.checkFeedbacks('timer_running')
+                        this.checkFeedbacks('timer_ended')
+
+                        this.log('debug', `${logPrefix} status: ${status}`)
+                }
+
+                else if (address.endsWith('/time') && args[0]?.value) {
+                        const time = args[0].value.toString()
+
+                        this.setVariableValues({ [`timer${timerNum}_time`]: time })
+                        this.log('debug', `${logPrefix} time: ${time}`)
+                }
+
+                else if (address.endsWith('/alert') && args[0]) {
+                        const isAlert = Boolean(args[0].value)
+                        this[`timer${timerNum}_alert`] = isAlert
+
+                        this.setVariableValues({ [`timer${timerNum}_alert`]: isAlert })
+                        this.checkFeedbacks('timer_alert_active')
+
+                        this.log('debug', `${logPrefix} alert: ${isAlert}`)
+                }
+
+                // ...tilføj evt. flere som fx /end etc.
         }
 
         getConfigFields() {

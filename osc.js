@@ -9,7 +9,6 @@ function initOSC(instance, timerNum, host, port) {
                 // Clean up existing client if we're reinitializing
                 clients[timerNum] = null;
         }
-
         try {
                 // Create new OSC client - the newer osc library needs to use UDPPort
                 // Configure with localPort: 0 to use a dynamic port and avoid EADDRINUSE errors
@@ -113,8 +112,67 @@ function closeOSC(instance, timerNum) {
         return true;
 }
 
+// Internal listener registry for each timer
+const listeners = {};
+
+// Setup OSC listener for incoming messages
+function enableOSCListening(instance, timerNum) {
+        if (listeners[timerNum]) {
+                return; // Already listening
+        }
+
+        const listenPort = 60000 + timerNum; // e.g., 60001 for Timer 1
+        const listener = new osc.UDPPort({
+                localAddress: "0.0.0.0",
+                localPort: listenPort,
+                metadata: true,
+        });
+
+        listener.on("ready", () => {
+                instance.log(
+                        "info",
+                        `Listening for OSC messages on port ${listenPort} for Timer ${timerNum}`,
+                );
+        });
+
+        listener.on("message", (oscMsg) => {
+                const address = oscMsg.address;
+                const args = oscMsg.args || [];
+
+                if (typeof instance.receiveOscMessage === "function") {
+                        instance.receiveOscMessage(timerNum, address, args);
+                } else {
+                        instance.log(
+                                "debug",
+                                `Received OSC (${address}) but no receiveOscMessage() handler defined.`,
+                        );
+                }
+        });
+
+        listener.on("error", (error) => {
+                instance.log(
+                        "error",
+                        `OSC listener error on Timer ${timerNum}: ${error.toString()}`,
+                );
+        });
+
+        listener.open();
+        listeners[timerNum] = listener;
+}
+
+// Optional: stop listener for cleanup
+function disableOSCListening(timerNum) {
+        if (listeners[timerNum]) {
+                listeners[timerNum].close();
+                delete listeners[timerNum];
+        }
+}
+
 module.exports = {
         initOSC,
+        enableOSCListening,
         sendOSCMessage,
         closeOSC,
+        enableOSCListening,
+        disableOSCListening,
 };
