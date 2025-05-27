@@ -29,9 +29,10 @@ function getFeedbackDefinitions(self) {
 					],
 				},
 			],
-			style: {
-				color: "white",
-				bgcolor: 0, // set default override color if needed
+			styleConfigurable: true, // 👈 gør farver konfigurerbare i UI
+			defaultStyle: {
+				color: 0xffffff, // white
+				bgcolor: 0x000000, // black
 			},
 			callback: (feedback) => {
 				const { timerNum, zone } = feedback.options;
