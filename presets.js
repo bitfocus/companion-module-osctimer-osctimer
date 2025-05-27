@@ -373,7 +373,7 @@ function getPresetDefinitions(self) {
                                 {
                                         down: [
                                                 {
-                                                        actionId: "timer_add_hour”,
+                                                        actionId: "timer_add_hour",
                                                         options: { timerNum },
                                                 },
                                         ],
@@ -395,7 +395,7 @@ function getPresetDefinitions(self) {
                                 {
                                         down: [
                                                 {
-                                                        actionId: "timer_subtract_hour”,
+                                                        actionId: "timer_subtract_hour",
                                                         options: { timerNum },
                                                 },
                                         ],
@@ -403,7 +403,7 @@ function getPresetDefinitions(self) {
                                 },
                         ],
                 };
-                
+
                 // Set Time of Day
                 presets[`timer${timerNum}_set_08_00`] = {
                         type: "button",
