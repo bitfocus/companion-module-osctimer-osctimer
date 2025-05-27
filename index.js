@@ -218,6 +218,16 @@ class OSCTimerInstance extends InstanceBase {
                                 [`timer${timerNum}_time`]: time,
                         });
                         this.log("debug", `${logPrefix} time: ${time}`);
+                } else if (
+                        address.endsWith("/friendlyName") &&
+                        args[0]?.value
+                ) {
+                        const name = args[0].value.toString();
+
+                        this.setVariableValues({
+                                [`timer${timerNum}_name`]: name,
+                        });
+                        this.log("debug", `${logPrefix} name: ${name}`);
                 } else if (address.endsWith("/zone") && args[0]) {
                         const zone = args[0].value.toString(); // ex: "normal", "warning", "end"
 
@@ -242,7 +252,13 @@ class OSCTimerInstance extends InstanceBase {
                                         this.sendCommand(
                                                 timerNum,
                                                 "/bc/subscribeToVariables",
-                                                [ip, port, path1, path2],
+                                                [
+                                                        ip,
+                                                        port,
+                                                        path1,
+                                                        path2,
+                                                        timerNum,
+                                                ],
                                         );
                                 }
                         }
