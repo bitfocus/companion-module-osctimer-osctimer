@@ -70,17 +70,16 @@ class OSCTimerInstance extends InstanceBase {
         }
 
         async configUpdated(config) {
+                const oldConfig = this.config;
                 this.config = config;
-                // Clean intervals
-                if (this.variableSubscriptionInterval) {
-                        clearInterval(this.variableSubscriptionInterval);
-                        this.variableSubscriptionInterval = null;
-                }
-
-                const ip = getLocalIPAddress();
 
                 for (let timerNum = 1; timerNum <= 4; timerNum++) {
-                        if (this.timers[timerNum].connected) {
+                        const oldPort = oldConfig[`timer${timerNum}Port`];
+                        const newPort = config[`timer${timerNum}Port`];
+
+                        if (oldPort && (!newPort || newPort.trim() === "")) {
+                                // Timer blev deaktiveret – send unsubscribe
+                                const ip = getLocalIPAddress();
                                 const port = 60000 + timerNum;
                                 const paths = [
                                         `/timer/${timerNum}/time`,
@@ -89,22 +88,14 @@ class OSCTimerInstance extends InstanceBase {
                                         `/timer/${timerNum}/end`,
                                 ];
 
-                                // Send unsubscribe before closing
                                 this.sendCommand(
                                         timerNum,
                                         "/bc/unsubscribeToVariables",
                                         [ip, port, ...paths],
                                 );
-
-                                // Luk forbindelsen
-                                this.log(
-                                        "info",
-                                        `Disconnecting from Timer ${timerNum}`,
-                                );
-                                closeOSC(this, timerNum);
-                                this.timers[timerNum].connected = false;
                         }
                 }
+
                 this.initOSCClients();
         }
 
