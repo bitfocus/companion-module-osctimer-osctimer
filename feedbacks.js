@@ -1,9 +1,14 @@
 function getFeedbackDefinitions(self) {
 	return {
 		timer_zone: {
-			type: "advanced",
+			type: "boolean",
 			name: "Timer Zone",
 			description: "Changes style based on timer zone (normal, warning, end)",
+			styleConfigurable: true,
+			defaultStyle: {
+				color: 0xffffff, // white
+				bgcolor: 0x000000, // black
+			},
 			options: [
 				{
 					type: "dropdown",
@@ -29,11 +34,6 @@ function getFeedbackDefinitions(self) {
 					],
 				},
 			],
-			styleConfigurable: true, // 👈 gør farver konfigurerbare i UI
-			defaultStyle: {
-				color: 0xffffff, // white
-				bgcolor: 0x000000, // black
-			},
 			callback: (feedback) => {
 				const { timerNum, zone } = feedback.options;
 				return self[`timer${timerNum}_zone`] === zone;

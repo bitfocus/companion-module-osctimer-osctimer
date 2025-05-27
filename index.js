@@ -211,18 +211,7 @@ class OSCTimerInstance extends InstanceBase {
         receiveOscMessage(timerNum, address, args) {
                 const logPrefix = `Timer ${timerNum} OSC`;
 
-                if (address.endsWith("/status") && args[0]?.value) {
-                        const status = args[0].value.toString();
-                        this[`timer${timerNum}_status`] = status;
-
-                        this.setVariableValues({
-                                [`timer${timerNum}_status`]: status,
-                        });
-                        this.checkFeedbacks("timer_running");
-                        this.checkFeedbacks("timer_ended");
-
-                        this.log("debug", `${logPrefix} status: ${status}`);
-                } else if (address.endsWith("/time") && args[0]?.value) {
+                if (address.endsWith("/time") && args[0]?.value) {
                         const time = args[0].value.toString();
 
                         this.setVariableValues({
@@ -234,12 +223,10 @@ class OSCTimerInstance extends InstanceBase {
 
                         this[`timer${timerNum}_zone`] = zone;
 
-                        this.checkFeedbacks("timer_zone");
-
                         this.log("debug", `${logPrefix} zone: ${zone}`);
                 }
 
-                // ...tilføj evt. flere som fx /end etc.
+                this.checkFeedbacks("timer_zone");
         }
 
         startVariableSubscriptionLoop() {
