@@ -340,6 +340,87 @@ function getActionDefinitions(self) {
                         },
                 },
 
+                timer_live_add_seconds: {
+                        name: "Timer - Live Add 1 Second",
+                        description:
+                                "Temporarily add 1 second to the selected timer.",
+                        options: [timer_live_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/seconds/liveAdd",
+                                        [1],
+                                );
+                        },
+                },
+                timer_live_subtract_seconds: {
+                        name: "Timer - Live Subtract 1 Second",
+                        description:
+                                "Temporarily subtract 1 second from the selected timer.",
+                        options: [timer_live_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/seconds/liveSubtract",
+                                        [1],
+                                );
+                        },
+                },
+
+                timer_live_add_minute: {
+                        name: "Timer - Live Add 1 Minute",
+                        description:
+                                "Temporarily add 1 minute to the selected timer.",
+                        options: [timer_live_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/minutes/liveAdd",
+                                        [1],
+                                );
+                        },
+                },
+                timer_live_subtract_minute: {
+                        name: "Timer - Live Subtract 1 Minute",
+                        description:
+                                "Temporarily subtract 1 minute from the selected timer.",
+                        options: [timer_live_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/minutes/liveSubtract",
+                                        [1],
+                                );
+                        },
+                },
+
+                timer_live_add_hour: {
+                        name: "Timer - Live Add 1 Hour",
+                        description:
+                                "Temporarily add 1 hour to the selected timer.",
+                        options: [timer_live_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/hours/liveAdd",
+                                        [1],
+                                );
+                        },
+                },
+                timer_live_subtract_hour: {
+                        name: "Timer - Live Subtract 1 Hour",
+                        description:
+                                "Temporarily subtract 1 hour from the selected timer.",
+                        options: [timer_live_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/hours/liveSubtract",
+                                        [1],
+                                );
+                        },
+                },
+
                 // Timer Direction Control
                 timer_count_direction: {
                         name: "Timer - Set Direction",

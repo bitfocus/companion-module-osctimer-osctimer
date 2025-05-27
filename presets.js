@@ -358,7 +358,6 @@ function getPresetDefinitions(self) {
                                 },
                         ],
                 };
-
                 presets[`timer${timerNum}_add_1h`] = {
                         type: "button",
                         category: `Timer ${timerNum} - Add/Subtract`,
@@ -396,6 +395,139 @@ function getPresetDefinitions(self) {
                                         down: [
                                                 {
                                                         actionId: "timer_subtract_hour",
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
+
+                presets[`timer${timerNum}_live_add_1s`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer +1s - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n+1s\n(LIVE)`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_live_add_seconds",
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
+                presets[`timer${timerNum}_live_sub_1s`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer -1s - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n-1s\n(LIVE)`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_live_subtract_seconds",
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
+                presets[`timer${timerNum}_live_add_1m`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer +1m - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n+1m\n(LIVE)`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_live_add_minute",
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
+                presets[`timer${timerNum}_live_sub_1m`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer -1m - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n-1m\n(LIVE)`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_live_subtract_minute",
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
+                presets[`timer${timerNum}_live_add_1h`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer +1h - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n+1h\n(LIVE)`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_live_add_hour",
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
+                presets[`timer${timerNum}_live_sub_1h`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer -1h - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n-1h\n(LIVE)`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_live_subtract_hour",
                                                         options: { timerNum },
                                                 },
                                         ],
