@@ -1,6 +1,6 @@
 // Presets for the OSC Timer module
 function getPresetDefinitions(self) {
-        const label = self.instance?.label || "osc-timer";
+        const label = "OSC_Timer";
 
         const presets = {};
         const colors = {
