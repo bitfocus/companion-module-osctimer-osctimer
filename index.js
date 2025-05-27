@@ -212,7 +212,7 @@ class OSCTimerInstance extends InstanceBase {
                 const logPrefix = `Timer ${timerNum} OSC`;
 
                 if (address.endsWith("/time") && args[0]?.value) {
-                        const time = args[0].value.toString();
+                        const time = args[0].value.toString().toLowerCase();
 
                         this.setVariableValues({
                                 [`timer${timerNum}_time`]: time,
@@ -224,9 +224,9 @@ class OSCTimerInstance extends InstanceBase {
                         this[`timer${timerNum}_zone`] = zone;
 
                         this.log("debug", `${logPrefix} zone: ${zone}`);
-                }
 
-                this.checkFeedbacks("timer_zone");
+                        this.checkFeedbacks("timer_zone");
+                }
         }
 
         startVariableSubscriptionLoop() {

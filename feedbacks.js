@@ -35,9 +35,19 @@ function getFeedbackDefinitions(self) {
 				},
 			],
 			callback: (feedback) => {
-				const { timerNum, zone } = feedback.options;
-				return self[`timer${timerNum}_zone`] === zone;
-			},
+				const { timerNum, zone } = feedback.options
+
+				// Nu er timerNum defineret korrekt!
+				const currentZone = (self[`timer${timerNum}_zone`] || '').toLowerCase()
+				const targetZone = (zone || '').toLowerCase()
+
+				self.log(
+					"debug",
+					`Feedback check: timer${timerNum}_zone = ${currentZone} (wanted: ${targetZone})`
+				)
+
+				return currentZone === targetZone
+			}
 		},
 	};
 }

@@ -126,6 +126,57 @@ function getPresetDefinitions(self) {
                         ],
                 };
 
+                presets[`timer_${timerNum}_feedback`] = {
+                        type: "button",
+                        category: "Timers",
+                        name: name,
+                        style: {
+                                text: name,
+                                size: "auto",
+                                color: 0xffffff, // default text white
+                                bgcolor: 0x000000, // default bg black (normal)
+                        },
+                        steps: [],
+                        feedbacks: [
+                                // Normal zone – sort
+                                {
+                                        feedbackId: "timer_zone",
+                                        options: {
+                                                timerNum: timerNum,
+                                                zone: "normal",
+                                        },
+                                        style: {
+                                                color: 0xffffff,
+                                                bgcolor: 0x000000,
+                                        },
+                                },
+                                // Warning zone – gul
+                                {
+                                        feedbackId: "timer_zone",
+                                        options: {
+                                                timerNum: timerNum,
+                                                zone: "warning",
+                                        },
+                                        style: {
+                                                color: 0x000000,
+                                                bgcolor: 0xffff00,
+                                        },
+                                },
+                                // End zone – rød
+                                {
+                                        feedbackId: "timer_zone",
+                                        options: {
+                                                timerNum: timerNum,
+                                                zone: "end",
+                                        },
+                                        style: {
+                                                color: 0x000000,
+                                                bgcolor: 0xff0000,
+                                        },
+                                },
+                        ],
+                };
+
                 // Count Direction
                 presets[`timer${timerNum}_direction_up`] = {
                         type: "button",
