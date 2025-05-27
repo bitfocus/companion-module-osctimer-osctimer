@@ -344,7 +344,7 @@ function getActionDefinitions(self) {
                         name: "Timer - Live Add 1 Second",
                         description:
                                 "Temporarily add 1 second to the selected timer.",
-                        options: [timer_live_DROPDOWN],
+                        options: [TIMER_DROPDOWN],
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
