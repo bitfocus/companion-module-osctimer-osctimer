@@ -19,14 +19,14 @@ function getPresetDefinitions(self) {
                 darkblue: 128,
         };
 
-        for (let timerNum = 1; timerNum <= 1; timerNum++) {
+        for (let timerNum = 1; timerNum <= 4; timerNum++) {
                 // Start
                 presets[`timer${timerNum}_start`] = {
                         type: "button",
                         category: `Timer ${timerNum} - Control`,
                         name: `Timer Start - T${timerNum}`,
                         style: {
-                                text: `T${timerNum}\nSTART`,
+                                text: `$(${label}:timer${timerNum}_name)\nSTART`,
                                 size: "Auto",
                                 color: colors.white,
                                 bgcolor: colors.darkgreen,
