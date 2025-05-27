@@ -76,64 +76,41 @@ function getPresetDefinitions(self) {
 
                 // Start'n'Stop toogle
                 presets[`timer${timerNum}_start_stop_toggle`] = {
-                        type: 'button',
+                        type: "button",
                         category: `Timer ${timerNum} - Control`,
                         name: `Start/Stop Toggle - T${timerNum}`,
                         style: {
-                                text: `START\nT${timerNum}`, // initial label
-                                size: '18',
+                                text: `START/STOP\nT${timerNum}`,
+                                size: "18",
                                 color: colors.white,
                                 bgcolor: colors.green,
                         },
                         steps: [
-                                // First press: START
+                                // Step 1: START
                                 {
                                         down: [
                                                 {
-                                                        actionId: 'timer_action',
+                                                        actionId: "timer_action",
                                                         options: {
                                                                 timerNum,
-                                                                action: 'start',
+                                                                action: "start",
                                                         },
                                                 },
                                         ],
                                         up: [],
                                 },
-                                // Second press: STOP
+                                // Step 2: STOP
                                 {
                                         down: [
                                                 {
-                                                        actionId: 'timer_action',
+                                                        actionId: "timer_action",
                                                         options: {
                                                                 timerNum,
-                                                                action: 'stop',
+                                                                action: "stop",
                                                         },
                                                 },
                                         ],
                                         up: [],
-                                },
-                        ],
-                        feedbacks: [
-                                // Optional: show START state
-                                {
-                                        feedbackId: 'boolean', // type doesn't matter here, just using it as always "true"
-                                        options: {},
-                                        style: {
-                                                text: `START\nT${timerNum}`,
-                                                bgcolor: colors.green,
-                                                color: colors.white,
-                                        },
-                                },
-                                // Optional: second step style (Companion steps through them in order)
-                                {
-                                        feedbackId: 'boolean',
-                                        options: {},
-                                        step: 1,
-                                        style: {
-                                                text: `STOP\nT${timerNum}`,
-                                                bgcolor: colors.red,
-                                                color: colors.white,
-                                        },
                                 },
                         ],
                 };
