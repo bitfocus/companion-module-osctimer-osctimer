@@ -80,8 +80,8 @@ function getPresetDefinitions(self) {
                         category: `Timer ${timerNum} - Control`,
                         name: `Start/Stop Toggle - T${timerNum}`,
                         style: {
-                                text: `START/STOP\nT${timerNum}`,
-                                size: "18",
+                                text: `T${timerNum}\nSTART/STOP`,
+                                size: "Auto",
                                 color: colors.white,
                                 bgcolor: colors.green,
                         },
