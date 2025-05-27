@@ -27,7 +27,7 @@ function getPresetDefinitions(self) {
                         name: `Timer Start - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\nSTART`,
-                                size: "18",
+                                size: "Auto",
                                 color: colors.white,
                                 bgcolor: colors.darkgreen,
                         },
@@ -54,7 +54,7 @@ function getPresetDefinitions(self) {
                         name: `Timer Stop - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\nSTOP`,
-                                size: "18",
+                                size: "Auto",
                                 color: colors.white,
                                 bgcolor: colors.darkred,
                         },
@@ -122,7 +122,7 @@ function getPresetDefinitions(self) {
                         name: `Timer Reset - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\nRESET`,
-                                size: "18",
+                                size: "Auto",
                                 color: colors.white,
                                 bgcolor: colors.darkblue,
                         },
@@ -174,7 +174,7 @@ function getPresetDefinitions(self) {
                         category: "Timers",
                         name: `Timer ${timerNum} Zone`,
                         style: {
-                                text: `T${timerNum}\\n$(${label}:timer${timerNum}_time)`,
+                                text: `$(${label}:timer${timerNum}_name)\n$(${label}:timer${timerNum}_time)`,
                                 size: "auto",
                                 color: 0xffffff,
                                 bgcolor: 0x000000,
@@ -276,7 +276,7 @@ function getPresetDefinitions(self) {
                         name: `Timer +1s - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\n+1s`,
-                                size: "18",
+                                size: "Auto",
                                 color: colors.white,
                                 bgcolor: colors.purple,
                         },
@@ -298,7 +298,7 @@ function getPresetDefinitions(self) {
                         name: `Timer -1s - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\n-1s`,
-                                size: "18",
+                                size: "Auto",
                                 color: colors.white,
                                 bgcolor: colors.purple,
                         },
