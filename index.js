@@ -71,14 +71,12 @@ class OSCTimerInstance extends InstanceBase {
 
         async configUpdated(config) {
                 const oldConfig = this.config;
-                this.config = config;
 
                 for (let timerNum = 1; timerNum <= 4; timerNum++) {
                         const oldPort = oldConfig[`timer${timerNum}Port`];
                         const newPort = config[`timer${timerNum}Port`];
 
                         if (oldPort && (!newPort || newPort.trim() === "")) {
-                                // Timer blev deaktiveret – send unsubscribe
                                 const ip = getLocalIPAddress();
                                 const port = 60000 + timerNum;
                                 const paths = [
@@ -93,8 +91,14 @@ class OSCTimerInstance extends InstanceBase {
                                         "/bc/unsubscribeToVariables",
                                         [ip, port, ...paths],
                                 );
+
+                                this.log(
+                                        "info",
+                                        `Sent unsubscribe for Timer ${timerNum} due to port being disabled`,
+                                );
                         }
                 }
+                this.config = config;
 
                 this.initOSCClients();
         }
