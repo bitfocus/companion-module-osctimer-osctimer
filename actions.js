@@ -296,7 +296,7 @@ function getActionDefinitions(self) {
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/timer/count/minute/add",
+                                        "/timer/count/minutes/add",
                                         [1],
                                 );
                         },
@@ -309,7 +309,7 @@ function getActionDefinitions(self) {
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/timer/count/minute/subtract",
+                                        "/timer/count/minutes/subtract",
                                         [1],
                                 );
                         },
@@ -322,7 +322,7 @@ function getActionDefinitions(self) {
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/timer/count/hour/add",
+                                        "/timer/count/hours/add",
                                         [1],
                                 );
                         },
@@ -334,7 +334,7 @@ function getActionDefinitions(self) {
                         callback: (event) => {
                                 self.sendCommand(
                                         event.options.timerNum,
-                                        "/timer/count/hour/subtract",
+                                        "/timer/count/hours/subtract",
                                         [1],
                                 );
                         },
