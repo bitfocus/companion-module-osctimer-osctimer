@@ -1,5 +1,7 @@
 // Presets for the OSC Timer module
 function getPresetDefinitions(self) {
+        const label = self.instance?.label || "osc-timer";
+
         const presets = {};
         const colors = {
                 white: 16777215,
@@ -131,7 +133,7 @@ function getPresetDefinitions(self) {
                         category: "Timers",
                         name: `Timer ${timerNum} Zone`,
                         style: {
-                                text: `Timer ${timerNum}`,
+                                text: `T${timerNum}\\n$(${label}:timer${timerNum}_time)`,
                                 size: "auto",
                                 color: 0xffffff,
                                 bgcolor: 0x000000,
