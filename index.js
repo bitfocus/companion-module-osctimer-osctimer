@@ -249,19 +249,7 @@ class OSCTimerInstance extends InstanceBase {
         }
 
         async destroy() {
-                // Clean up OSC connections when module is destroyed
-                for (let timerNum = 1; timerNum <= 4; timerNum++) {
-                        if (this.timers[timerNum].connected) {
-                                // Properly close OSC connections
-                                this.log(
-                                        "info",
-                                        `Disconnecting from Timer ${timerNum}`,
-                                );
-                                closeOSC(this, timerNum);
-                                this.timers[timerNum].connected = false;
-                        }
-                }
-                // Ryd op i intervallet
+                // Clean intervals
                 if (this.variableSubscriptionInterval) {
                         clearInterval(this.variableSubscriptionInterval);
                         this.variableSubscriptionInterval = null;
