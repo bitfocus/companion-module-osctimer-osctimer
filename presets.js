@@ -314,7 +314,96 @@ function getPresetDefinitions(self) {
                                 },
                         ],
                 };
+                presets[`timer${timerNum}_add_1m`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer +1m - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n+1m`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_add_minute",
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
+                presets[`timer${timerNum}_sub_1m`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer -1m - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n-1m`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_subtract_minute",
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
 
+                presets[`timer${timerNum}_add_1h`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer +1h - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n+1h`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_add_hour”,
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
+                presets[`timer${timerNum}_sub_1h`] = {
+                        type: "button",
+                        category: `Timer ${timerNum} - Add/Subtract`,
+                        name: `Timer -1h - T${timerNum}`,
+                        style: {
+                                text: `$(${label}:timer${timerNum}_name)\n-1h`,
+                                size: "Auto",
+                                color: colors.white,
+                                bgcolor: colors.purple,
+                        },
+                        steps: [
+                                {
+                                        down: [
+                                                {
+                                                        actionId: "timer_subtract_hour”,
+                                                        options: { timerNum },
+                                                },
+                                        ],
+                                        up: [],
+                                },
+                        ],
+                };
+                
                 // Set Time of Day
                 presets[`timer${timerNum}_set_08_00`] = {
                         type: "button",

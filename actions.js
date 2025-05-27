@@ -289,6 +289,57 @@ function getActionDefinitions(self) {
                         },
                 },
 
+                timer_add_minute: {
+                        name: "Timer - Add 1 Minute",
+                        description: "Add 1 minute to the selected timer.",
+                        options: [TIMER_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/minute/add",
+                                        [1],
+                                );
+                        },
+                },
+                timer_subtract_minute: {
+                        name: "Timer - Subtract 1 Minute",
+                        description:
+                                "Subtract 1 minute from the selected timer.",
+                        options: [TIMER_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/minute/subtract",
+                                        [1],
+                                );
+                        },
+                },
+
+                timer_add_hour: {
+                        name: "Timer - Add 1 Hour",
+                        description: "Add 1 hour to the selected timer.",
+                        options: [TIMER_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/hour/add",
+                                        [1],
+                                );
+                        },
+                },
+                timer_subtract_hour: {
+                        name: "Timer - Subtract 1 Hour",
+                        description: "Subtract 1 hour from the selected timer.",
+                        options: [TIMER_DROPDOWN],
+                        callback: (event) => {
+                                self.sendCommand(
+                                        event.options.timerNum,
+                                        "/timer/count/hour/subtract",
+                                        [1],
+                                );
+                        },
+                },
+
                 // Timer Direction Control
                 timer_count_direction: {
                         name: "Timer - Set Direction",
