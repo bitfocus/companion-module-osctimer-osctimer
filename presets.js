@@ -129,16 +129,15 @@ function getPresetDefinitions(self) {
                 presets[`timer_${timerNum}_feedback`] = {
                         type: "button",
                         category: "Timers",
-                        name: name,
+                        name: `Timer ${timerNum} Zone`,
                         style: {
-                                text: name,
+                                text: `Timer ${timerNum}`,
                                 size: "auto",
-                                color: 0xffffff, // default text white
-                                bgcolor: 0x000000, // default bg black (normal)
+                                color: 0xffffff,
+                                bgcolor: 0x000000,
                         },
                         steps: [],
                         feedbacks: [
-                                // Normal zone – sort
                                 {
                                         feedbackId: "timer_zone",
                                         options: {
@@ -150,7 +149,6 @@ function getPresetDefinitions(self) {
                                                 bgcolor: 0x000000,
                                         },
                                 },
-                                // Warning zone – gul
                                 {
                                         feedbackId: "timer_zone",
                                         options: {
@@ -162,7 +160,6 @@ function getPresetDefinitions(self) {
                                                 bgcolor: 0xffff00,
                                         },
                                 },
-                                // End zone – rød
                                 {
                                         feedbackId: "timer_zone",
                                         options: {
@@ -170,7 +167,7 @@ function getPresetDefinitions(self) {
                                                 zone: "end",
                                         },
                                         style: {
-                                                color: 0x000000,
+                                                color: 0xffffff,
                                                 bgcolor: 0xff0000,
                                         },
                                 },
