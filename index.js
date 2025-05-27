@@ -17,6 +17,9 @@ const {
 } = require("./osc");
 const { getConfigFields } = require("./config");
 
+// Need "os" for getting local IP address
+const os = require("os");
+
 // Define module manifest
 const MODULE_MANIFEST = {
         // Populate required fields from manifest.json
@@ -30,6 +33,18 @@ const MODULE_MANIFEST = {
         products: ["OSC Timer API"],
         keywords: ["Timer", "Countdown", "OSC"],
 };
+
+function getLocalIPAddress() {
+        const interfaces = os.networkInterfaces();
+        for (const iface of Object.values(interfaces)) {
+                for (const config of iface) {
+                        if (config.family === "IPv4" && !config.internal) {
+                                return config.address;
+                        }
+                }
+        }
+        return "127.0.0.1";
+}
 
 class OSCTimerInstance extends InstanceBase {
         constructor(internal) {
@@ -51,6 +66,7 @@ class OSCTimerInstance extends InstanceBase {
                 this.initFeedbacks();
                 this.initPresets();
                 this.initVariables();
+                this.startVariableSubscriptionLoop();
         }
 
         async configUpdated(config) {
@@ -164,37 +180,68 @@ class OSCTimerInstance extends InstanceBase {
         }
 
         receiveOscMessage(timerNum, address, args) {
-                const logPrefix = `Timer ${timerNum} OSC`
+                const logPrefix = `Timer ${timerNum} OSC`;
 
-                if (address.endsWith('/status') && args[0]?.value) {
-                        const status = args[0].value.toString()
-                        this[`timer${timerNum}_status`] = status
+                if (address.endsWith("/status") && args[0]?.value) {
+                        const status = args[0].value.toString();
+                        this[`timer${timerNum}_status`] = status;
 
-                        this.setVariableValues({ [`timer${timerNum}_status`]: status })
-                        this.checkFeedbacks('timer_running')
-                        this.checkFeedbacks('timer_ended')
+                        this.setVariableValues({
+                                [`timer${timerNum}_status`]: status,
+                        });
+                        this.checkFeedbacks("timer_running");
+                        this.checkFeedbacks("timer_ended");
 
-                        this.log('debug', `${logPrefix} status: ${status}`)
-                }
+                        this.log("debug", `${logPrefix} status: ${status}`);
+                } else if (address.endsWith("/time") && args[0]?.value) {
+                        const time = args[0].value.toString();
 
-                else if (address.endsWith('/time') && args[0]?.value) {
-                        const time = args[0].value.toString()
+                        this.setVariableValues({
+                                [`timer${timerNum}_time`]: time,
+                        });
+                        this.log("debug", `${logPrefix} time: ${time}`);
+                } else if (address.endsWith("/alert") && args[0]) {
+                        const isAlert = Boolean(args[0].value);
+                        this[`timer${timerNum}_alert`] = isAlert;
 
-                        this.setVariableValues({ [`timer${timerNum}_time`]: time })
-                        this.log('debug', `${logPrefix} time: ${time}`)
-                }
+                        this.setVariableValues({
+                                [`timer${timerNum}_alert`]: isAlert,
+                        });
+                        this.checkFeedbacks("timer_alert_active");
 
-                else if (address.endsWith('/alert') && args[0]) {
-                        const isAlert = Boolean(args[0].value)
-                        this[`timer${timerNum}_alert`] = isAlert
-
-                        this.setVariableValues({ [`timer${timerNum}_alert`]: isAlert })
-                        this.checkFeedbacks('timer_alert_active')
-
-                        this.log('debug', `${logPrefix} alert: ${isAlert}`)
+                        this.log("debug", `${logPrefix} alert: ${isAlert}`);
                 }
 
                 // ...tilføj evt. flere som fx /end etc.
+        }
+
+        startVariableSubscriptionLoop() {
+                const ip = getLocalIPAddress();
+
+                this.variableSubscriptionInterval = setInterval(() => {
+                        for (let timerNum = 1; timerNum <= 4; timerNum++) {
+                                const port = 60000 + timerNum;
+                                const path1 = `/timer/${timerNum}/time`;
+                                const path2 = `/timer/${timerNum}/status`;
+                                const path3 = `/timer/${timerNum}/alert`;
+                                const path4 = `/timer/${timerNum}/end`;
+
+                                if (this.timers[timerNum]?.connected) {
+                                        this.sendCommand(
+                                                timerNum,
+                                                "/bc/subscribeToVariables",
+                                                [
+                                                        ip,
+                                                        port,
+                                                        path1,
+                                                        path2,
+                                                        path3,
+                                                        path4,
+                                                ],
+                                        );
+                                }
+                        }
+                }, 10000);
         }
 
         getConfigFields() {
