@@ -23,7 +23,7 @@ function getPresetDefinitions(self) {
                 // Start
                 presets[`timer${timerNum}_start`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Control`,
+                        category: `$(${label}:timer${timerNum}_name)- Control`,
                         name: `Timer Start - T${timerNum}`,
                         style: {
                                 text: `$(${label}:timer${timerNum}_name)\nSTART`,
@@ -50,10 +50,10 @@ function getPresetDefinitions(self) {
                 // Stop
                 presets[`timer${timerNum}_stop`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Control`,
+                        category: `$(${label}:timer${timerNum}_name)- Control`,
                         name: `Timer Stop - T${timerNum}`,
                         style: {
-                                text: `T${timerNum}\nSTOP`,
+                                text: `$(${label}:timer${timerNum}_name)\nSTOP`,
                                 size: "Auto",
                                 color: colors.white,
                                 bgcolor: colors.darkred,
@@ -77,7 +77,7 @@ function getPresetDefinitions(self) {
                 // Start'n'Stop toogle
                 presets[`timer${timerNum}_start_stop_toggle`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Control`,
+                        category: `$(${label}:timer${timerNum}_name)- Control`,
                         name: `Start/Stop Toggle - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\nSTART/STOP`,
@@ -118,7 +118,7 @@ function getPresetDefinitions(self) {
                 // Reset
                 presets[`timer${timerNum}_reset`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Control`,
+                        category: `$(${label}:timer${timerNum}_name)- Control`,
                         name: `Timer Reset - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\nRESET`,
@@ -145,7 +145,7 @@ function getPresetDefinitions(self) {
                 // Reset & Stop
                 presets[`timer${timerNum}_resetstop`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Control`,
+                        category: `$(${label}:timer${timerNum}_name)- Control`,
                         name: `Timer Reset & Stop - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\nRESET\nSTOP`,
@@ -172,7 +172,7 @@ function getPresetDefinitions(self) {
                 presets[`timer_${timerNum}_feedback`] = {
                         type: "button",
                         category: "Visuel Feedback",
-                        name: `Timer ${timerNum} Zone`,
+                        name: `$(${label}:timer${timerNum}_name)Zone`,
                         style: {
                                 text: `$(${label}:timer${timerNum}_name)\n$(${label}:timer${timerNum}_time)`,
                                 size: "auto",
@@ -220,7 +220,7 @@ function getPresetDefinitions(self) {
                 // Count Direction
                 presets[`timer${timerNum}_direction_up`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Set time`,
+                        category: `$(${label}:timer${timerNum}_name)- Set time`,
                         name: `T${timerNum}\nTimer Count Up - T`,
                         style: {
                                 text: `COUNT\nUP\nT${timerNum}`,
@@ -245,7 +245,7 @@ function getPresetDefinitions(self) {
                 };
                 presets[`timer${timerNum}_direction_down`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Set time`,
+                        category: `$(${label}:timer${timerNum}_name)- Set time`,
                         name: `T${timerNum}\nTimer Count Down - T`,
                         style: {
                                 text: `COUNT\nDOWN\nT${timerNum}`,
@@ -272,7 +272,7 @@ function getPresetDefinitions(self) {
                 // Add/Sub Seconds
                 presets[`timer${timerNum}_add_1s`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Add/Subtract`,
+                        category: `$(${label}:timer${timerNum}_name)- Add/Subtract`,
                         name: `Timer +1s - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\n+1s`,
@@ -294,7 +294,7 @@ function getPresetDefinitions(self) {
                 };
                 presets[`timer${timerNum}_sub_1s`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Add/Subtract`,
+                        category: `$(${label}:timer${timerNum}_name)- Add/Subtract`,
                         name: `Timer -1s - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\n-1s`,
@@ -318,7 +318,7 @@ function getPresetDefinitions(self) {
                 // Set Time of Day
                 presets[`timer${timerNum}_set_08_00`] = {
                         type: "button",
-                        category: `Timer ${timerNum} - Set time`,
+                        category: `$(${label}:timer${timerNum}_name)- Set time`,
                         name: `Timer Set Time of Day 08:00 - T${timerNum}`,
                         style: {
                                 text: `T${timerNum}\n08:00`,
