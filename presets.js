@@ -26,10 +26,10 @@ function getPresetDefinitions(self) {
                         category: `Timer ${timerNum} - Control`,
                         name: `Timer Start - T${timerNum}`,
                         style: {
-                                text: `START\nT${timerNum}`,
+                                text: `T${timerNum}\nSTART`,
                                 size: "18",
                                 color: colors.white,
-                                bgcolor: colors.green,
+                                bgcolor: colors.darkgreen,
                         },
                         steps: [
                                 {
@@ -53,10 +53,10 @@ function getPresetDefinitions(self) {
                         category: `Timer ${timerNum} - Control`,
                         name: `Timer Stop - T${timerNum}`,
                         style: {
-                                text: `STOP\nT${timerNum}`,
+                                text: `T${timerNum}\nSTOP`,
                                 size: "18",
                                 color: colors.white,
-                                bgcolor: colors.red,
+                                bgcolor: colors.darkred,
                         },
                         steps: [
                                 {
@@ -83,7 +83,7 @@ function getPresetDefinitions(self) {
                                 text: `T${timerNum}\nSTART/STOP`,
                                 size: "Auto",
                                 color: colors.white,
-                                bgcolor: colors.green,
+                                bgcolor: colors.darkgreen,
                         },
                         steps: [
                                 // Step 1: START
@@ -121,10 +121,10 @@ function getPresetDefinitions(self) {
                         category: `Timer ${timerNum} - Control`,
                         name: `Timer Reset - T${timerNum}`,
                         style: {
-                                text: `RESET\nT${timerNum}`,
+                                text: `T${timerNum}\nRESET`,
                                 size: "18",
                                 color: colors.white,
-                                bgcolor: colors.blue,
+                                bgcolor: colors.darkblue,
                         },
                         steps: [
                                 {
@@ -148,7 +148,7 @@ function getPresetDefinitions(self) {
                         category: `Timer ${timerNum} - Control`,
                         name: `Timer Reset & Stop - T${timerNum}`,
                         style: {
-                                text: `RESET\nSTOP\nT${timerNum}`,
+                                text: `T${timerNum}\nRESET\nSTOP`,
                                 size: "14",
                                 color: colors.white,
                                 bgcolor: colors.darkred,
@@ -221,7 +221,7 @@ function getPresetDefinitions(self) {
                 presets[`timer${timerNum}_direction_up`] = {
                         type: "button",
                         category: `Timer ${timerNum} - Settings`,
-                        name: `Timer Count Up - T${timerNum}`,
+                        name: `T${timerNum}\nTimer Count Up - T`,
                         style: {
                                 text: `COUNT\nUP\nT${timerNum}`,
                                 size: "14",
@@ -246,12 +246,12 @@ function getPresetDefinitions(self) {
                 presets[`timer${timerNum}_direction_down`] = {
                         type: "button",
                         category: `Timer ${timerNum} - Settings`,
-                        name: `Timer Count Down - T${timerNum}`,
+                        name: `T${timerNum}\nTimer Count Down - T`,
                         style: {
                                 text: `COUNT\nDOWN\nT${timerNum}`,
                                 size: "14",
                                 color: colors.white,
-                                bgcolor: colors.darkblue,
+                                bgcolor: colors.teal,
                         },
                         steps: [
                                 {
@@ -275,10 +275,10 @@ function getPresetDefinitions(self) {
                         category: `Timer ${timerNum} - Adjust`,
                         name: `Timer +1s - T${timerNum}`,
                         style: {
-                                text: `+1s\nT${timerNum}`,
+                                text: `T${timerNum}\n+1s`,
                                 size: "18",
                                 color: colors.white,
-                                bgcolor: colors.darkgreen,
+                                bgcolor: colors.purple,
                         },
                         steps: [
                                 {
@@ -297,10 +297,10 @@ function getPresetDefinitions(self) {
                         category: `Timer ${timerNum} - Adjust`,
                         name: `Timer -1s - T${timerNum}`,
                         style: {
-                                text: `-1s\nT${timerNum}`,
+                                text: `T${timerNum}\n-1s`,
                                 size: "18",
                                 color: colors.white,
-                                bgcolor: colors.darkred,
+                                bgcolor: colors.purple,
                         },
                         steps: [
                                 {
@@ -321,7 +321,7 @@ function getPresetDefinitions(self) {
                         category: `Timer ${timerNum} - Time`,
                         name: `Timer Set Time of Day 08:00 - T${timerNum}`,
                         style: {
-                                text: `08:00\nT${timerNum}`,
+                                text: `T${timerNum}\n08:00`,
                                 size: "14",
                                 color: colors.white,
                                 bgcolor: colors.orange,
