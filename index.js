@@ -71,6 +71,40 @@ class OSCTimerInstance extends InstanceBase {
 
         async configUpdated(config) {
                 this.config = config;
+                // Clean intervals
+                if (this.variableSubscriptionInterval) {
+                        clearInterval(this.variableSubscriptionInterval);
+                        this.variableSubscriptionInterval = null;
+                }
+
+                const ip = getLocalIPAddress();
+
+                for (let timerNum = 1; timerNum <= 4; timerNum++) {
+                        if (this.timers[timerNum].connected) {
+                                const port = 60000 + timerNum;
+                                const paths = [
+                                        `/timer/${timerNum}/time`,
+                                        `/timer/${timerNum}/status`,
+                                        `/timer/${timerNum}/alert`,
+                                        `/timer/${timerNum}/end`,
+                                ];
+
+                                // Send unsubscribe before closing
+                                this.sendCommand(
+                                        timerNum,
+                                        "/bc/unsubscribeToVariables",
+                                        [ip, port, ...paths],
+                                );
+
+                                // Luk forbindelsen
+                                this.log(
+                                        "info",
+                                        `Disconnecting from Timer ${timerNum}`,
+                                );
+                                closeOSC(this, timerNum);
+                                this.timers[timerNum].connected = false;
+                        }
+                }
                 this.initOSCClients();
         }
 
@@ -248,42 +282,7 @@ class OSCTimerInstance extends InstanceBase {
                 return getConfigFields();
         }
 
-        async destroy() {
-                // Clean intervals
-                if (this.variableSubscriptionInterval) {
-                        clearInterval(this.variableSubscriptionInterval);
-                        this.variableSubscriptionInterval = null;
-                }
-
-                const ip = getLocalIPAddress();
-
-                for (let timerNum = 1; timerNum <= 4; timerNum++) {
-                        if (this.timers[timerNum].connected) {
-                                const port = 60000 + timerNum;
-                                const paths = [
-                                        `/timer/${timerNum}/time`,
-                                        `/timer/${timerNum}/status`,
-                                        `/timer/${timerNum}/alert`,
-                                        `/timer/${timerNum}/end`,
-                                ];
-
-                                // Send unsubscribe before closing
-                                this.sendCommand(
-                                        timerNum,
-                                        "/bc/unsubscribeToVariables",
-                                        [ip, port, ...paths],
-                                );
-
-                                // Luk forbindelsen
-                                this.log(
-                                        "info",
-                                        `Disconnecting from Timer ${timerNum}`,
-                                );
-                                closeOSC(this, timerNum);
-                                this.timers[timerNum].connected = false;
-                        }
-                }
-        }
+        async destroy() {}
 }
 
 runEntrypoint(OSCTimerInstance, MODULE_MANIFEST);
