@@ -20,9 +20,10 @@ const os = require("os");
 // Module Manifest
 const MODULE_MANIFEST = {
         id: "osc-timer",
-        name: "OSC Timer Control",
-        shortname: "OSC Timer",
-        description: "Control OSC-based timer application with up to 4 timers",
+        name: "O:S:C Timer Control",
+        shortname: "O:S:C Timer",
+        description: "Control all of O:S:C Timer's parameters",
+        author: "Rasmus Kreiner",
         version: "1.0.0",
         license: "MIT",
         manufacturer: "OSC Timer",
