@@ -1,4 +1,3 @@
-// OSC Timer Companion Module
 const {
         InstanceBase,
         Regex,
@@ -16,13 +15,10 @@ const {
         enableOSCListening,
 } = require("./osc");
 const { getConfigFields } = require("./config");
-
-// Need "os" for getting local IP address
 const os = require("os");
 
-// Define module manifest
+// Module Manifest
 const MODULE_MANIFEST = {
-        // Populate required fields from manifest.json
         id: "osc-timer",
         name: "OSC Timer Control",
         shortname: "OSC Timer",
@@ -91,15 +87,14 @@ class OSCTimerInstance extends InstanceBase {
                                         "/bc/unsubscribeToVariables",
                                         [ip, port, ...paths],
                                 );
-
                                 this.log(
                                         "info",
-                                        `Sent unsubscribe for Timer ${timerNum} due to port being disabled`,
+                                        `Unsubscribed Timer ${timerNum} (port disabled)`,
                                 );
                         }
                 }
-                this.config = config;
 
+                this.config = config;
                 this.initOSCClients();
         }
 
@@ -113,16 +108,13 @@ class OSCTimerInstance extends InstanceBase {
                 }
 
                 for (let timerNum = 1; timerNum <= 4; timerNum++) {
-                        // Close any existing connections first
                         if (this.timers[timerNum].connected) {
                                 closeOSC(this, timerNum);
                                 this.timers[timerNum].connected = false;
                         }
 
-                        // Get port from configuration
                         const portConfig = this.config[`timer${timerNum}Port`];
 
-                        // If port is set, attempt to connect
                         if (portConfig && portConfig.trim() !== "") {
                                 try {
                                         const port = parseInt(portConfig);
@@ -154,7 +146,7 @@ class OSCTimerInstance extends InstanceBase {
                                         this.timers[timerNum].connected = false;
                                         this.log(
                                                 "error",
-                                                `Failed to connect to Timer ${timerNum}: ${error.message}`,
+                                                `Failed to connect Timer ${timerNum}: ${error.message}`,
                                         );
                                 }
                         } else {
@@ -166,18 +158,15 @@ class OSCTimerInstance extends InstanceBase {
                         }
                 }
 
-                // Set overall status based on whether any timer is connected
                 const anyConnected = Object.values(this.timers).some(
                         (timer) => timer.connected,
                 );
-                if (anyConnected) {
-                        this.updateStatus(InstanceStatus.Ok);
-                } else {
-                        this.updateStatus(
-                                InstanceStatus.Disconnected,
-                                "No timers enabled or connected",
-                        );
-                }
+                this.updateStatus(
+                        anyConnected
+                                ? InstanceStatus.Ok
+                                : InstanceStatus.Disconnected,
+                        anyConnected ? null : "No timers connected",
+                );
         }
 
         initActions() {
@@ -204,7 +193,6 @@ class OSCTimerInstance extends InstanceBase {
                         );
                         return;
                 }
-
                 sendOSCMessage(this, timerNum, path, args);
         }
 
@@ -212,8 +200,7 @@ class OSCTimerInstance extends InstanceBase {
                 const logPrefix = `Timer ${timerNum} OSC`;
 
                 if (address.endsWith("/time") && args[0]?.value) {
-                        const time = args[0].value.toString().toLowerCase();
-
+                        const time = args[0].value.toString();
                         this.setVariableValues({
                                 [`timer${timerNum}_time`]: time,
                         });
@@ -223,42 +210,33 @@ class OSCTimerInstance extends InstanceBase {
                         args[0]?.value
                 ) {
                         const name = args[0].value.toString();
-
                         this.setVariableValues({
                                 [`timer${timerNum}_name`]: name,
                         });
                         this.log("debug", `${logPrefix} name: ${name}`);
                 } else if (address.endsWith("/zone") && args[0]) {
-                        const zone = args[0].value.toString(); // ex: "normal", "warning", "end"
-
+                        const zone = args[0].value.toString();
                         this[`timer${timerNum}_zone`] = zone;
-
                         this.log("debug", `${logPrefix} zone: ${zone}`);
-
                         this.checkFeedbacks("timer_zone");
                 }
         }
 
         startVariableSubscriptionLoop() {
                 const ip = getLocalIPAddress();
-
                 this.variableSubscriptionInterval = setInterval(() => {
                         for (let timerNum = 1; timerNum <= 4; timerNum++) {
                                 const port = 60000 + timerNum;
-                                const path1 = `/timer/${timerNum}/time`;
-                                const path2 = `/timer/${timerNum}/zone`;
+                                const paths = [
+                                        `/timer/${timerNum}/time`,
+                                        `/timer/${timerNum}/zone`,
+                                ];
 
                                 if (this.timers[timerNum]?.connected) {
                                         this.sendCommand(
                                                 timerNum,
                                                 "/bc/subscribeToVariables",
-                                                [
-                                                        ip,
-                                                        port,
-                                                        path1,
-                                                        path2,
-                                                        timerNum,
-                                                ],
+                                                [ip, port, ...paths],
                                         );
                                 }
                         }
@@ -272,13 +250,11 @@ class OSCTimerInstance extends InstanceBase {
         async destroy() {
                 const ip = getLocalIPAddress();
 
-                // Stop interval loop
                 if (this.variableSubscriptionInterval) {
                         clearInterval(this.variableSubscriptionInterval);
                         this.variableSubscriptionInterval = null;
                 }
 
-                // Unsubscribe and close OSC for each timer
                 for (let timerNum = 1; timerNum <= 4; timerNum++) {
                         if (this.timers[timerNum]?.connected) {
                                 const port = 60000 + timerNum;
@@ -294,12 +270,10 @@ class OSCTimerInstance extends InstanceBase {
                                         "/bc/unsubscribeToVariables",
                                         [ip, port, ...paths],
                                 );
-
                                 this.log(
                                         "info",
-                                        `Sent unsubscribe for Timer ${timerNum} during destroy()`,
+                                        `Unsubscribed Timer ${timerNum} during destroy()`,
                                 );
-
                                 closeOSC(this, timerNum);
                                 this.timers[timerNum].connected = false;
                         }
