@@ -1,10 +1,10 @@
-# OSC Timer Module
+# O:S:C Timer Module
 
-This module allows control of an OSC-based timer application, supporting up to 4 independent timers.
+This module allows control of all O:S:C Timer’s parameters.
 
 ## Configuration
 
-* **Timer Host IP** — The IP address of the device running the OSC Timer application.
+* **Timer Host IP** — The IP address of the device running the O:S:C Timer application.
 * **Timer 1–4 Ports** — Set the OSC port for each timer. Leave blank to disable a timer. Valid ports are 1–65535.
 
 ## Features
