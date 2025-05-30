@@ -1,7 +1,18 @@
 name: OSC Timer Control
 shortname: OSC Timer
-description: Control OSC-based timer application with up to 4 timers
+description: Highly customizable OSC-based timer application with up to 4 independent timers
 version: 1.0.0
 license: MIT
-repository: https://github.com/bitfocus/companion-module-osc-timer
-author: Rasmus Kreiner - osctimer@rasmuskreiner.dk
+repository: https://github.com/rasmuskreiner/companion-module-osc-timer
+author: Rasmus Kreiner
+email: osctimer@rasmuskreiner.dk
+keywords:
+  - Timer
+  - Countdown
+  - OSC
+  - Broadcast
+  - Stage Management
+  - Conference
+manufacturer: OSC Timer
+products:
+  - OSC Timer Application

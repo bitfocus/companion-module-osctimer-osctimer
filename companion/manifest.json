@@ -2,7 +2,7 @@
 	"id": "osc-timer",
 	"name": "OSC Timer Control",
 	"shortname": "OSC Timer",
-	"description": "Highly customizable timer application with up to 4 timers - controllable via OSC",
+	"description": "Highly customizable timer application with up to 4 independent timers controlled via OSC.",
 	"version": "1.0.0",
 	"license": "MIT",
 	"repository": "https://github.com/bitfocus/companion-module-osc-timer",
@@ -20,7 +20,7 @@
 		"entrypoint": "../index.js"
 	},
 	"legacyIds": [],
-	"manufacturer": "OSC Timer - OSC API",
+	"manufacturer": "OSC Timer",
 	"products": ["OSC Timer"],
 	"keywords": ["Timer", "Countdown", "OSC"]
 }

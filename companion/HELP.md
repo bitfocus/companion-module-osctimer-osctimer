@@ -1,21 +1,24 @@
 # OSC Timer Module
 
-This module allows control of an OSC-based timer application with support for up to 4 timers.
+This module allows control of an OSC-based timer application, supporting up to 4 independent timers.
 
 ## Configuration
 
-* **Timer Host IP** - The IP address of the device running the timer application
-* **Enable Timer 1-4** - Enable or disable each timer (fixed ports are used for each timer)
+* **Timer Host IP** — The IP address of the device running the OSC Timer application.
+* **Timer 1–4 Ports** — Set the OSC port for each timer. Leave blank to disable a timer. Valid ports are 1–65535.
 
 ## Features
 
-* Start, stop, and reset timers
-* Set timer duration in seconds, minutes, hours or HH:MM:SS
-* Adjust timer by adding or subtracting time
-* Set timer direction (count up or down)
-* Configure display layout (single, dual, quad)
+* Start, stop, and reset timers.
+* Set timer duration in seconds, minutes, hours, or full HH:MM:SS format.
+* Adjust timers by adding or subtracting time.
+* Set timer direction (count up or count down).
+* Configure display layout (single, dual, quad).
+* Set alerts and warning zones.
+* Full color customization of timer display elements.
+* Broadcast OSC subscriptions for external integration.
 
-## Timer Ports
+## Default Timer Ports
 
 * Timer 1: 53001
 * Timer 2: 53002
@@ -24,13 +27,15 @@ This module allows control of an OSC-based timer application with support for up
 
 ## OSC Commands
 
-This module implements OSC commands defined in the timer application's API, including:
+This module implements OSC commands defined by the timer application's API, including:
 
 * Basic control (start, stop, reset)
-* Time setting (seconds, minutes, hours)
-* Time adjustment (add/subtract time)
-* Direction control (up/down)
-* Display formatting
-* And more
+* Set time (absolute or relative)
+* Adjust time (add/subtract)
+* Set count direction (up/down)
+* Configure alerts and end behavior
+* Display formatting and layout control
+* Color customization
+* Broadcast subscriptions for external OSC devices
 
-For a complete list of available commands, see the buttons provided in the presets.
+> For a full list of available functions, see the actions and presets provided within Companion.
