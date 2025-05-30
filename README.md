@@ -4,8 +4,8 @@ This Companion module allows remote control of the OSC Timer application via OSC
 The OSC Timer app is a standalone multi-timer software available on macOS and iOS, designed primarily for live events, conferences, broadcasts, and stage management.
 
 This module was developed to fully integrate the OSC Timer app into Bitfocus Companion.
-	•	App Store Link: [OSC Timer App](https://apps.apple.com/dk/app/osc-timer/id1487250917?l=da)
-	•	Developer of OSC Timer App & this Companion module: Rasmus Kreiner
+- App Store Link: [OSC Timer App](https://apps.apple.com/dk/app/osc-timer/id1487250917?l=da)
+- Developer of OSC Timer App & this Companion module: Rasmus Kreiner
 
 ## Features
 
