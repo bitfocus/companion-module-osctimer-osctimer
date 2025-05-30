@@ -1,4 +1,4 @@
-# OSC Timer – Companion Module
+# O:S:C Timer – Companion Module
 
 This Companion module allows remote control of a fully customizable multi-timer application via OSC (Open Sound Control).  
 It supports up to four independent timers over dedicated ports — ideal for live events, broadcast, conference, or stage management workflows.

@@ -1,4 +1,4 @@
-// Config fields for the OSC Timer module
+// Config fields for the O:S:C Timer module
 function getConfigFields() {
         return [
                 {

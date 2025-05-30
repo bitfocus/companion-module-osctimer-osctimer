@@ -1,4 +1,4 @@
-// Actions for the OSC Timer module
+// Actions for the O:S:C Timer module
 function getActionDefinitions(self) {
         // Helper constants for common dropdown options
         const TIMER_DROPDOWN = {

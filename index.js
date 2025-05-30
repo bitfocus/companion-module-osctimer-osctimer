@@ -26,8 +26,8 @@ const MODULE_MANIFEST = {
         author: "Rasmus Kreiner",
         version: "1.0.0",
         license: "MIT",
-        manufacturer: "OSC Timer",
-        products: ["OSC Timer API"],
+        manufacturer: "O:S:C Timer",
+        products: ["O:S:C Timer API"],
         keywords: ["Timer", "Countdown", "OSC"],
 };
 

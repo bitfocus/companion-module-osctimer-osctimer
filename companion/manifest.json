@@ -1,7 +1,7 @@
 {
 	"id": "osc-timer",
-	"name": "OSC Timer Control",
-	"shortname": "OSC Timer",
+	"name": "O:S:C Timer Control",
+	"shortname": "O:S:C Timer",
 	"description": "Highly customizable timer application with up to 4 independent timers controlled via OSC.",
 	"version": "1.0.0",
 	"license": "MIT",
@@ -20,7 +20,7 @@
 		"entrypoint": "../index.js"
 	},
 	"legacyIds": [],
-	"manufacturer": "OSC Timer",
-	"products": ["OSC Timer"],
+	"manufacturer": "O:S:C Timer",
+	"products": ["O:S:C Timer"],
 	"keywords": ["Timer", "Countdown", "OSC"]
 }
