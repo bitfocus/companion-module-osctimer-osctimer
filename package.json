@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@companion-module/base": "^0.5.1",
+    "@companion-module/base": "^1.12.1",
     "osc": "^2.4.5"
   }
 }
