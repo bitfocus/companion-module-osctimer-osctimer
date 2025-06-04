@@ -6,9 +6,7 @@
         "version": "1.0.0",
         "license": "MIT",
         "repository": "https://github.com/bitfocus/companion-module-osctimer-osctimer",
-        "bugs": {
-                "url": "https://github.com/bitfocus/companion-module-osctimer-osctimer/issues"
-        },
+        "bugs": "https://github.com/bitfocus/companion-module-osctimer-osctimer/issues",
         "maintainers": [
                 {
                         "name": "Rasmus Kreiner",
@@ -24,6 +22,5 @@
         "legacyIds": [],
         "manufacturer": "O:S:C Timer",
         "products": ["O:S:C Timer"],
-        "keywords": ["Timer", "Countdown", "OSC"],
-        "main": "./index.js"
+        "keywords": ["Timer", "Countdown", "OSC"]
 }
