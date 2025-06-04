@@ -17,20 +17,6 @@ const {
 const { getConfigFields } = require("./config");
 const os = require("os");
 
-// Module Manifest
-const MODULE_MANIFEST = {
-        id: "osc-timer",
-        name: "O:S:C Timer Control",
-        shortname: "O:S:C Timer",
-        description: "Control all of O:S:C Timer's parameters",
-        author: "Rasmus Kreiner",
-        version: "1.0.0",
-        license: "MIT",
-        manufacturer: "O:S:C Timer",
-        products: ["O:S:C Timer API"],
-        keywords: ["Timer", "Countdown", "OSC"],
-};
-
 function getLocalIPAddress() {
         const interfaces = os.networkInterfaces();
         for (const iface of Object.values(interfaces)) {
