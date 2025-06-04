@@ -15,14 +15,13 @@
                         "email": "osctimer@rasmuskreiner.dk"
                 }
         ],
+        "manufacturer": "O:S:C Timer",
+        "products": ["O:S:C Timer"],
+        "keywords": ["Timer", "Countdown", "OSC"],
+        "companionVersion": "^4.0.0",
         "runtime": {
                 "type": "node18",
                 "api": "nodejs-ipc",
-                "apiVersion": "0.0.0",
                 "entrypoint": "./index.js"
-        },
-        "legacyIds": [],
-        "manufacturer": "O:S:C Timer",
-        "products": ["O:S:C Timer"],
-        "keywords": ["Timer", "Countdown", "OSC"]
+        }
 }

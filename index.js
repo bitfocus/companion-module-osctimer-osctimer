@@ -282,6 +282,4 @@ class OSCTimerInstance extends InstanceBase {
         }
 }
 
-runEntrypoint(OSCTimerInstance, MODULE_MANIFEST, {
-        upgradeScripts: [],
-});
+runEntrypoint(OSCTimerInstance);
