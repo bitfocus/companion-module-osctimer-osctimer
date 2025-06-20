@@ -27,6 +27,8 @@ function getActionDefinitions(self) {
                 ],
         };
 
+        const { splitRgb } = require('@companion-module/base')
+        
         return {
                 // Timer Control Actions
                 timer_action: {
@@ -263,164 +265,77 @@ function getActionDefinitions(self) {
                 },
 
                 // Timer Adjustment Actions
-                timer_add_seconds: {
-                        name: "Timer - Add 1 Second",
-                        description: "Add 1 second to the selected timer.",
-                        options: [TIMER_DROPDOWN],
+                timer_adjust_time: {
+                        name: "Timer - Adjust Time",
+                        description: "Add or subtract hours/minutes/seconds (live or static) to a timer.",
+                        options: [
+                                TIMER_DROPDOWN,
+                                {
+                                        type: 'number',
+                                        label: 'Hours',
+                                        id: 'hours',
+                                        default: 0,
+                                        min: 0,
+                                },
+                                {
+                                        type: 'number',
+                                        label: 'Minutes',
+                                        id: 'minutes',
+                                        default: 0,
+                                        min: 0,
+                                },
+                                {
+                                        type: 'number',
+                                        label: 'Seconds',
+                                        id: 'seconds',
+                                        default: 0,
+                                        min: 0,
+                                },
+                                {
+                                        type: 'dropdown',
+                                        label: 'Adjustment Type',
+                                        id: 'adjustType',
+                                        default: 'add',
+                                        choices: [
+                                                { id: 'add', label: 'Add' },
+                                                { id: 'subtract', label: 'Subtract' },
+                                        ],
+                                },
+                                {
+                                        type: 'dropdown',
+                                        label: 'Timing Mode',
+                                        id: 'timingMode',
+                                        default: 'static',
+                                        choices: [
+                                                { id: 'static', label: 'Static (permanent)' },
+                                                { id: 'live', label: 'Live (temporary)' },
+                                        ],
+                                },
+                        ],
                         callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/seconds/add",
-                                        [1],
-                                );
-                        },
+                                const { timerNum, hours, minutes, seconds, adjustType, timingMode } = event.options
+                        
+                                const parsed = [
+                                        parseInt(hours) || 0,
+                                        parseInt(minutes) || 0,
+                                        parseInt(seconds) || 0,
+                                ]
+                        
+                                let path
+                        
+                                if (timingMode === 'live') {
+                                        // Capitalize only the first letter for live mode
+                                        const capitalized = adjustType.charAt(0).toUpperCase() + adjustType.slice(1)
+                                        path = `/timer/count/time/live${capitalized}`
+                                } else {
+                                        // Static mode uses lowercase path
+                                        path = `/timer/count/time/${adjustType}`
+                                }
+                        
+                                self.sendCommand(timerNum, path, parsed)
+                        }
                 },
-                timer_subtract_seconds: {
-                        name: "Timer - Subtract 1 Second",
-                        description:
-                                "Subtract 1 second from the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/seconds/subtract",
-                                        [1],
-                                );
-                        },
-                },
-
-                timer_add_minute: {
-                        name: "Timer - Add 1 Minute",
-                        description: "Add 1 minute to the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/minutes/add",
-                                        [1],
-                                );
-                        },
-                },
-                timer_subtract_minute: {
-                        name: "Timer - Subtract 1 Minute",
-                        description:
-                                "Subtract 1 minute from the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/minutes/subtract",
-                                        [1],
-                                );
-                        },
-                },
-
-                timer_add_hour: {
-                        name: "Timer - Add 1 Hour",
-                        description: "Add 1 hour to the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/hours/add",
-                                        [1],
-                                );
-                        },
-                },
-                timer_subtract_hour: {
-                        name: "Timer - Subtract 1 Hour",
-                        description: "Subtract 1 hour from the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/hours/subtract",
-                                        [1],
-                                );
-                        },
-                },
-
-                timer_live_add_seconds: {
-                        name: "Timer - Live Add 1 Second",
-                        description:
-                                "Temporarily add 1 second to the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/seconds/liveAdd",
-                                        [1],
-                                );
-                        },
-                },
-                timer_live_subtract_seconds: {
-                        name: "Timer - Live Subtract 1 Second",
-                        description:
-                                "Temporarily subtract 1 second from the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/seconds/liveSubtract",
-                                        [1],
-                                );
-                        },
-                },
-
-                timer_live_add_minute: {
-                        name: "Timer - Live Add 1 Minute",
-                        description:
-                                "Temporarily add 1 minute to the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/minutes/liveAdd",
-                                        [1],
-                                );
-                        },
-                },
-                timer_live_subtract_minute: {
-                        name: "Timer - Live Subtract 1 Minute",
-                        description:
-                                "Temporarily subtract 1 minute from the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/minutes/liveSubtract",
-                                        [1],
-                                );
-                        },
-                },
-
-                timer_live_add_hour: {
-                        name: "Timer - Live Add 1 Hour",
-                        description:
-                                "Temporarily add 1 hour to the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/hours/liveAdd",
-                                        [1],
-                                );
-                        },
-                },
-                timer_live_subtract_hour: {
-                        name: "Timer - Live Subtract 1 Hour",
-                        description:
-                                "Temporarily subtract 1 hour from the selected timer.",
-                        options: [TIMER_DROPDOWN],
-                        callback: (event) => {
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/count/hours/liveSubtract",
-                                        [1],
-                                );
-                        },
-                },
-
+                
                 // Timer Direction Control
                 timer_count_direction: {
                         name: "Timer - Set Direction",
@@ -1012,488 +927,92 @@ function getActionDefinitions(self) {
                 },
 
                 // TIMER DISPLAY CUSTOMIZATION
+
                 set_display_color: {
                         name: "Display - Set Color",
-                        description:
-                                "Set the color and opacity for display elements (timer, notes, etc.).",
+                        description: "Set the color and opacity for display elements (timer, notes, etc.).",
                         options: [
                                 TIMER_DROPDOWN,
                                 {
                                         type: "dropdown",
                                         label: "Display Element",
                                         id: "element",
-                                        default: "timer_normal",
+                                        default: "timer_normal_font",
                                         choices: [
-                                                {
-                                                        id: "timer_normal",
-                                                        label: "Timer (Normal State)",
-                                                },
-                                                {
-                                                        id: "timer_warning",
-                                                        label: "Timer (Warning State)",
-                                                },
-                                                {
-                                                        id: "timer_end",
-                                                        label: "Timer (End State)",
-                                                },
-                                                {
-                                                        id: "timer_background",
-                                                        label: "Timer Background",
-                                                },
-                                                {
-                                                        id: "app_background",
-                                                        label: "App Background",
-                                                },
-                                                {
-                                                        id: "clock_normal",
-                                                        label: "Clock (Normal)",
-                                                },
-                                                {
-                                                        id: "broadcast_normal",
-                                                        label: "Broadcast Display (Normal)",
-                                                },
-                                                {
-                                                        id: "notes_normal",
-                                                        label: "Notes (Normal)",
-                                                },
-                                                {
-                                                        id: "notes_background",
-                                                        label: "Notes Background",
-                                                },
+                                                { id: "timer_normal_background", label: "Timer Background (Normal State)" },
+                                                { id: "timer_warning_background", label: "Timer Background (Warning State)" },
+                                                { id: "timer_end_background", label: "Timer Background (End State)" },
+                                                { id: "timer_background", label: "Timer Background (All zones)" },
+
+                                                { id: "timer_normal_font", label: "Timer Font (Normal State)" },
+                                                { id: "timer_end_font", label: "Timer Font (End State)" },
+                                                { id: "timer_warning_font", label: "Timer Font (Warning State)" },
+                                                { id: "timer_font", label: "Timer Font (All zones)" }, 
+                                                
+                                                { id: "notes_normal_background", label: "Notes Background (Normal State)" },
+                                                { id: "notes_warning_background", label: "Notes Background (Warning State)" },
+                                                { id: "notes_end_background", label: "Notes Background (End State)" },
+                                                { id: "notes_background", label: "Notes Background (All zones)" },
+
+                                                { id: "notes_normal_font", label: "Notes Font (Normal State)" },
+                                                { id: "notes_end_font", label: "Notes Font (End State)" },
+                                                { id: "notes_warning_font", label: "Notes Font (Warning State)" },
+                                                { id: "notes_font", label: "Notes Font (All zones)" }, 
+
+                                                { id: "app_background", label: "App Background" },
+                                                { id: "clock_normal", label: "Clock Background" },
+                                                { id: "clock_normal_", label: "Clock Font" },
                                         ],
                                 },
                                 {
                                         type: "colorpicker",
-                                        label: "Color",
+                                        label: "Color (RGBA)",
                                         id: "color",
-                                        default: "#FFFFFF", // White as default
-                                },
-                                {
-                                        type: "number",
-                                        label: "Opacity (0-100%)",
-                                        id: "alpha",
-                                        default: 100,
-                                        min: 0,
-                                        max: 100,
-                                        required: true,
+                                        default: "#FFFFFFFF", // White with full alpha
                                 },
                         ],
+
+
                         callback: (event) => {
-                                // Get the element path based on the selected element
-                                const elementPaths = {
-                                        timer_normal:
-                                                "/timer/display/normalColor",
-                                        timer_warning:
-                                                "/timer/display/warningColor",
-                                        timer_end: "/timer/display/endColor",
-                                        timer_background:
-                                                "/timer/display/backgroundColor",
-                                        app_background:
-                                                "/app/display/backgroundColor",
-                                        clock_normal:
-                                                "/clock/display/normalColor",
-                                        broadcast_normal:
-                                                "/broadcast/display/normalColor",
-                                        notes_normal:
-                                                "/notes/display/normalColor",
-                                        notes_background:
-                                                "/notes/display/backgroundColor",
-                                };
+                                const pathMap = {
+                                        timer_normal_background: "/background/timer/color/normal",
+                                        timer_warning_background: "/background/timer/color/alert",
+                                        timer_end_background: "/background/timer/color/end",
+                                        timer_background: "/background/timer/color",
 
-                                // Set default colors based on element type for fallback
-                                const defaultColors = {
-                                        timer_normal: [1.0, 1.0, 1.0], // White
-                                        timer_warning: [1.0, 1.0, 0.0], // Yellow
-                                        timer_end: [1.0, 0.0, 0.0], // Red
-                                        timer_background: [0.0, 0.0, 0.0], // Black
-                                        app_background: [0.0, 0.0, 0.0], // Black
-                                        clock_normal: [1.0, 1.0, 1.0], // White
-                                        broadcast_normal: [1.0, 1.0, 1.0], // White
-                                        notes_normal: [1.0, 1.0, 1.0], // White
-                                        notes_background: [0.0, 0.0, 0.0], // Black
-                                };
+                                        timer_normal_font: "/timer/normal/font/color",
+                                        timer_warning_font: "/timer/alert/font/color",
+                                        timer_end_font: "/timer/end/font/color",
+                                        timer_font: "/timer/font/color",
 
-                                // Select the appropriate OSC path
-                                const path =
-                                        elementPaths[event.options.element];
-                                const defaultRGB =
-                                        defaultColors[event.options.element];
+                                        notes_normal_background: "/background/notes/color/normal",
+                                        notes_warning_background: "/background/notes/color/alert",
+                                        notes_end_background: "/background/notes/color/end",
+                                        notes_background: "/background/notes/color",
 
-                                // Handle color value which might be a number (RGB int) instead of a string
-                                let r, g, b;
-                                const colorValue = event.options.color;
+                                        notes_normal_font: "/notes/normal/font/color",
+                                        notes_warning_font: "/notes/alert/font/color",
+                                        notes_end_font: "/notes/end/font/color",
+                                        notes_font: "/notes/font/color",
 
-                                // Check if color is a number (RGB integer)
-                                if (typeof colorValue === "number") {
-                                        r =
-                                                ((colorValue >> 16) & 0xff) /
-                                                        255 +
-                                                0.00001; // Adding tiny value to ensure float
-                                        g =
-                                                ((colorValue >> 8) & 0xff) /
-                                                        255 +
-                                                0.00001;
-                                        b = (colorValue & 0xff) / 255 + 0.00001;
+                                        app_background: "/background/app/color",
+                                        clock_normal: "/clock/background/color",
+                                        clock_normal: "/clock/font/color",
                                 }
-                                // Or if it's a string (hex color)
-                                else if (typeof colorValue === "string") {
-                                        const color = colorValue.replace(
-                                                "#",
-                                                "",
-                                        );
-                                        r =
-                                                parseInt(
-                                                        color.substring(0, 2),
-                                                        16,
-                                                ) /
-                                                        255 +
-                                                0.00001;
-                                        g =
-                                                parseInt(
-                                                        color.substring(2, 4),
-                                                        16,
-                                                ) /
-                                                        255 +
-                                                0.00001;
-                                        b =
-                                                parseInt(
-                                                        color.substring(4, 6),
-                                                        16,
-                                                ) /
-                                                        255 +
-                                                0.00001;
-                                }
-                                // Default colors based on element type if format is unexpected
-                                else {
-                                        r = defaultRGB[0];
-                                        g = defaultRGB[1];
-                                        b = defaultRGB[2];
-                                }
+                
+                                const path = pathMap[event.options.element]
 
-                                const a = event.options.alpha / 100 + 0.00001; // Add tiny amount to ensure float
+                                const { r, g, b, a } = splitRgb(event.options.color)
 
-                                self.sendCommand(event.options.timerNum, path, [
-                                        r,
-                                        g,
-                                        b,
-                                        a,
-                                ]);
-                        },
-                },
+                                const toFloat = (v) => parseFloat((v / 255) + 0.000001)
 
-                timer_set_normal_color: {
-                        name: "Set Timer Normal Color",
-                        description: "Set the color for normal timer display",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "colorpicker",
-                                        label: "Normal Color",
-                                        id: "color",
-                                        default: "#FFFFFF", // White
-                                },
-                                {
-                                        type: "number",
-                                        label: "Opacity (0-100%)",
-                                        id: "alpha",
-                                        default: 100,
-                                        min: 0,
-                                        max: 100,
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                // Handle color value which might be a number (RGB int) instead of a string
-                                let r, g, b;
-                                const colorValue = event.options.color;
-
-                                // Check if color is a number (RGB integer)
-                                if (typeof colorValue === "number") {
-                                        r = ((colorValue >> 16) & 0xff) / 255;
-                                        g = ((colorValue >> 8) & 0xff) / 255;
-                                        b = (colorValue & 0xff) / 255;
-                                }
-                                // Or if it's a string (hex color)
-                                else if (typeof colorValue === "string") {
-                                        const color = colorValue.replace(
-                                                "#",
-                                                "",
-                                        );
-                                        r =
-                                                parseInt(
-                                                        color.substring(0, 2),
-                                                        16,
-                                                ) / 255;
-                                        g =
-                                                parseInt(
-                                                        color.substring(2, 4),
-                                                        16,
-                                                ) / 255;
-                                        b =
-                                                parseInt(
-                                                        color.substring(4, 6),
-                                                        16,
-                                                ) / 255;
-                                }
-                                // Default to white if format is unexpected
-                                else {
-                                        r = 1.0;
-                                        g = 1.0;
-                                        b = 1.0;
-                                }
-
-                                const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
-
-                                const toForcedFloat = (val) => val + 1e-6;
-
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/normal/font/color",
-                                        [
-                                                toForcedFloat(r),
-                                                toForcedFloat(g),
-                                                toForcedFloat(b),
-                                                toForcedFloat(a),
-                                        ],
-                                );
-                        },
-                },
-
-                timer_set_warning_color: {
-                        name: "Set Timer Warning Color",
-                        description: "Set the color for timer warning state",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "colorpicker",
-                                        label: "Warning Color",
-                                        id: "color",
-                                        default: "#FFFF00", // Yellow
-                                },
-                                {
-                                        type: "number",
-                                        label: "Opacity (0-100%)",
-                                        id: "alpha",
-                                        default: 100,
-                                        min: 0,
-                                        max: 100,
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                // Handle color value which might be a number (RGB int) instead of a string
-                                let r, g, b;
-                                const colorValue = event.options.color;
-
-                                // Check if color is a number (RGB integer)
-                                if (typeof colorValue === "number") {
-                                        r = ((colorValue >> 16) & 0xff) / 255;
-                                        g = ((colorValue >> 8) & 0xff) / 255;
-                                        b = (colorValue & 0xff) / 255;
-                                }
-                                // Or if it's a string (hex color)
-                                else if (typeof colorValue === "string") {
-                                        const color = colorValue.replace(
-                                                "#",
-                                                "",
-                                        );
-                                        r =
-                                                parseInt(
-                                                        color.substring(0, 2),
-                                                        16,
-                                                ) / 255;
-                                        g =
-                                                parseInt(
-                                                        color.substring(2, 4),
-                                                        16,
-                                                ) / 255;
-                                        b =
-                                                parseInt(
-                                                        color.substring(4, 6),
-                                                        16,
-                                                ) / 255;
-                                }
-                                // Default to yellow if format is unexpected
-                                else {
-                                        r = 1.0;
-                                        g = 1.0;
-                                        b = 0.0;
-                                }
-
-                                const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
-
-                                const toForcedFloat = (val) => val + 1e-6;
-
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/alert/font/color",
-                                        [
-                                                toForcedFloat(r),
-                                                toForcedFloat(g),
-                                                toForcedFloat(b),
-                                                toForcedFloat(a),
-                                        ],
-                                );
-                        },
-                },
-
-                timer_set_end_color: {
-                        name: "Set Timer End Color",
-                        description: "Set the color for timer end state",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "colorpicker",
-                                        label: "End Color",
-                                        id: "color",
-                                        default: "#FF0000", // Red
-                                },
-                                {
-                                        type: "number",
-                                        label: "Opacity (0-100%)",
-                                        id: "alpha",
-                                        default: 100,
-                                        min: 0,
-                                        max: 100,
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                // Handle color value which might be a number (RGB int) instead of a string
-                                let r, g, b;
-                                const colorValue = event.options.color;
-
-                                // Check if color is a number (RGB integer)
-                                if (typeof colorValue === "number") {
-                                        r = ((colorValue >> 16) & 0xff) / 255;
-                                        g = ((colorValue >> 8) & 0xff) / 255;
-                                        b = (colorValue & 0xff) / 255;
-                                }
-                                // Or if it's a string (hex color)
-                                else if (typeof colorValue === "string") {
-                                        const color = colorValue.replace(
-                                                "#",
-                                                "",
-                                        );
-                                        r =
-                                                parseInt(
-                                                        color.substring(0, 2),
-                                                        16,
-                                                ) / 255;
-                                        g =
-                                                parseInt(
-                                                        color.substring(2, 4),
-                                                        16,
-                                                ) / 255;
-                                        b =
-                                                parseInt(
-                                                        color.substring(4, 6),
-                                                        16,
-                                                ) / 255;
-                                }
-                                // Default to red if format is unexpected
-                                else {
-                                        r = 1.0;
-                                        g = 0.0;
-                                        b = 0.0;
-                                }
-
-                                const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
-
-                                const toForcedFloat = (val) => val + 1e-6;
-
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/timer/end/font/color",
-                                        [
-                                                toForcedFloat(r),
-                                                toForcedFloat(g),
-                                                toForcedFloat(b),
-                                                toForcedFloat(a),
-                                        ],
-                                );
-                        },
-                },
-
-                timer_set_background_color: {
-                        name: "Set Timer Background Color",
-                        description:
-                                "Set the background color for timer display",
-                        options: [
-                                TIMER_DROPDOWN,
-                                {
-                                        type: "colorpicker",
-                                        label: "Background Color",
-                                        id: "color",
-                                        default: "#000000", // Black
-                                },
-                                {
-                                        type: "number",
-                                        label: "Opacity (0-100%)",
-                                        id: "alpha",
-                                        default: 100,
-                                        min: 0,
-                                        max: 100,
-                                        required: true,
-                                },
-                        ],
-                        callback: (event) => {
-                                // Handle color value which might be a number (RGB int) instead of a string
-                                let r, g, b;
-                                const colorValue = event.options.color;
-
-                                // Check if color is a number (RGB integer)
-                                if (typeof colorValue === "number") {
-                                        r = ((colorValue >> 16) & 0xff) / 255;
-                                        g = ((colorValue >> 8) & 0xff) / 255;
-                                        b = (colorValue & 0xff) / 255;
-                                }
-                                // Or if it's a string (hex color)
-                                else if (typeof colorValue === "string") {
-                                        const color = colorValue.replace(
-                                                "#",
-                                                "",
-                                        );
-                                        r =
-                                                parseInt(
-                                                        color.substring(0, 2),
-                                                        16,
-                                                ) / 255;
-                                        g =
-                                                parseInt(
-                                                        color.substring(2, 4),
-                                                        16,
-                                                ) / 255;
-                                        b =
-                                                parseInt(
-                                                        color.substring(4, 6),
-                                                        16,
-                                                ) / 255;
-                                }
-                                // Default to black if format is unexpected
-                                else {
-                                        r = 0.0;
-                                        g = 0.0;
-                                        b = 0.0;
-                                }
-
-                                const a = event.options.alpha / 100; // Convert percentage to 0.0-1.0
-
-                                const toForcedFloat = (val) => val + 1e-6;
-
-                                self.sendCommand(
-                                        event.options.timerNum,
-                                        "/background/timer/color",
-                                        [
-                                                toForcedFloat(r),
-                                                toForcedFloat(g),
-                                                toForcedFloat(b),
-                                                toForcedFloat(a),
-                                        ],
-                                );
+                                const values = [toFloat(r), toFloat(g), toFloat(b), parseFloat(a + 0.000001)]
+                
+                                self.sendCommand(event.options.timerNum, path, values)
                         },
                 },
         };
 }
+
 
 module.exports = { getActionDefinitions };
