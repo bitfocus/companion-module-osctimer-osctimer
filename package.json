@@ -12,5 +12,8 @@
   "dependencies": {
     "@companion-module/base": "^1.12.1",
     "osc": "^2.4.5"
+  },
+  "devDependencies": {
+    "@companion-module/tools": "^2.3.0"
   }
 }
