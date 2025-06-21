@@ -1,167 +1,167 @@
 # O:S:C Timer Control – Companion Module
 
-This Companion module provides advanced remote control of the O:S:C Timer application via OSC.  
+This Companion module provides advanced remote control of the O:S:C Timer application via OSC.
+
 It supports up to four independent timers with full time management, layout control, color customization, notes handling, broadcast subscriptions, and real-time feedback.
+
+---
 
 ## Features
 
-- Control up to 4 independent timers
-- Full timer control: start, stop, reset, reset & stop
-- Set absolute time or count down to a time of day (with timezone support)
-- Adjust timers live: add/subtract time (hours, minutes, seconds)
-- Set count direction (up or down)
-- Set end behavior: stop at zero or continue
-- Define display formats (SS.D, MM:SS, HH:MM:SS, etc.)
-- Configure alert thresholds
-- Full display color customization for multiple states
-- Manage notes with alignment and auto-remove options
-- Dynamic layout control (single, dual, quad slots)
-- Broadcast OSC subscription for text, warning, end, and time triggers
-- Companion feedbacks and variables for real-time monitoring
+- Control up to **4 independent timers**
+- Full timer control:
+  - Start / Stop / Reset / Reset & Stop
+- Set time:
+  - Absolute duration (HH:MM:SS)
+  - Count down to time of day with UTC offset
+- Adjust time:
+  - Unified Add/Subtract action for hours/minutes/seconds
+  - Choose between Static (permanent) and Live (temporary) adjustments
+- Direction:
+  - Count Up or Count Down
+- Display:
+  - Set display format (e.g. SS.D, MM:SS, HH:MM:SS)
+  - Customize display colors with full RGBA (float) values
+- Notes:
+  - Set note text, alignment, and auto-remove timer
+- Alerts:
+  - Define alert threshold time
+  - Set behavior at timer end (stop or continue)
+- Layout:
+  - Single / Dual / Quad display slots
+  - Assign widgets (timer, clock, broadcast, monitor) to slots
+- Broadcast:
+  - Subscribe OSC clients to timer text, warnings, end state, or time triggers
+- Companion:
+  - Rich presets library
+  - Feedback support for visual zone status and dynamic display
+
+---
 
 ## Requirements
 
-- **O:S:C Timer** application (OSC API version 2.2.1+ recommended)
-- **Companion** version 4.0 or later
+- **O:S:C Timer** app (v2.2.1+ recommended)
+- **Bitfocus Companion** v4.0 or later
 - **Node.js** v18+
+
+---
 
 ## Setup
 
-1. Start your O:S:C Timer application
-2. Verify or configure the OSC ports for each timer:
-    - Timer 1: default 53001
-    - Timer 2: default 53002
-    - Timer 3: default 53003
-    - Timer 4: default 53004
-3. In Companion, add the module and enter the IP address of the device running O:S:C Timer
-4. Specify the OSC port for each timer as needed
+1. Launch the O:S:C Timer app
+2. Ensure default or custom OSC ports are set per timer:
+    - Timer 1: 53001
+    - Timer 2: 53002
+    - Timer 3: 53003
+    - Timer 4: 53004
+3. In Companion, configure the module:
+    - Enter the host IP (where OSC Timer runs)
+    - Assign the appropriate ports for each timer
 
 ---
 
 ## Actions
 
-### Timer Controls
+### Timer Control
 
-- **Start / Stop / Reset / Reset & Stop**  
-  Control each timer's basic state.
+- `Start`, `Stop`, `Reset`, `Reset and Stop`
+- Set specific duration (H:M:S)
+- Count to time of day (UTC offset optional)
+- Count direction: Up or Down
+- End behavior: Stop at zero or continue past zero
+- Display format: Choose between multiple time layouts
 
-- **Set Time**  
-  Set countdown time in hours, minutes, and seconds.
+### Time Adjustment (Unified)
 
-- **Set Time of Day (with Time Zone Offset)**  
-  Define countdown target based on real time with timezone selection.
+- One action handles all time adds/subtracts:
+  - Hours, Minutes, Seconds
+  - Mode: Static (permanent) or Live (temporary)
 
-- **Count Direction**  
-  Switch between counting up or down.
+### Alerts
 
-- **Set End Behavior**  
-  Control whether timers stop at zero or continue running.
+- Set a warning threshold time (H:M:S)
 
-### Timer Adjustment
+### Notes
 
-- Add or subtract time from active timers in:
-  - Seconds
-  - Minutes
-  - Hours
-- Supports both **static** and **live adjustments** while timers are running.
+- Set custom text for display
+- Choose alignment
+- Auto-remove after time (optional)
 
-### Alert & Warning Configuration
+### Display Customization
 
-- **Set Alert Time**  
-  Define when a timer enters alert mode (hours, minutes, seconds).
+- Set color using RGBA float values (0.0–1.0 range)
+  - Backgrounds, fonts, app UI, notes, and clock
+- Supports full transparency
 
-### Layout Management
+### Layout
 
-- **Set Display Layout**  
-  Choose between Single, Dual, or Quad timer layouts.
-- **Assign Widget to Display Slot**  
-  Assign timers, clock, monitor, or broadcast widgets to display slots.
-
-### Notes Management
-
-- **Set Notes Text**  
-  Display custom notes with optional auto-remove timer.
-- **Set Notes Alignment**  
-  Align notes text (center, top, bottom, leading/trailing).
-
-### Color Controls
-
-- **Set Display Colors**  
-  Customize colors for:
-  - Timer (normal, warning, end)
-  - Background
-  - App background
+- Select layout mode: Single / Dual / Quad
+- Assign widgets to display slots:
+  - Timers
   - Clock
-  - Broadcast text
-  - Notes (foreground and background)
+  - Broadcast
+  - Monitor
 
-- Colors are set using full RGBA values (including transparency).
+### OSC Broadcast Subscriptions
 
-### Broadcast Subscriptions (OSC)
-
-- Subscribe/unsubscribe external OSC devices to receive:
+- Subscribe/unsubscribe OSC clients to:
   - Timer text updates
-  - Warning state updates
-  - End state triggers
+  - Warning state transitions
+  - Timer end triggers
   - Specific time triggers
 
 ---
 
 ## Feedbacks
 
-- **Timer Zone**  
-  Feedback based on timer state (normal, warning, end).
-
-- **Timer Running**  
-  Feedback showing whether a timer is currently running.
-
-- **Timer Time Display**  
-  Display current timer value directly on button text.
+- **Timer Zone**
+  - Visual feedback for Normal / Warning / End zones
+- **Timer Running**
+  - Indicates if a timer is active
+- **Timer Display**
+  - Show current timer time on button
 
 ---
 
 ## Variables
 
-The module exposes the following variables:
-
-| Variable ID      | Description  |
-|-------------------|--------------|
-| `timer1_time` – `timer4_time` | Current timer time |
-| `timer1_name` – `timer4_name` | Timer names |
+| Variable ID      | Description            |
+|------------------|------------------------|
+| `timer1_time` – `timer4_time` | Timer display time |
+| `timer1_name` – `timer4_name` | Custom timer names |
 
 ---
 
 ## Troubleshooting
 
-- Ensure O:S:C Timer is running and listening on the expected OSC ports.
-- Verify IP address and network configuration.
-- Review Companion logs for module errors.
-- For variable updates and feedbacks, ensure you are using O:S:C Timer v2.2.1 or newer.
+- Ensure OSC Timer is open and network reachable
+- Verify correct IP and ports in module config
+- Module requires OSC Timer version 2.2.1 or later for full compatibility
+- Use Companion's logs for debugging OSC communication
 
 ---
 
 ## Compatibility
 
-- **O:S:C Timer:** version 2.2.1+ recommended
-- **Companion:** version 4.0+
-- **Node.js:** version 18+
+- **O:S:C Timer:** v2.2.1+
+- **Companion:** v4.0+
+- **Node.js:** v18+
+
+---
 
 ## Support
 
-- GitHub: [https://github.com/bitfocus/companion-module-osctimer-osctimer](https://github.com/bitfocus/companion-module-osctimer-osctimer)
-- Email: osctimer@rasmuskreiner.dk
+- GitHub: [bitfocus/companion-module-osctimer-osctimer](https://github.com/bitfocus/companion-module-osctimer-osctimer)
+- Author: Rasmus Kreiner – osctimer@rasmuskreiner.dk
+
+---
 
 ## Changelog
 
-### v1.0.0
+### v1.1.0
 
-- Initial public release
-- Full Companion 4 support
-- All timer control actions implemented
-- Full layout management
-- Broadcast subscription support
-- Notes system and alignment options
-- Full color customization with RGBA support
-- Real-time feedback and variables
-
----
+- Unified time adjustment action (live/static)
+- Color pickers now normalize to RGBA float values
+- Expanded layout and widget assignment support
+- Improved presets and dynamic feedback
+- Bugfixes and polish

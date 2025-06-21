@@ -16,17 +16,17 @@ const {
 } = require("./osc");
 const { getConfigFields } = require("./config");
 const os = require("os");
+const dgram = require('dgram')
 
-function getLocalIPAddress() {
-        const interfaces = os.networkInterfaces();
-        for (const iface of Object.values(interfaces)) {
-                for (const config of iface) {
-                        if (config.family === "IPv4" && !config.internal) {
-                                return config.address;
-                        }
-                }
-        }
-        return "127.0.0.1";
+function getOSCIPAddress(destinationIP) {
+	return new Promise((resolve) => {
+		const socket = dgram.createSocket('udp4')
+		socket.connect(9, destinationIP, () => {
+			const address = socket.address()
+			socket.close()
+			resolve(address.address)
+		})
+	})
 }
 
 class OSCTimerInstance extends InstanceBase {
@@ -55,12 +55,14 @@ class OSCTimerInstance extends InstanceBase {
         async configUpdated(config) {
                 const oldConfig = this.config;
 
+                const ip = await getOSCIPAddress(config.host);
+
                 for (let timerNum = 1; timerNum <= 4; timerNum++) {
                         const oldPort = oldConfig[`timer${timerNum}Port`];
                         const newPort = config[`timer${timerNum}Port`];
 
                         if (oldPort && (!newPort || newPort.trim() === "")) {
-                                const ip = getLocalIPAddress();
+                                const ip = await getOSCIPAddress(config.host);
                                 const port = 60000 + timerNum;
                                 const paths = [
                                         `/timer/${timerNum}/time`,
@@ -209,8 +211,10 @@ class OSCTimerInstance extends InstanceBase {
                 }
         }
 
-        startVariableSubscriptionLoop() {
-                const ip = getLocalIPAddress();
+        async startVariableSubscriptionLoop() {
+                if (!this.config.host) return;
+        
+                const ip = await getOSCIPAddress(this.config.host);
                 this.variableSubscriptionInterval = setInterval(() => {
                         for (let timerNum = 1; timerNum <= 4; timerNum++) {
                                 const port = 60000 + timerNum;
@@ -218,12 +222,12 @@ class OSCTimerInstance extends InstanceBase {
                                         `/timer/${timerNum}/time`,
                                         `/timer/${timerNum}/zone`,
                                 ];
-
+        
                                 if (this.timers[timerNum]?.connected) {
                                         this.sendCommand(
                                                 timerNum,
                                                 "/bc/subscribeToVariables",
-                                                [ip, port, ...paths],
+                                                [ip, port, ...paths]
                                         );
                                 }
                         }
@@ -235,7 +239,7 @@ class OSCTimerInstance extends InstanceBase {
         }
 
         async destroy() {
-                const ip = getLocalIPAddress();
+                const ip = await getOSCIPAddress(this.config.host);
 
                 if (this.variableSubscriptionInterval) {
                         clearInterval(this.variableSubscriptionInterval);

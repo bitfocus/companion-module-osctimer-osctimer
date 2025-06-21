@@ -1,30 +1,39 @@
 # O:S:C Timer – Companion Module
 
 This Companion module allows remote control of the OSC Timer application via OSC (Open Sound Control).
-The OSC Timer app is a standalone multi-timer software available on macOS and iOS, designed primarily for live events, conferences, broadcasts, and stage management.
 
-This module was developed to fully integrate the OSC Timer app into Bitfocus Companion.
-- App Store Link: [OSC Timer App](https://apps.apple.com/dk/app/osc-timer/id1487250917?l=da)
+The OSC Timer app is a standalone multi-timer software for macOS and iOS, designed for live events, conferences, broadcasts, and stage management.
+
+This module integrates OSC Timer tightly into Bitfocus Companion.
+
+- App Store: [OSC Timer App](https://apps.apple.com/dk/app/osc-timer/id1487250917?l=da)
+
+---
 
 ## Features
 
-- Control up to 4 independent timers over network
-- Per timer:
-  - Start, stop, reset, reset & stop
-  - Set timer duration (absolute or relative)
-  - Add or subtract time (live or static)
-  - Count up / count down direction
-  - Set target time of day with time zone
+- **Control up to 4 independent timers**
+- **Per timer:**
+  - Start, stop, reset, and reset & stop
+  - Set absolute durations (HH:MM:SS)
+  - Set target time of day with optional UTC offset
+  - Adjust time live or statically with add/subtract in one unified action
+  - Direction: Count up / Count down
   - Alert threshold configuration
-  - End behavior configuration (stop or continue)
-  - Display format control (SS.D, MM:SS, HH:MM:SS, etc.)
-  - Custom text notes with positioning and auto-remove
-  - Full display color customization
-- Global:
-  - Control display layout (single, dual, quad slots)
-  - Broadcast OSC subscriptions for external devices (text, warning, end, at-time triggers)
-- Preset library for fast button setup inside Companion
-- Extensive feedback options for visual state control
+  - End behavior (stop or continue)
+  - Display format control (SS.D, MM:SS, HH:MM:SS)
+  - Custom notes with text input, alignment and auto-remove
+  - Full display color customization (with RGBA float values)
+- **Global settings:**
+  - Choose between single / dual / quad display layouts
+  - Assign timers or widgets to slots
+  - Broadcast OSC messages on text updates, warnings, end, or at specific times
+- **Presets and feedback:**
+  - Full preset library with updated logic
+  - Color zone feedback (normal, warning, end)
+  - Dynamic button labels and states
+
+---
 
 ## Requirements
 
@@ -32,34 +41,44 @@ This module was developed to fully integrate the OSC Timer app into Bitfocus Com
 - Node.js: v18
 - OSC Timer App (OSC API compatible) running on the network
 
+---
+
 ## Configuration
 
-- **Timer Host IP** — The IP address of the device running the OSC Timer app
-- **Timer Ports** — Enter the OSC port for each timer (default ports below). Leave a port blank to disable that timer.
+- **Timer Host IP** — IP address of the machine running the OSC Timer app
+- **Timer Ports** — Enter port numbers (default values below). Leave blank to disable a timer.
 
 ### Default Timer Ports
 
-- Timer 1: 53001
-- Timer 2: 53002
-- Timer 3: 53003
-- Timer 4: 53004
+| Timer | Port   |
+|-------|--------|
+| 1     | 53001  |
+| 2     | 53002  |
+| 3     | 53003  |
+| 4     | 53004  |
 
-## Usage
+---
 
-Inside Companion you can:
+## Usage in Companion
 
-- Use ready-made presets to control all basic functions
-- Set durations and count directions
-- Adjust live times and alert thresholds
-- Assign timers to display layouts (single / dual / quad)
-- Configure OSC broadcast subscriptions
-- Customize display appearance via color pickers
+### Actions
 
-For a full list of available actions, presets and feedbacks — explore the Companion interface after module install.
+- All core functions are available as Companion actions.
+- New **time adjustment** action replaces older add/subtract variants:
+  - Accepts **hours**, **minutes**, and **seconds**
+  - Choose `Add` or `Subtract`
+  - Select between `Live (temporary)` or `Static (permanent)` mode
+- Display colors are now set using a **color picker**, with RGBA values normalized to float range (0.0–1.0) as expected by the OSC Timer API.
+
+### Presets
+
+- Presets now rely on the updated actions
+- Support live/static time adjustment and color zone feedback
+- Use dynamic text fields like `$(OSC_Timer:timer1_time)` for real-time display
+
+---
 
 ## Support
 
-For questions, feedback or contributions:
-
-- **Author:** Rasmus Kreiner – osctimer@rasmuskreiner.dk
+- **Author:** Rasmus Kreiner – osctimer@rasmuskreiner.dk  
 - **GitHub:** [rasmuskreiner](https://github.com/rasmuskreiner)

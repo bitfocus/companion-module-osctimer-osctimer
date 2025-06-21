@@ -157,4 +157,4 @@ function getPresetDefinitions(self) {
         return presets;
 }
 
-module.exports = { getPresetDefinitions };
+module.exports = { getPresetDefinitions };      
